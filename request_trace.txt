@@ -1,0 +1,677 @@
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /favicon.ico
+RESPONSE SENT: 404
+REQUEST RECEIVED: POST /api/messages
+CRASH: Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 101, in process
+    invoke_response = await self.process_activity(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, activity, bot.on_turn
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\core\cloud_adapter_base.py", line 332, in process_activity
+    await self.bot_framework_authentication.authenticate_request(
+        activity, auth_header_or_authenticate_request_result
+    )
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\configuration_bot_framework_authentication.py", line 72, in authenticate_request
+    return await self._inner.authenticate_request(activity, auth_header)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\_built_in_bot_framework_authentication.py", line 73, in authenticate_request
+    claims_identity = await JwtTokenValidation.authenticate_request(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 69, in authenticate_request
+    claims_identity = await JwtTokenValidation.validate_auth_header(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 167, in validate_auth_header
+    claims = await get_claims()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 122, in get_claims
+    return await ChannelValidation.authenticate_channel_token_with_service_url(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 54, in authenticate_channel_token_with_service_url
+    identity = await ChannelValidation.authenticate_channel_token(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, credentials, channel_id, auth_configuration
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 104, in authenticate_channel_token
+    return await ChannelValidation.validate_identity(identity, credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 139, in validate_identity
+    raise PermissionError(
+        "Unauthorized. Invalid AppId passed on token: ", aud_claim
+    )
+PermissionError: [Errno Unauthorized. Invalid AppId passed on token: ] 52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 39, in debug_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 110, in messages
+    response = await bot_adapter.process(shimmed_request, bot_handler)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 115, in process
+    raise HTTPUnauthorized
+aiohttp.web_exceptions.HTTPUnauthorized: Unauthorized
+
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+CRASH: Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 101, in process
+    invoke_response = await self.process_activity(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, activity, bot.on_turn
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\core\cloud_adapter_base.py", line 332, in process_activity
+    await self.bot_framework_authentication.authenticate_request(
+        activity, auth_header_or_authenticate_request_result
+    )
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\configuration_bot_framework_authentication.py", line 72, in authenticate_request
+    return await self._inner.authenticate_request(activity, auth_header)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\_built_in_bot_framework_authentication.py", line 73, in authenticate_request
+    claims_identity = await JwtTokenValidation.authenticate_request(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 69, in authenticate_request
+    claims_identity = await JwtTokenValidation.validate_auth_header(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 167, in validate_auth_header
+    claims = await get_claims()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 122, in get_claims
+    return await ChannelValidation.authenticate_channel_token_with_service_url(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 54, in authenticate_channel_token_with_service_url
+    identity = await ChannelValidation.authenticate_channel_token(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, credentials, channel_id, auth_configuration
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 104, in authenticate_channel_token
+    return await ChannelValidation.validate_identity(identity, credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 139, in validate_identity
+    raise PermissionError(
+        "Unauthorized. Invalid AppId passed on token: ", aud_claim
+    )
+PermissionError: [Errno Unauthorized. Invalid AppId passed on token: ] 52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 39, in debug_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 110, in messages
+    response = await bot_adapter.process(shimmed_request, bot_handler)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 115, in process
+    raise HTTPUnauthorized
+aiohttp.web_exceptions.HTTPUnauthorized: Unauthorized
+
+CRASH: Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 101, in process
+    invoke_response = await self.process_activity(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, activity, bot.on_turn
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\core\cloud_adapter_base.py", line 332, in process_activity
+    await self.bot_framework_authentication.authenticate_request(
+        activity, auth_header_or_authenticate_request_result
+    )
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\configuration_bot_framework_authentication.py", line 72, in authenticate_request
+    return await self._inner.authenticate_request(activity, auth_header)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\_built_in_bot_framework_authentication.py", line 73, in authenticate_request
+    claims_identity = await JwtTokenValidation.authenticate_request(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 69, in authenticate_request
+    claims_identity = await JwtTokenValidation.validate_auth_header(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 167, in validate_auth_header
+    claims = await get_claims()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 122, in get_claims
+    return await ChannelValidation.authenticate_channel_token_with_service_url(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 54, in authenticate_channel_token_with_service_url
+    identity = await ChannelValidation.authenticate_channel_token(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, credentials, channel_id, auth_configuration
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 104, in authenticate_channel_token
+    return await ChannelValidation.validate_identity(identity, credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 139, in validate_identity
+    raise PermissionError(
+        "Unauthorized. Invalid AppId passed on token: ", aud_claim
+    )
+PermissionError: [Errno Unauthorized. Invalid AppId passed on token: ] 52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 39, in debug_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 110, in messages
+    response = await bot_adapter.process(shimmed_request, bot_handler)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 115, in process
+    raise HTTPUnauthorized
+aiohttp.web_exceptions.HTTPUnauthorized: Unauthorized
+
+REQUEST RECEIVED: GET /api/test-debug
+DEBUG_CHECK: App ID is '52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb'
+RESPONSE SENT: 200
+REQUEST RECEIVED: OPTIONS /api/messages
+RESPONSE SENT: 405
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+RESPONSE SENT: 200
+REQUEST RECEIVED: GET /api/test-debug
+DEBUG_ENDPOINT_ERROR: 'ConfigurationBotFrameworkAuthentication' object has no attribute '_credentials_factory'
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 61, in debug_endpoint
+    # ConfigurationBotFrameworkAuthentication wraps the actual auth in _inner
+AttributeError: 'ConfigurationBotFrameworkAuthentication' object has no attribute '_credentials_factory'
+
+RESPONSE SENT: 200
+REQUEST RECEIVED: POST /api/messages
+CRASH: Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 101, in process
+    invoke_response = await self.process_activity(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, activity, bot.on_turn
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\core\cloud_adapter_base.py", line 332, in process_activity
+    await self.bot_framework_authentication.authenticate_request(
+        activity, auth_header_or_authenticate_request_result
+    )
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\configuration_bot_framework_authentication.py", line 72, in authenticate_request
+    return await self._inner.authenticate_request(activity, auth_header)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\_built_in_bot_framework_authentication.py", line 73, in authenticate_request
+    claims_identity = await JwtTokenValidation.authenticate_request(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 69, in authenticate_request
+    claims_identity = await JwtTokenValidation.validate_auth_header(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 167, in validate_auth_header
+    claims = await get_claims()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 122, in get_claims
+    return await ChannelValidation.authenticate_channel_token_with_service_url(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 54, in authenticate_channel_token_with_service_url
+    identity = await ChannelValidation.authenticate_channel_token(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, credentials, channel_id, auth_configuration
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 104, in authenticate_channel_token
+    return await ChannelValidation.validate_identity(identity, credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 139, in validate_identity
+    raise PermissionError(
+        "Unauthorized. Invalid AppId passed on token: ", aud_claim
+    )
+PermissionError: [Errno Unauthorized. Invalid AppId passed on token: ] 52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 39, in debug_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 136, in messages
+    shimmed_request = AiohttpRequestWrapper(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 115, in process
+    raise HTTPUnauthorized
+aiohttp.web_exceptions.HTTPUnauthorized: Unauthorized
+
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+CRASH: Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 101, in process
+    invoke_response = await self.process_activity(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, activity, bot.on_turn
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\core\cloud_adapter_base.py", line 332, in process_activity
+    await self.bot_framework_authentication.authenticate_request(
+        activity, auth_header_or_authenticate_request_result
+    )
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\configuration_bot_framework_authentication.py", line 72, in authenticate_request
+    return await self._inner.authenticate_request(activity, auth_header)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\_built_in_bot_framework_authentication.py", line 73, in authenticate_request
+    claims_identity = await JwtTokenValidation.authenticate_request(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 69, in authenticate_request
+    claims_identity = await JwtTokenValidation.validate_auth_header(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 167, in validate_auth_header
+    claims = await get_claims()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 122, in get_claims
+    return await ChannelValidation.authenticate_channel_token_with_service_url(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 54, in authenticate_channel_token_with_service_url
+    identity = await ChannelValidation.authenticate_channel_token(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, credentials, channel_id, auth_configuration
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 104, in authenticate_channel_token
+    return await ChannelValidation.validate_identity(identity, credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 139, in validate_identity
+    raise PermissionError(
+        "Unauthorized. Invalid AppId passed on token: ", aud_claim
+    )
+PermissionError: [Errno Unauthorized. Invalid AppId passed on token: ] 52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 39, in debug_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 136, in messages
+    shimmed_request = AiohttpRequestWrapper(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 115, in process
+    raise HTTPUnauthorized
+aiohttp.web_exceptions.HTTPUnauthorized: Unauthorized
+
+CRASH: Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 101, in process
+    invoke_response = await self.process_activity(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, activity, bot.on_turn
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\core\cloud_adapter_base.py", line 332, in process_activity
+    await self.bot_framework_authentication.authenticate_request(
+        activity, auth_header_or_authenticate_request_result
+    )
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\configuration_bot_framework_authentication.py", line 72, in authenticate_request
+    return await self._inner.authenticate_request(activity, auth_header)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\_built_in_bot_framework_authentication.py", line 73, in authenticate_request
+    claims_identity = await JwtTokenValidation.authenticate_request(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 69, in authenticate_request
+    claims_identity = await JwtTokenValidation.validate_auth_header(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 167, in validate_auth_header
+    claims = await get_claims()
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\jwt_token_validation.py", line 122, in get_claims
+    return await ChannelValidation.authenticate_channel_token_with_service_url(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 54, in authenticate_channel_token_with_service_url
+    identity = await ChannelValidation.authenticate_channel_token(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        auth_header, credentials, channel_id, auth_configuration
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 104, in authenticate_channel_token
+    return await ChannelValidation.validate_identity(identity, credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botframework\connector\auth\channel_validation.py", line 139, in validate_identity
+    raise PermissionError(
+        "Unauthorized. Invalid AppId passed on token: ", aud_claim
+    )
+PermissionError: [Errno Unauthorized. Invalid AppId passed on token: ] 52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 39, in debug_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\fastapi\routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\app\main.py", line 136, in messages
+    shimmed_request = AiohttpRequestWrapper(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prith\Downloads\AI Scrum Bot\.venv\Lib\site-packages\botbuilder\integration\aiohttp\cloud_adapter.py", line 115, in process
+    raise HTTPUnauthorized
+aiohttp.web_exceptions.HTTPUnauthorized: Unauthorized
+
+REQUEST RECEIVED: OPTIONS /api/messages
+RESPONSE SENT: 405
+REQUEST RECEIVED: OPTIONS /api/messages
+RESPONSE SENT: 405
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+REQUEST RECEIVED: POST /api/messages
+RESPONSE SENT: 201
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+REQUEST RECEIVED: POST /api/messages
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201
+RESPONSE SENT: 201

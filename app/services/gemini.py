@@ -1,20 +1,24 @@
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from loguru import logger
 
 from app.config import settings
 
-# Configure Gemini
-genai.configure(api_key=settings.GEMINI_API_KEY)
+# Configure Gemini client
+client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
-# Models
-gemini_flash = genai.GenerativeModel("gemini-1.5-flash")
+# Model to use
+MODEL = "gemini-2.0-flash"
 
 
 async def generate_response(prompt: str, context: str = "") -> str:
-    """Generate a response using Gemini 1.5 Flash."""
+    """Generate a response using Gemini."""
     try:
         full_prompt = f"{context}\n\n{prompt}" if context else prompt
-        response = await gemini_flash.generate_content_async(full_prompt)
+        response = await client.aio.models.generate_content(
+            model=MODEL,
+            contents=full_prompt
+        )
         return response.text
     except Exception as e:
         logger.error(f"Gemini error: {e}")
@@ -24,10 +28,13 @@ async def generate_response(prompt: str, context: str = "") -> str:
 async def transcribe_audio(audio_bytes: bytes, mime_type: str = "audio/mp3") -> str:
     """Transcribe audio using Gemini's multimodal capabilities."""
     try:
-        response = await gemini_flash.generate_content_async([
-            {"mime_type": mime_type, "data": audio_bytes},
-            "Transcribe this audio accurately. Return only the transcription."
-        ])
+        response = await client.aio.models.generate_content(
+            model=MODEL,
+            contents=[
+                types.Part.from_bytes(data=audio_bytes, mime_type=mime_type),
+                "Transcribe this audio accurately. Return only the transcription."
+            ]
+        )
         return response.text.strip()
     except Exception as e:
         logger.error(f"Gemini STT error: {e}")
@@ -56,9 +63,15 @@ Only return the JSON, no markdown.
 """
     
     try:
-        response = await gemini_flash.generate_content_async(prompt)
+        response = await client.aio.models.generate_content(
+            model=MODEL,
+            contents=prompt
+        )
+        # Clean up response text
+        cleaned_text = response.text.replace("```json", "").replace("```", "").strip()
+        
         import json
-        return json.loads(response.text)
+        return json.loads(cleaned_text)
     except Exception as e:
         logger.error(f"Analysis error: {e}")
         return {"task_updates": [], "blockers": [], "summary": user_response}

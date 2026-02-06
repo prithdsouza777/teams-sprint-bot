@@ -11,12 +11,14 @@ _polly_client = None
 def get_polly_client():
     global _polly_client
     if _polly_client is None:
-        _polly_client = boto3.client(
-            "polly",
-            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
-            region_name=settings.AWS_REGION,
-        )
+        kwargs = {"region_name": settings.AWS_REGION}
+        
+        # Only pass credentials if they are provided in valid format
+        if settings.AWS_ACCESS_KEY_ID and settings.AWS_SECRET_ACCESS_KEY:
+            kwargs["aws_access_key_id"] = settings.AWS_ACCESS_KEY_ID
+            kwargs["aws_secret_access_key"] = settings.AWS_SECRET_ACCESS_KEY
+            
+        _polly_client = boto3.client("polly", **kwargs)
     return _polly_client
 
 

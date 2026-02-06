@@ -3,9 +3,9 @@ REM ======================================
 REM Cloud Scheduler Setup for Daily Standups
 REM ======================================
 
-SET PROJECT_ID=your-gcp-project-id
+SET PROJECT_ID=ai-coe-442511
 SET REGION=us-central1
-SET CLOUD_RUN_URL=https://scrum-bot-xxxxx-uc.a.run.app
+SET CLOUD_RUN_URL=https://scrum-bot-536066708327.us-central1.run.app
 
 echo Setting up Cloud Scheduler for daily standups...
 

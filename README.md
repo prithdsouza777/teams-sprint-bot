@@ -60,6 +60,17 @@ gcloud builds submit --tag gcr.io/PROJECT_ID/scrum-bot
 gcloud run deploy scrum-bot --image gcr.io/PROJECT_ID/scrum-bot --platform managed
 ```
 
+## Verification
+
+To verify your environment setup, use the scripts in the `tests/` directory:
+
+```bash
+# Verify all cloud services (Polly, Azure, Gemini, Mongo)
+python tests/verify_services.py
+python tests/verify_azure.py
+python tests/verify_polly.py
+```
+
 ## Environment Variables
 
 | Variable | Description |

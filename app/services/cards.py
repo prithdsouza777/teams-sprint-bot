@@ -1,5 +1,21 @@
-from botbuilder.schema import Attachment, CardAction, ActionTypes
+from botbuilder.schema import Attachment, CardAction, ActionTypes, AudioCard, MediaUrl
 from typing import List, Dict, Any
+
+
+def create_audio_card(text: str, audio_url: str) -> Attachment:
+    """Create an AudioCard to accompany text."""
+    card = AudioCard(
+        title="AI Voice Assistant",
+        subtitle="Click play to listen",
+        text=text,
+        media=[MediaUrl(url=audio_url)],
+        autoloop=False,
+        autostart=False
+    )
+    return Attachment(
+        content_type="application/vnd.microsoft.card.audio",
+        content=card
+    )
 
 
 def create_question_card(
@@ -36,10 +52,10 @@ def create_question_card(
                 "type": "ActionSet",
                 "actions": [
                     {"type": "Action.Submit", "title": "✅ On Track", "data": {"quickReply": "on_track"}},
-                    {"type": "Action.Submit", "title": "🔴 Blocked", "data": {"quickReply": "blocked"}},
-                    {"type": "Action.Submit", "title": "💬 Type Response", "data": {"quickReply": "custom"}}
+                    {"type": "Action.Submit", "title": "🔴 Blocked", "data": {"quickReply": "blocked"}}
                 ]
-            }
+            },
+            {"type": "TextBlock", "text": "Or just type your response below 👇", "size": "Small", "isSubtle": True, "horizontalAlignment": "Center"}
         ]
     }
 
