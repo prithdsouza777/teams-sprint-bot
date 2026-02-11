@@ -1,7 +1,5 @@
 from botbuilder.core import ActivityHandler, TurnContext, MessageFactory
-from botbuilder.core.teams import TeamsActivityHandler
-from botbuilder.schema import Activity, ActivityTypes
-from botbuilder.schema.teams import AdaptiveCardInvokeValue, AdaptiveCardInvokeResponse
+from botbuilder.schema import Activity, ActivityTypes, Attachment
 from loguru import logger
 from datetime import datetime, timedelta
 import json
@@ -11,7 +9,8 @@ from app.services.cards import (
     create_question_card, create_summary_card, create_audio_card,
     create_scrum_master_menu_card, create_task_assignment_prompt_card,
     create_task_assignment_confirmation_card, create_new_tasks_notification_card,
-    create_simple_message_card
+    create_completed_menu_card, create_completed_task_prompt_card,
+    create_completed_question_card
 )
 from app.services.database import (
     get_user_by_name, get_user_by_teams_id, register_user,
@@ -28,6 +27,11 @@ import urllib.parse
 _processed_messages: dict[str, datetime] = {}
 DEDUPE_WINDOW = timedelta(seconds=10)
 
+# Greeting deduplication cache to prevent duplicate welcome messages
+# Both on_members_added_activity and on_message_activity can fire on first contact
+_greeted_conversations: dict[str, datetime] = {}
+GREETING_DEDUPE_WINDOW = timedelta(seconds=30)
+
 
 def _cleanup_dedup_cache() -> None:
     """Remove expired entries to prevent unbounded memory growth."""
@@ -37,9 +41,23 @@ def _cleanup_dedup_cache() -> None:
         del _processed_messages[k]
 
 
-class TeamsBot(TeamsActivityHandler):
+class TeamsBot(ActivityHandler):
 
     """Handles incoming Teams activities and orchestrates the standup flow."""
+
+    async def _replace_card(self, turn_context: TurnContext, new_card: Attachment):
+        """Replace the original interactive card with a completed read-only version."""
+        try:
+            reply_id = turn_context.activity.reply_to_id
+            if reply_id:
+                updated = Activity(
+                    type=ActivityTypes.message,
+                    id=reply_id,
+                    attachments=[new_card]
+                )
+                await turn_context.update_activity(updated)
+        except Exception as e:
+            logger.debug(f"Could not update card (expected in some channels): {e}")
 
     async def on_message_activity(self, turn_context: TurnContext):
         try:
@@ -74,7 +92,46 @@ class TeamsBot(TeamsActivityHandler):
                 logger.warning(f"Could not save conversation reference: {e}")
 
             # Handle Adaptive Card actions
-
+            if turn_context.activity.value:
+                card_data = turn_context.activity.value
+                action = card_data.get("action")
+                
+                # Handle Scrum Master menu actions
+                if action == "start_standup":
+                    await self._replace_card(turn_context, create_completed_menu_card(user_name, "Start Standup"))
+                    await self._start_standup(turn_context, conversation_id, user_id, user_name)
+                    return
+                elif action == "assign_task":
+                    await self._replace_card(turn_context, create_completed_menu_card(user_name, "Assign Task"))
+                    # Show task assignment prompt card
+                    card = create_task_assignment_prompt_card()
+                    await turn_context.send_activity(Activity(
+                        type=ActivityTypes.message,
+                        attachments=[card]
+                    ))
+                    return
+                elif action == "submit_task_assignment":
+                    await self._replace_card(turn_context, create_completed_task_prompt_card("Task submitted"))
+                    # Process task assignment from card
+                    task_description = card_data.get("taskDescription", "")
+                    await self._process_task_assignment(turn_context, user_id, user_name, task_description)
+                    return
+                elif action == "cancel_assignment":
+                    await self._replace_card(turn_context, create_completed_task_prompt_card("Cancelled"))
+                    await turn_context.send_activity(
+                        MessageFactory.text("Task assignment cancelled. What else can I help you with?")
+                    )
+                    return
+                
+                # Handle standup quick replies
+                if card_data.get("quickReply") == "on_track":
+                    text = "Everything is on track, no blockers."
+                    await self._replace_card(turn_context, create_completed_task_prompt_card("✅ On Track"))
+                elif card_data.get("quickReply") == "blocked":
+                    text = "I'm blocked and need help."
+                    await self._replace_card(turn_context, create_completed_task_prompt_card("🔴 Blocked"))
+                elif card_data.get("userResponse"):
+                    text = card_data.get("userResponse")
 
             # Check for standup commands
             text_lower = text.lower()
@@ -94,8 +151,18 @@ class TeamsBot(TeamsActivityHandler):
             # Check for pending registration
             if state_dict and state_dict.get("pending_registration"):
                 teams_id = state_dict.get("teams_id", user_id)
-                # User is providing their name for registration
-                user = await register_user(teams_id, text)
+                # Extract actual name from phrases like "my name is X", "I'm X", etc.
+                import re
+                name_input = text.strip()
+                name_patterns = [
+                    r"(?i)^(?:my\s+name\s+is|i'?\s*am|i'm|call\s+me|it'?\s*s|this\s+is)\s+(.+)$",
+                ]
+                for pattern in name_patterns:
+                    match = re.match(pattern, name_input)
+                    if match:
+                        name_input = match.group(1).strip().rstrip(".")
+                        break
+                user = await register_user(teams_id, name_input)
                 if user:
                     await turn_context.send_activity(
                         MessageFactory.text(f"✅ Got it, {user.get('name')}! You're now registered. Type **start standup** to begin.")
@@ -120,209 +187,6 @@ class TeamsBot(TeamsActivityHandler):
             await turn_context.send_activity(
                 MessageFactory.text("Sorry, something went wrong. Please try again.")
             )
-
-    async def on_adaptive_card_invoke(
-        self, context: TurnContext, invoke_value: AdaptiveCardInvokeValue
-    ) -> AdaptiveCardInvokeResponse:
-        """Handle Universal Actions (Action.Execute) from Adaptive Cards."""
-        try:
-            verb = invoke_value.action.verb
-            data = invoke_value.action.data
-            user_id = context.activity.from_property.id
-            user_name = context.activity.from_property.name or "User"
-            conversation_id = context.activity.conversation.id
-
-            card_response = None
-
-            if verb == "start_standup":
-                # Start standup flow (sends messages)
-                await self._start_standup(context, conversation_id, user_id, user_name)
-                # Replace menu with simple confirmation
-                card_response = create_simple_message_card("🚀 Standup started! Check the new message below.")
-
-            elif verb == "assign_task":
-                # Replace menu with assignment prompt
-                card_response = create_task_assignment_prompt_card()
-
-            elif verb == "submit_task_assignment":
-                # Process assignment and return confirmation/error card
-                task_description = data.get("taskDescription", "")
-                card_response = await self._process_task_assignment_card(context, user_id, user_name, task_description)
-
-            elif verb == "cancel_assignment":
-                card_response = create_simple_message_card("Task assignment cancelled. What else can I help you with?")
-
-            elif verb == "submit_standup_answer":
-                # Process answer and return next question/summary card
-                quick_reply = data.get("quickReply")
-                if quick_reply == "on_track":
-                    text = "Everything is on track, no blockers."
-                elif quick_reply == "blocked":
-                    text = "I'm blocked and need help."
-                else:
-                    text = data.get("userResponse", "")
-                
-                card_response = await self._continue_standup_card(context, conversation_id, text)
-
-            if card_response:
-                return AdaptiveCardInvokeResponse(
-                    status_code=200,
-                    type="application/vnd.microsoft.card.adaptive",
-                    value=card_response.content
-                )
-            
-            return AdaptiveCardInvokeResponse(status_code=200)
-
-        except Exception as e:
-            logger.error(f"Error in on_adaptive_card_invoke: {e}")
-            return AdaptiveCardInvokeResponse(status_code=500, value={"error": str(e)})
-
-
-    async def _process_task_assignment_card(
-        self, 
-        turn_context: TurnContext, 
-        user_id: str, 
-        user_name: str, 
-        task_description: str
-    ):
-        """Process a task assignment and return the result card."""
-        if not task_description.strip():
-            return create_simple_message_card("Please provide a task description. Try 'Assign Task' again.")
-        
-        # Get assigner's name from database
-        assigner = await get_user_by_teams_id(user_id)
-        assigner_name = assigner.get("name", user_name) if assigner else user_name
-        
-        # Verify user is a Scrum Master
-        user_role = assigner.get("role", "Member") if assigner else "Member"
-        if user_role != "Scrum Master":
-            return create_simple_message_card("⚠️ Sorry, only **Scrum Masters** can assign tasks.")
-        
-        # Get all team members for context
-        all_users = await get_all_users()
-        team_members = [u.get("name") for u in all_users if u.get("name")]
-        
-        # Use AI to parse the task assignment
-        prompt = TASK_ASSIGNMENT_PROMPT.format(
-            user_input=task_description,
-            team_members=", ".join(team_members)
-        )
-        
-        try:
-            ai_response = await generate_response(prompt)
-            
-            if ai_response:
-                cleaned = ai_response.strip()
-                if cleaned.startswith("```"):
-                    cleaned = cleaned.split("\n", 1)[1] if "\n" in cleaned else cleaned
-                    cleaned = cleaned.rsplit("```", 1)[0] if "```" in cleaned else cleaned
-                
-                parsed = json.loads(cleaned)
-                logger.info(f"AI Parsed Task Assignment: {parsed}")
-                
-                assignee_name = parsed.get("assignee_name", "").strip()
-                task_title = parsed.get("task_title", "").strip()
-                task_desc = parsed.get("task_description", "").strip()
-                
-                if not assignee_name or not task_title:
-                   return create_simple_message_card(
-                        f"I couldn't understand that. Available members: {', '.join(team_members)}. Try again."
-                   )
-                
-                # Verify assignee exists
-                assignee = await get_user_by_name(assignee_name)
-                if not assignee:
-                    return create_simple_message_card(
-                        f"I couldn't find '{assignee_name}'. Available members: {', '.join(team_members)}"
-                    )
-                
-                # Create the task
-                task, error_msg = await create_task_for_user(
-                    assignee_name=assignee_name,
-                    title=task_title,
-                    assigned_by=assigner_name,
-                    description=task_desc
-                )
-                
-                if task:
-                    return create_task_assignment_confirmation_card(
-                        assignee=assignee_name,
-                        task_title=task_title,
-                        assigned_by=assigner_name
-                    )
-                else:
-                    msg = error_msg if error_msg else "Failed to create the task."
-                    return create_simple_message_card(f"❌ {msg}")
-                    
-        except json.JSONDecodeError:
-            return create_simple_message_card("I had trouble understanding that. Please try again.")
-        except Exception as e:
-            logger.error(f"Task assignment error: {e}")
-            return create_simple_message_card("❌ Something went wrong. Please try again.")
-        return create_simple_message_card("❌ Processing failed.")
-
-
-    async def _continue_standup_card(self, turn_context: TurnContext, conversation_id: str, text: str):
-        """Continue standup and return the next card."""
-        # Load state
-        state_dict = await load_state(conversation_id)
-        if not state_dict:
-            return create_simple_message_card("⚠️ Session expired. Please say 'start standup' again.")
-
-        logger.info(f"Continuing standup for {conversation_id}, answer: {text}")
-        state = AgentState(**state_dict)
-        
-        from app.agent.graph import run_standup_agent
-        state, response_message = await run_standup_agent(state, text)
-        
-        # Save updated state
-        await save_state(conversation_id, state.model_dump())
-        logger.info(f"Standup state updated for {conversation_id}, is_complete={state.is_complete}")
-        
-        # Determine response card
-        if state.final_summary:
-            # Generate audio for summary (send as separate activity because simple update can't do audio easily?)
-            # Actually invoke response typically replaces the card. 
-            # We can return the summary card here.
-            # Audio might need to be a separate message if AudioCard isn't supported in invoke response fully or just ignored.
-            # But we can try to return the summary card.
-            
-            # Additional: We want to trigger the audio. 
-            # We can use the logic from _continue_standup: send the audio as a separate message
-            # and return the visual card as the update.
-            encoded_text = urllib.parse.quote("Standup meeting complete. Here is the summary.")
-            audio_url = f"{settings.BASE_URL}/api/speak?text={encoded_text}"
-            audio_card = create_audio_card("Daily Standup Summary", audio_url)
-            
-            await turn_context.send_activity(Activity(
-                type=ActivityTypes.message,
-                attachments=[audio_card]
-            ))
-            
-            # Clear state
-            await clear_state(conversation_id)
-            return create_summary_card(state.final_summary, [], [])
-
-        elif state.current_speaker and state.last_question:
-            # Generate audio for next question
-            encoded_text = urllib.parse.quote(state.last_question)
-            audio_url = f"{settings.BASE_URL}/api/speak?text={encoded_text}"
-            audio_card = create_audio_card(state.last_question, audio_url)
-            
-            await turn_context.send_activity(Activity(
-                type=ActivityTypes.message,
-                attachments=[audio_card]
-            ))
-            
-            return create_question_card(
-                state.current_speaker.name,
-                state.last_question,
-                [{"id": t.id, "title": t.title, "status": t.status.value if hasattr(t.status, 'value') else str(t.status)} 
-                 for t in state.current_tasks]
-            )
-        else:
-            return create_simple_message_card("✅ Thanks for the update! Standup complete.")
-
 
     async def _start_standup(self, turn_context: TurnContext, conversation_id: str, user_id: str, user_name: str):
         """Start a new standup session."""
@@ -529,12 +393,137 @@ Keep your response brief and friendly."""
             attachments=[card]
         ))
 
-
+    async def _process_task_assignment(
+        self, 
+        turn_context: TurnContext, 
+        user_id: str, 
+        user_name: str, 
+        task_description: str
+    ):
+        """Process a task assignment request using AI to parse natural language."""
+        if not task_description.strip():
+            await turn_context.send_activity(
+                MessageFactory.text("Please provide a task description. For example: 'Give John the task to fix the login bug'")
+            )
+            return
+        
+        # Get assigner's name from database
+        assigner = await get_user_by_teams_id(user_id)
+        assigner_name = assigner.get("name", user_name) if assigner else user_name
+        
+        # Verify user is a Scrum Master
+        user_role = assigner.get("role", "Member") if assigner else "Member"
+        if user_role != "Scrum Master":
+            await turn_context.send_activity(
+                MessageFactory.text("⚠️ Sorry, only **Scrum Masters** can assign tasks.")
+            )
+            return
+        
+        # Get all team members for context
+        all_users = await get_all_users()
+        team_members = [u.get("name") for u in all_users if u.get("name")]
+        
+        # Use AI to parse the task assignment
+        prompt = TASK_ASSIGNMENT_PROMPT.format(
+            user_input=task_description,
+            team_members=", ".join(team_members)
+        )
+        
+        try:
+            ai_response = await generate_response(prompt)
+            
+            # Parse the JSON response
+            if ai_response:
+                # Clean up the response - remove markdown code blocks if present
+                cleaned = ai_response.strip()
+                if cleaned.startswith("```"):
+                    cleaned = cleaned.split("\n", 1)[1] if "\n" in cleaned else cleaned
+                    cleaned = cleaned.rsplit("```", 1)[0] if "```" in cleaned else cleaned
+                
+                parsed = json.loads(cleaned)
+                logger.info(f"AI Parsed Task Assignment: {parsed}")
+                
+                assignee_name = parsed.get("assignee_name", "").strip()
+                task_title = parsed.get("task_title", "").strip()
+                task_desc = parsed.get("task_description", "").strip()
+                
+                if not assignee_name or not task_title:
+                    await turn_context.send_activity(
+                        MessageFactory.text(
+                            "I couldn't understand that task assignment. Please be more specific.\n\n"
+                            f"Available team members: {', '.join(team_members)}\n\n"
+                            "Example: 'Give Pritham the task to fix the login bug'"
+                        )
+                    )
+                    return
+                
+                # Verify assignee exists
+                assignee = await get_user_by_name(assignee_name)
+                if not assignee:
+                    await turn_context.send_activity(
+                        MessageFactory.text(
+                            f"I couldn't find a team member named '{assignee_name}'.\n\n"
+                            f"Available team members: {', '.join(team_members)}"
+                        )
+                    )
+                    return
+                
+                # Create the task
+                task, error_msg = await create_task_for_user(
+                    assignee_name=assignee_name,
+                    title=task_title,
+                    assigned_by=assigner_name,
+                    description=task_desc
+                )
+                
+                if task:
+                    # Send confirmation card
+                    card = create_task_assignment_confirmation_card(
+                        assignee=assignee_name,
+                        task_title=task_title,
+                        assigned_by=assigner_name
+                    )
+                    await turn_context.send_activity(Activity(
+                        type=ActivityTypes.message,
+                        attachments=[card]
+                    ))
+                else:
+                    msg = error_msg if error_msg else "Failed to create the task. Please try again."
+                    await turn_context.send_activity(
+                        MessageFactory.text(f"❌ {msg}")
+                    )
+                    
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse AI response: {e}")
+            await turn_context.send_activity(
+                MessageFactory.text(
+                    "I had trouble understanding that. Please try again with a clearer description.\n\n"
+                    "Example: 'Assign the API documentation task to Mukund'"
+                )
+            )
+        except Exception as e:
+            logger.error(f"Task assignment error: {e}")
+            await turn_context.send_activity(
+                MessageFactory.text("❌ Something went wrong. Please try again.")
+            )
 
 
 
     async def _send_greeting(self, turn_context: TurnContext, user_id: str, user_name: str, conversation_id: str):
         """Send role-based greeting."""
+        # Deduplicate greetings: both on_members_added and on_message can trigger this
+        now = datetime.now()
+        greeting_key = f"{conversation_id}:{user_id}"
+        if greeting_key in _greeted_conversations:
+            if now - _greeted_conversations[greeting_key] < GREETING_DEDUPE_WINDOW:
+                logger.debug(f"Skipping duplicate greeting for {user_name} in {conversation_id}")
+                return
+        _greeted_conversations[greeting_key] = now
+        # Cleanup old greeting entries
+        expired = [k for k, v in _greeted_conversations.items() if now - v > GREETING_DEDUPE_WINDOW]
+        for k in expired:
+            del _greeted_conversations[k]
+
         # Try to identify the user
         user = await get_user_by_teams_id(user_id)
         if not user:

@@ -1,13 +1,13 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
     "manifestVersion": "1.17",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "id": "a6146ec4-ae1d-4951-ba44-ed76367ff986",
     "developer": {
         "name": "Pritham Dsouza",
-        "websiteUrl": "https://scrum-bot-536066708327.us-central1.run.app",
-        "privacyUrl": "https://scrum-bot-536066708327.us-central1.run.app/privacy",
-        "termsOfUseUrl": "https://scrum-bot-536066708327.us-central1.run.app/terms"
+        "websiteUrl": "https://scrum-bot-m7awyzfb4a-uc.a.run.app",
+        "privacyUrl": "https://scrum-bot-m7awyzfb4a-uc.a.run.app/privacy",
+        "termsOfUseUrl": "https://scrum-bot-m7awyzfb4a-uc.a.run.app/terms"
     },
     "icons": {
         "color": "color.png",
@@ -39,6 +39,6 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "scrum-bot-536066708327.us-central1.run.app"
+        "scrum-bot-m7awyzfb4a-uc.a.run.app"
     ]
 }
