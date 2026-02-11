@@ -1,33 +1,35 @@
-# AI Scrum Bot - Python Dependencies
+# AI Scrum Bot - Python Dependencies (Updated Feb 2026)
 
 # Web Framework
-fastapi>=0.109.0
-uvicorn[standard]>=0.27.0
-python-multipart>=0.0.6
+fastapi>=0.128.0
+uvicorn[standard]>=0.40.0
+python-multipart>=0.0.22
+orjson>=3.10.0
 
 # Microsoft Bot Framework
-botbuilder-core>=4.14.0
-botbuilder-schema>=4.14.0
-botbuilder-integration-aiohttp>=4.14.0
-aiohttp>=3.9.0
+botbuilder-core>=4.17.0
+botbuilder-schema>=4.17.0
+botbuilder-integration-aiohttp>=4.17.0
+aiohttp>=3.13.0
 
 # AI & Agent
-langgraph>=0.0.20
-langchain-core>=0.1.20
-langchain-google-genai>=0.0.6
-google-genai>=1.0.0
+google-genai>=1.62.0
 
 # Database
-motor>=3.3.0
-google-cloud-firestore>=2.14.0
+pymongo>=4.12.0
+google-cloud-firestore>=2.23.0
 
 # Voice (TTS)
-boto3>=1.34.0
+boto3>=1.42.0
 
 # Configuration
-pydantic>=2.5.0
-pydantic-settings>=2.1.0
-python-dotenv>=1.0.0
+pydantic>=2.12.0
+pydantic-settings>=2.12.0
+python-dotenv>=1.2.0
 
 # Logging
-loguru>=0.7.0
+loguru>=0.7.3
+
+# Voice & Azure
+azure-communication-callautomation>=1.5.0
+azure-identity>=1.25.0

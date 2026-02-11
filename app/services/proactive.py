@@ -5,7 +5,6 @@ from loguru import logger
 from app.bot.adapter import bot_adapter
 from app.config import settings
 from app.services.firestore import get_all_conversations
-from app.config import settings
 
 async def notify_all_teams():
     """Fail-safe notification to all stored conversations."""

@@ -24,6 +24,14 @@ class Settings(BaseSettings):
     AWS_SECRET_ACCESS_KEY: str = ""
     AWS_REGION: str = "us-east-1"
 
+    # Application
+    BASE_URL: str = ""  # e.g. https://scrum-bot-....run.app
+
+    # Azure Communication Services
+    ACS_CONNECTION_STRING: str = ""
+    ACS_CALLBACK_URL: str = ""
+
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

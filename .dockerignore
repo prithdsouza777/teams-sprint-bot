@@ -1,0 +1,37 @@
+# Version control
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Environment / Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+.gemini/
+
+# Tests & Scripts (not needed in prod image)
+tests/
+scripts/
+
+# Runtime data
+.state/
+audio_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+*.md
+!README.md

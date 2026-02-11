@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Response
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse, ORJSONResponse
 from loguru import logger
 import sys
 
@@ -13,13 +13,19 @@ logger.add(sys.stdout, format="{time} | {level} | {message}", level="INFO")
 app = FastAPI(
     title="AI Scrum Bot",
     description="Microsoft Teams bot for automated scrum standups",
-    version="2.0.0"
+    version="2.0.0",
+    default_response_class=ORJSONResponse
 )
 
+
+
+# from app.voice.routes import router as voice_router
 
 @app.get("/")
 async def root():
     return {"status": "running", "service": "ai-scrum-bot", "version": "2.0.0"}
+
+# app.include_router(voice_router)
 
 
 @app.get("/health")
@@ -103,17 +109,10 @@ async def scheduled_standup():
     logger.info("Scheduled standup triggered")
     
     from app.services.proactive import notify_all_teams
-    from app.services.firestore import get_all_conversations
-    
-    conversations = await get_all_conversations()
-    logger.info(f"Found {len(conversations)} stored conversations")
-    
-    if not conversations:
-        return {"success": False, "message": "No conversations stored yet. Chat with the bot first!"}
     
     try:
         await notify_all_teams()
-        return {"success": True, "message": f"Proactive messages sent to {len(conversations)} conversation(s)"}
+        return {"success": True, "message": "Proactive standup messages sent"}
     except Exception as e:
         logger.error(f"Scheduled standup failed: {e}")
         return JSONResponse({"error": str(e)}, status_code=500)
@@ -132,6 +131,32 @@ async def list_conversations():
             for c in conversations
         ]
     }
+
+
+@app.get("/privacy", response_class=HTMLResponse)
+async def privacy():
+    return """
+    <html>
+        <head><title>Privacy Policy</title></head>
+        <body>
+            <h1>Privacy Policy</h1>
+            <p>This app does not store any personal data beyond what is needed for the standup functionality.</p>
+        </body>
+    </html>
+    """
+
+
+@app.get("/terms", response_class=HTMLResponse)
+async def terms():
+    return """
+    <html>
+        <head><title>Terms of Use</title></head>
+        <body>
+            <h1>Terms of Use</h1>
+            <p>By using this bot, you agree to participate in automated daily standups.</p>
+        </body>
+    </html>
+    """
 
 
 if __name__ == "__main__":

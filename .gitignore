@@ -54,3 +54,7 @@ Thumbs.db
 
 # Agent Context
 obsidian_agent_context.md
+
+# Runtime data
+.state/
+audio_cache/

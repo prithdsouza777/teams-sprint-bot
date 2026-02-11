@@ -33,3 +33,47 @@ Create a concise summary that includes:
 
 Keep it brief and actionable.
 """
+
+SCRUM_MASTER_GREETING = """
+👋 Hi {user_name}! As a **Scrum Master**, you have access to:
+
+• **Start Standup** - Begin your daily standup
+• **Assign Task** - Assign a new task to a team member
+
+What would you like to do?
+"""
+
+MEMBER_GREETING = """
+👋 Hi {user_name}! I'm your AI Scrum Master.
+
+Say **start standup** to begin your daily standup!
+"""
+
+TASK_ASSIGNMENT_PROMPT = """
+You are parsing a task assignment request from a Scrum Master.
+
+The Scrum Master said: "{user_input}"
+
+Available team members: {team_members}
+
+Extract the following information and respond in valid JSON format only:
+{{
+  "assignee_name": "exact name from team_members list or null if not found",
+  "task_title": "brief task title extracted from the request",
+  "task_description": "fuller description if available, or empty string",
+  "confidence": "high/medium/low based on how clear the request was"
+}}
+
+If you cannot determine the assignee or task, set them to null.
+Respond with ONLY the JSON object, no other text.
+"""
+
+NEW_TASK_NOTIFICATION = """
+📋 **New Task Assigned!**
+
+**Task:** {task_title}
+**Assigned by:** {assigned_by}
+
+This task has been added to your TODO list.
+"""
+

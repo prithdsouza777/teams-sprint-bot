@@ -51,14 +51,40 @@ def create_question_card(
             {
                 "type": "ActionSet",
                 "actions": [
-                    {"type": "Action.Submit", "title": "✅ On Track", "data": {"quickReply": "on_track"}},
-                    {"type": "Action.Submit", "title": "🔴 Blocked", "data": {"quickReply": "blocked"}}
+                    {
+                        "type": "Action.Execute",
+                        "title": "✅ On Track",
+                        "verb": "submit_standup_answer",
+                        "data": {"quickReply": "on_track"}
+                    },
+                    {
+                        "type": "Action.Execute",
+                        "title": "🔴 Blocked",
+                        "verb": "submit_standup_answer",
+                        "data": {"quickReply": "blocked"}
+                    }
                 ]
             },
             {"type": "TextBlock", "text": "Or just type your response below 👇", "size": "Small", "isSubtle": True, "horizontalAlignment": "Center"}
         ]
     }
 
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+def create_simple_message_card(text: str) -> Attachment:
+    """Create a simple card with a text message (for updates)."""
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+            {"type": "TextBlock", "text": text, "wrap": True}
+        ]
+    }
     return Attachment(
         content_type="application/vnd.microsoft.card.adaptive",
         content=card
@@ -93,3 +119,121 @@ def create_summary_card(summary: str, blockers: List[str], action_items: List[st
         content_type="application/vnd.microsoft.card.adaptive",
         content=card
     )
+
+
+def create_scrum_master_menu_card(scrum_master_name: str) -> Attachment:
+    """Create a menu card for Scrum Master."""
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+            {"type": "TextBlock", "text": f"Scrum Master Menu ({scrum_master_name})", "weight": "Bolder", "size": "Medium"},
+            {"type": "TextBlock", "text": "What would you like to do?", "isSubtle": True, "spacing": "Small"},
+            {
+                "type": "ActionSet",
+                "actions": [
+                    {
+                        "type": "Action.Execute",
+                        "title": "🚀 Start Standup",
+                        "verb": "start_standup",
+                        "data": {"action": "start_standup"}
+                    },
+                    {
+                        "type": "Action.Execute",
+                        "title": "📋 Assign Task",
+                        "verb": "assign_task",
+                        "data": {"action": "assign_task"}
+                    }
+                ]
+            }
+        ]
+    }
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+def create_task_assignment_prompt_card() -> Attachment:
+    """Create a card to prompt for task assignment details."""
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+            {"type": "TextBlock", "text": "📋 Assign a New Task", "weight": "Bolder", "size": "Medium"},
+            {"type": "TextBlock", "text": "Describe the task and who it's for:", "wrap": True},
+            {
+                "type": "Input.Text",
+                "id": "taskDescription",
+                "placeholder": "e.g., 'Assign the API docs to John'",
+                "isMultiline": True
+            },
+            {
+                "type": "ActionSet",
+                "actions": [
+                    {
+                        "type": "Action.Execute",
+                        "title": "Submit Assignment",
+                        "verb": "submit_task_assignment",
+                        "data": {"action": "submit_task_assignment"}
+                    },
+                    {
+                        "type": "Action.Execute",
+                        "title": "Cancel",
+                        "verb": "cancel_assignment",
+                        "data": {"action": "cancel_assignment"}
+                    }
+                ]
+            }
+        ]
+    }
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+def create_task_assignment_confirmation_card(assignee: str, task_title: str, assigned_by: str) -> Attachment:
+    """Create a confirmation card for task assignment."""
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+            {"type": "TextBlock", "text": "✅ Task Assigned!", "weight": "Bolder", "size": "Medium", "color": "Good"},
+            {"type": "FactSet", "facts": [
+                {"title": "Task:", "value": task_title},
+                {"title": "Assignee:", "value": assignee},
+                {"title": "Assigned By:", "value": assigned_by}
+            ]}
+        ]
+    }
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+def create_new_tasks_notification_card(tasks: List[Dict[str, Any]]) -> Attachment:
+    """Create a notification card for new tasks."""
+    task_facts = [{"title": "•", "value": t["title"]} for t in tasks]
+    
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+            {"type": "TextBlock", "text": "🔔 You have new tasks!", "weight": "Bolder", "size": "Medium", "color": "Accent"},
+            {"type": "FactSet", "facts": task_facts},
+            {"type": "TextBlock", "text": "These have been added to your backlog.", "isSubtle": True, "size": "Small", "spacing": "Small"}
+        ]
+    }
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+

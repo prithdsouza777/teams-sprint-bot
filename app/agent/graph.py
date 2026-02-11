@@ -38,36 +38,63 @@ async def fetch_tasks(state: AgentState) -> AgentState:
 
 
 async def ask_question(state: AgentState) -> AgentState:
-    """Generate a standup question for the current speaker."""
+    """Generate a standup question for the current speaker, focusing on uncovered tasks."""
     if not state.current_speaker:
         return state
     
+    # Filter to only uncovered tasks
+    remaining_tasks = [t for t in state.current_tasks if t.id not in state.covered_task_ids]
+    
     # Handle status as enum or string
     task_list = []
-    for t in state.current_tasks:
+    for t in remaining_tasks:
         status = t.status.value if hasattr(t.status, 'value') else str(t.status)
         task_list.append(f"- {t.title} ({status})")
     task_list_str = "\n".join(task_list) or "No active tasks"
     
-    prompt = SCRUM_MASTER_PROMPT.format(
-        participant_name=state.current_speaker.name,
-        task_list=task_list_str
-    )
+    # Check if this is a follow-up question
+    is_followup = len(state.covered_task_ids) > 0
+    
+    if is_followup and remaining_tasks:
+        # Generate targeted follow-up for specific remaining tasks
+        task_names = [t.title for t in remaining_tasks]
+        prompt = f"""You are an AI Scrum Master conducting a standup.
+
+The user {state.current_speaker.name} has already provided updates on some tasks.
+They still need to provide updates on these remaining tasks:
+{task_list_str}
+
+Generate a brief, friendly follow-up question asking specifically about these remaining tasks.
+Keep it short and conversational."""
+    else:
+        # First question - ask about all tasks
+        prompt = SCRUM_MASTER_PROMPT.format(
+            participant_name=state.current_speaker.name,
+            task_list=task_list_str
+        )
     
     try:
         question = await generate_response(prompt)
         state.last_question = question or f"Hey {state.current_speaker.name}, how's your progress today?"
     except Exception as e:
         logger.warning(f"AI question generation failed: {e}")
-        state.last_question = f"Hey {state.current_speaker.name}, how's your progress today?"
+        if is_followup and remaining_tasks:
+            task_names = ", ".join([t.title for t in remaining_tasks])
+            state.last_question = f"What about {task_names}?"
+        else:
+            state.last_question = f"Hey {state.current_speaker.name}, how's your progress today?"
     
     return state
 
 
 async def process_answer(state: AgentState, user_response: str) -> AgentState:
-    """Process the user's standup response."""
+    """Process the user's standup response and track which tasks were addressed."""
     if not state.current_speaker or not user_response:
         return state
+    
+    # Add to conversation history for context
+    state.conversation_history.append(f"Bot: {state.last_question}")
+    state.conversation_history.append(f"User: {user_response}")
     
     try:
         # Analyze response for task updates (handle status as enum or string)
@@ -76,11 +103,31 @@ async def process_answer(state: AgentState, user_response: str) -> AgentState:
             status = t.status.value if hasattr(t.status, 'value') else str(t.status)
             tasks_data.append({"id": t.id, "title": t.title, "status": status})
         
-        analysis = await analyze_standup_response(user_response, tasks_data)
+        analysis = await analyze_standup_response(
+            user_response, 
+            tasks_data,
+            conversation_history=state.conversation_history
+        )
         
-        # Apply task updates
+        # Track which tasks were mentioned
+        mentioned_ids = analysis.get("mentioned_task_ids", [])
+        for task_id in mentioned_ids:
+            if task_id not in state.covered_task_ids:
+                state.covered_task_ids.append(task_id)
+        
+        # Apply task updates and log them - only log the specific reason, not full response
         for update in analysis.get("task_updates", []):
-            await update_task_status(update["task_id"], update["new_status"])
+            task_id = update["task_id"]
+            new_status = update["new_status"]
+            # Use the specific reason for this task update, not the full response
+            update_reason = update.get("reason", "")
+            
+            # Find original task for logging
+            original_task = next((t for t in state.current_tasks if t.id == task_id), None)
+            
+            if await update_task_status(task_id, new_status, response_text=update_reason):
+                if original_task:
+                    logger.info(f"Updated task {task_id} to {new_status} with response")
         
         # Record the response
         response = StandupResponse(
@@ -90,21 +137,39 @@ async def process_answer(state: AgentState, user_response: str) -> AgentState:
             task_updates=analysis.get("task_updates", [])
         )
         state.responses.append(response)
+        
+        # Check if all tasks have been addressed
+        all_task_ids = [t.id for t in state.current_tasks]
+        remaining_tasks = [t for t in state.current_tasks if t.id not in state.covered_task_ids]
+        
+        if remaining_tasks:
+            # Ask about remaining tasks - don't move to next participant yet
+            logger.info(f"{len(remaining_tasks)} tasks not yet addressed, will ask follow-up")
+            state.last_question = None  # Will trigger ask_question with remaining tasks
+        else:
+            # All tasks covered - move to next participant
+            logger.info(f"All tasks addressed for {state.current_speaker.name}")
+            state.participant_index += 1
+            state.current_speaker = None
+            state.current_tasks = []
+            state.covered_task_ids = []  # Reset for next participant
+            state.conversation_history = []
+            state.last_question = None
+            
     except Exception as e:
         logger.error(f"Error processing standup answer: {e}")
-        # Still record basic response
+        # Still record basic response and move on
         state.responses.append(StandupResponse(
             participant_id=state.current_speaker.id,
             response=user_response,
             blockers=[],
             task_updates=[]
         ))
-    
-    # Move to next participant
-    state.participant_index += 1
-    state.current_speaker = None
-    state.current_tasks = []
-    state.last_question = None
+        state.participant_index += 1
+        state.current_speaker = None
+        state.current_tasks = []
+        state.covered_task_ids = []
+        state.last_question = None
     
     return state
 
