@@ -55,17 +55,31 @@ async def save_state(key: str, data: Dict[str, Any]) -> None:
             doc_ref = db.collection("scrum_states").document(key)
             await doc_ref.set(data, merge=True)
         except Exception as e:
-            logger.debug(f"Firestore save failed: {e}")
+            logger.warning(f"Firestore save failed for {key}: {e}")
 
 
 async def load_state(key: str) -> Optional[Dict[str, Any]]:
-    """Load agent state from memory, file, or Firestore."""
+    """Load agent state from memory, Firestore, or file."""
     # Check memory first
     if key in _memory_states:
         logger.debug(f"State loaded from memory for {key}")
         return _memory_states[key]
     
-    # Check file
+    # Check Firestore (High Priority for multi-instance consistency)
+    db = get_firestore_client()
+    if db:
+        try:
+            doc_ref = db.collection("scrum_states").document(key)
+            doc = await doc_ref.get()
+            if doc.exists:
+                data = doc.to_dict()
+                _memory_states[key] = data
+                logger.debug(f"State loaded from Firestore for {key}")
+                return data
+        except Exception as e:
+            logger.warning(f"Firestore load failed for {key}: {e}")
+    
+    # Check file (Fallback)
     try:
         file_path = _STATE_DIR / f"{_sanitize_key(key)}.json"
         if file_path.exists():
@@ -75,20 +89,7 @@ async def load_state(key: str) -> Optional[Dict[str, Any]]:
             logger.debug(f"State loaded from file: {file_path.name}")
             return data
     except Exception as e:
-        logger.warning(f"File load failed: {e}")
-    
-    # Try Firestore
-    db = get_firestore_client()
-    if db:
-        try:
-            doc_ref = db.collection("scrum_states").document(key)
-            doc = await doc_ref.get()
-            if doc.exists:
-                data = doc.to_dict()
-                _memory_states[key] = data
-                return data
-        except Exception as e:
-            logger.debug(f"Firestore load failed: {e}")
+        logger.warning(f"File load failed for {key}: {e}")
     
     return None
 

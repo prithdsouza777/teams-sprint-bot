@@ -1,5 +1,5 @@
 from botbuilder.core import ActivityHandler, TurnContext, MessageFactory
-from botbuilder.schema import Activity, ActivityTypes, Attachment
+from botbuilder.schema import Activity, ActivityTypes, Attachment, InvokeResponse
 from loguru import logger
 from datetime import datetime, timedelta
 import json
@@ -59,6 +59,28 @@ class TeamsBot(ActivityHandler):
         except Exception as e:
             logger.debug(f"Could not update card (expected in some channels): {e}")
 
+    async def _cleanup_previous_interaction(self, turn_context: TurnContext, conversation_id: str):
+        """Delete the previous interactive card to ensure only the latest is active."""
+        state_dict = await load_state(conversation_id)
+        if state_dict and state_dict.get("last_interactive_card_id"):
+            last_id = state_dict["last_interactive_card_id"]
+            try:
+                logger.debug(f"Cleaning up previous interaction: {last_id}")
+                await turn_context.delete_activity(last_id)
+            except Exception as e:
+                logger.debug(f"Cleanup failed for {last_id}: {e}")
+            
+            state_dict["last_interactive_card_id"] = None
+            await save_state(conversation_id, state_dict)
+
+    async def on_invoke_activity(self, turn_context: TurnContext):
+        """Handle Teams invoke activities (e.g., consent/signin)."""
+        if turn_context.activity.name == "signin/verifyState":
+            # Acknowledge the consent
+            return InvokeResponse(status=200)
+        
+        return await super().on_invoke_activity(turn_context)
+
     async def on_message_activity(self, turn_context: TurnContext):
         try:
             text = (turn_context.activity.text or "").strip()
@@ -85,6 +107,28 @@ class TeamsBot(ActivityHandler):
 
 
             # Capture conversation reference for proactive messaging
+            logger.info(f"Message from {user_name}: {text}")
+
+            # Load state early
+            state_dict = await load_state(conversation_id) or {}
+
+            # Invalidate previous card if this interaction is not with it
+            # This handles both text replies (no reply_to_id) and clicks on different cards
+            last_id = state_dict.get("last_interactive_card_id")
+            if last_id:
+                # Teams interactions (button clicks) usually have reply_to_id matching the parent card
+                current_reply_to_id = getattr(turn_context.activity, "reply_to_id", None)
+                if current_reply_to_id != last_id:
+                    try:
+                        logger.info(f"Invalidating stale interactive card: {last_id}")
+                        await turn_context.delete_activity(last_id)
+                    except Exception as e:
+                        logger.debug(f"Failed to delete stale card {last_id}: {e}")
+                    
+                    state_dict["last_interactive_card_id"] = None
+                    await save_state(conversation_id, state_dict)
+
+            # Capture conversation reference for proactive messaging
             try:
                 conversation_reference = TurnContext.get_conversation_reference(turn_context.activity)
                 await save_conversation_reference(conversation_reference.as_dict())
@@ -105,33 +149,57 @@ class TeamsBot(ActivityHandler):
                     await self._replace_card(turn_context, create_completed_menu_card(user_name, "Assign Task"))
                     # Show task assignment prompt card
                     card = create_task_assignment_prompt_card()
-                    await turn_context.send_activity(Activity(
+                    response = await turn_context.send_activity(Activity(
                         type=ActivityTypes.message,
                         attachments=[card]
                     ))
+                    state_dict["last_interactive_card_id"] = response.id
+                    await save_state(conversation_id, state_dict)
                     return
                 elif action == "submit_task_assignment":
                     await self._replace_card(turn_context, create_completed_task_prompt_card("Task submitted"))
+                    state_dict["last_interactive_card_id"] = None
+                    await save_state(conversation_id, state_dict)
                     # Process task assignment from card
                     task_description = card_data.get("taskDescription", "")
                     await self._process_task_assignment(turn_context, user_id, user_name, task_description)
                     return
                 elif action == "cancel_assignment":
                     await self._replace_card(turn_context, create_completed_task_prompt_card("Cancelled"))
+                    state_dict["last_interactive_card_id"] = None
+                    await save_state(conversation_id, state_dict)
                     await turn_context.send_activity(
                         MessageFactory.text("Task assignment cancelled. What else can I help you with?")
                     )
                     return
                 
                 # Handle standup quick replies
-                if card_data.get("quickReply") == "on_track":
-                    text = "Everything is on track, no blockers."
-                    await self._replace_card(turn_context, create_completed_task_prompt_card("✅ On Track"))
-                elif card_data.get("quickReply") == "blocked":
-                    text = "I'm blocked and need help."
-                    await self._replace_card(turn_context, create_completed_task_prompt_card("🔴 Blocked"))
-                elif card_data.get("userResponse"):
-                    text = card_data.get("userResponse")
+                quick_reply = card_data.get("quickReply")
+                user_response = card_data.get("userResponse")
+                
+                if quick_reply or user_response:
+                    reply_text = "Everything is on track." if quick_reply == "on_track" else "I'm blocked." if quick_reply == "blocked" else user_response
+                    text = reply_text # Use this for standup processing
+                    
+                    # Replace card with read-only version
+                    state = AgentState(**state_dict) if state_dict.get("last_question") else None
+                    if state:
+                        # Use the rich completion card for standup questions
+                        tasks_data = [{"id": t.id, "title": t.title, "status": t.status.value if hasattr(t.status, 'value') else str(t.status)} 
+                                     for t in state.current_tasks]
+                        await self._replace_card(turn_context, create_completed_question_card(
+                            state.current_speaker.name, 
+                            state.last_question, 
+                            f"✅ {reply_text}", 
+                            tasks_data
+                        ))
+                    else:
+                        # Fallback for generic actions
+                        await self._replace_card(turn_context, create_completed_task_prompt_card(f"Response: {reply_text[:20]}..."))
+                    
+                    # Clear invalidation ID after successful replacement
+                    state_dict["last_interactive_card_id"] = None
+                    await save_state(conversation_id, state_dict)
 
             # Check for standup commands
             text_lower = text.lower()
@@ -146,7 +214,8 @@ class TeamsBot(ActivityHandler):
                 return
 
             # Check if we have an active standup
-            state_dict = await load_state(conversation_id)
+            # state_dict already loaded above
+
             
             # Check for pending registration
             if state_dict and state_dict.get("pending_registration"):
@@ -190,6 +259,9 @@ class TeamsBot(ActivityHandler):
 
     async def _start_standup(self, turn_context: TurnContext, conversation_id: str, user_id: str, user_name: str):
         """Start a new standup session."""
+        # Clean up any lingering interactive cards
+        await self._cleanup_previous_interaction(turn_context, conversation_id)
+        
         # Try to identify the user
         user = await get_user_by_teams_id(user_id)
         
@@ -252,11 +324,12 @@ class TeamsBot(ActivityHandler):
         
         # Send the standup card
         if state.current_speaker and state.last_question:
+            remaining_tasks = [t for t in state.current_tasks if t.id not in state.covered_task_ids]
             card = create_question_card(
                 state.current_speaker.name,
                 state.last_question,
                 [{"id": t.id, "title": t.title, "status": t.status.value if hasattr(t.status, 'value') else str(t.status)} 
-                 for t in state.current_tasks]
+                 for t in remaining_tasks]
             )
             
             # Generate audio card
@@ -264,16 +337,22 @@ class TeamsBot(ActivityHandler):
             audio_url = f"{settings.BASE_URL}/api/speak?text={encoded_text}"
             audio_card = create_audio_card(state.last_question, audio_url)
 
-            await turn_context.send_activity(Activity(
+            response = await turn_context.send_activity(Activity(
                 type=ActivityTypes.message,
                 attachments=[card, audio_card]
             ))
+            state.last_interactive_card_id = response.id
+            await save_state(conversation_id, state.model_dump())
         else:
             await turn_context.send_activity(MessageFactory.text(response_message or "Standup started!"))
 
     async def _continue_standup(self, turn_context: TurnContext, conversation_id: str, text: str, state_dict: dict):
         """Continue an active standup session."""
         logger.info(f"Continuing standup for {conversation_id}, user said: {text}")
+        
+        # Clean up previous question card immediately
+        await self._cleanup_previous_interaction(turn_context, conversation_id)
+        
         state = AgentState(**state_dict)
         
         from app.agent.graph import run_standup_agent
@@ -303,11 +382,12 @@ class TeamsBot(ActivityHandler):
 
         elif state.current_speaker and state.last_question:
             # Next participant's turn
+            remaining_tasks = [t for t in state.current_tasks if t.id not in state.covered_task_ids]
             card = create_question_card(
                 state.current_speaker.name,
                 state.last_question,
                 [{"id": t.id, "title": t.title, "status": t.status.value if hasattr(t.status, 'value') else str(t.status)} 
-                 for t in state.current_tasks]
+                 for t in remaining_tasks]
             )
             
             # Generate audio card
@@ -315,10 +395,12 @@ class TeamsBot(ActivityHandler):
             audio_url = f"{settings.BASE_URL}/api/speak?text={encoded_text}"
             audio_card = create_audio_card(state.last_question, audio_url)
             
-            await turn_context.send_activity(Activity(
+            response = await turn_context.send_activity(Activity(
                 type=ActivityTypes.message,
                 attachments=[card, audio_card]
             ))
+            state.last_interactive_card_id = response.id
+            await save_state(conversation_id, state.model_dump())
         else:
             await turn_context.send_activity(
                 MessageFactory.text("✅ Thanks for the update! Standup complete.")
@@ -374,6 +456,10 @@ Keep your response brief and friendly."""
 
     async def _handle_assign_task_command(self, turn_context: TurnContext, user_id: str, user_name: str):
         """Handle the assign task command - only for Scrum Masters."""
+        conversation_id = turn_context.activity.conversation.id
+        # Clean up any lingering interactive cards
+        await self._cleanup_previous_interaction(turn_context, conversation_id)
+        
         # Check user's role
         user_role = await get_user_role(user_id)
         
@@ -388,10 +474,16 @@ Keep your response brief and friendly."""
         
         # Show task assignment prompt card
         card = create_task_assignment_prompt_card()
-        await turn_context.send_activity(Activity(
+        response = await turn_context.send_activity(Activity(
             type=ActivityTypes.message,
             attachments=[card]
         ))
+        
+        # Save state for invalidation
+        conversation_id = turn_context.activity.conversation.id
+        state_dict = await load_state(conversation_id) or {}
+        state_dict["last_interactive_card_id"] = response.id
+        await save_state(conversation_id, state_dict)
 
     async def _process_task_assignment(
         self, 
@@ -536,15 +628,23 @@ Keep your response brief and friendly."""
             
             if user_role == "Scrum Master":
                 # Scenario 2: Scrum Master
+                # Clean up any lingering interactive cards
+                await self._cleanup_previous_interaction(turn_context, conversation_id)
+                
                 await turn_context.send_activity(
                     MessageFactory.text(f"👋 Hi {display_name}! I'm your AI Scrum Master. Say **start standup** to begin or **assign a task** to a member.")
                 )
                 # Show Menu Card
                 card = create_scrum_master_menu_card(display_name)
-                await turn_context.send_activity(Activity(
+                response = await turn_context.send_activity(Activity(
                     type=ActivityTypes.message,
                     attachments=[card]
                 ))
+
+                # Save state for invalidation
+                state_dict = await load_state(conversation_id) or {}
+                state_dict["last_interactive_card_id"] = response.id
+                await save_state(conversation_id, state_dict)
             else:
                 # Scenario 1: Member
                 await turn_context.send_activity(

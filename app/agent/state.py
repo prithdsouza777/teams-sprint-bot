@@ -60,3 +60,6 @@ class AgentState(BaseModel):
     # Completion
     final_summary: Optional[str] = None
     is_complete: bool = False
+    
+    # Interaction State
+    last_interactive_card_id: Optional[str] = None

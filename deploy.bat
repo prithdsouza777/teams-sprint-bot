@@ -44,14 +44,14 @@ call gcloud services enable cloudbuild.googleapis.com run.googleapis.com
 
 echo.
 echo [3/4] Building Docker image...
-call gcloud builds submit --tag gcr.io/%GOOGLE_PROJECT_ID%/%SERVICE_NAME%
+call gcloud builds submit --tag us-central1-docker.pkg.dev/%GOOGLE_PROJECT_ID%/cloud-run-source-deploy/%SERVICE_NAME%
 
 echo.
 echo [4/4] Deploying to Cloud Run...
 REM Copy .env to container won't work, so we pass all env vars explicitly
 REM Using --update-env-vars to set each one properly
 call gcloud run deploy %SERVICE_NAME% ^
-  --image gcr.io/%GOOGLE_PROJECT_ID%/%SERVICE_NAME% ^
+  --image us-central1-docker.pkg.dev/%GOOGLE_PROJECT_ID%/cloud-run-source-deploy/%SERVICE_NAME% ^
   --platform managed ^
   --region %REGION% ^
   --allow-unauthenticated ^
