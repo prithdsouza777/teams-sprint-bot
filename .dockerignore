@@ -19,6 +19,7 @@ venv/
 .vscode/
 .idea/
 .gemini/
+.claude/
 
 # Tests & Scripts (not needed in prod image)
 tests/

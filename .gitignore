@@ -54,6 +54,8 @@ Thumbs.db
 
 # Agent Context
 obsidian_agent_context.md
+claude.md
+.claude/
 
 # Runtime data
 .state/
