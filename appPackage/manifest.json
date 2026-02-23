@@ -5,9 +5,9 @@
     "id": "a6146ec4-ae1d-4951-ba44-ed76367ff986",
     "developer": {
         "name": "Pritham Dsouza",
-        "websiteUrl": "https://scrum-bot-m7awyzfb4a-uc.a.run.app",
-        "privacyUrl": "https://scrum-bot-m7awyzfb4a-uc.a.run.app/privacy",
-        "termsOfUseUrl": "https://scrum-bot-m7awyzfb4a-uc.a.run.app/terms"
+        "websiteUrl": "https://scrum-bot-536066708327.us-central1.run.app",
+        "privacyUrl": "https://scrum-bot-536066708327.us-central1.run.app/privacy",
+        "termsOfUseUrl": "https://scrum-bot-536066708327.us-central1.run.app/terms"
     },
     "icons": {
         "color": "color.png",
@@ -31,7 +31,9 @@
                 "groupChat"
             ],
             "supportsFiles": false,
-            "isNotificationOnly": false
+            "isNotificationOnly": false,
+            "supportsCalling": true,
+            "supportsVideo": true
         }
     ],
     "permissions": [
@@ -39,6 +41,10 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "scrum-bot-m7awyzfb4a-uc.a.run.app"
-    ]
+        "scrum-bot-536066708327.us-central1.run.app"
+    ],
+    "webApplicationInfo": {
+        "id": "52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb",
+        "resource": "api://scrum-bot-536066708327.us-central1.run.app/52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb"
+    }
 }

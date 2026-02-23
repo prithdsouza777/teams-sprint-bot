@@ -108,7 +108,8 @@ def create_scrum_master_menu_card(user_name: str) -> Attachment:
         ],
         "actions": [
             {"type": "Action.Submit", "title": "🎯 Start Standup", "data": {"action": "start_standup"}},
-            {"type": "Action.Submit", "title": "📋 Assign Task", "data": {"action": "assign_task"}}
+            {"type": "Action.Submit", "title": "📋 Assign Task", "data": {"action": "assign_task"}},
+            {"type": "Action.Submit", "title": "🎙️ Voice Standup", "data": {"action": "start_voice_standup"}}
         ]
     }
 
@@ -271,6 +272,55 @@ def create_completed_question_card(
             {"type": "TextBlock", "text": question, "wrap": True, "spacing": "Large", "weight": "Bolder"},
             {"type": "TextBlock", "text": f"✅ Response: {response_chosen}", "wrap": True, "color": "Good", "spacing": "Medium"}
         ]
+    }
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+def create_meeting_join_card(meeting_url: str, subject: str, participant_names: List[str]) -> Attachment:
+    """Create a card with a join-meeting button for voice standups."""
+    names_text = ", ".join(participant_names) if participant_names else "Team"
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": [
+            {"type": "TextBlock", "text": f"🎙️ {subject}", "weight": "Bolder", "size": "Large"},
+            {"type": "TextBlock", "text": f"Participants: {names_text}", "wrap": True, "spacing": "Small"},
+            {"type": "TextBlock", "text": "The bot will join and conduct the standup verbally. Click below to join the meeting.", "wrap": True, "spacing": "Medium", "isSubtle": True}
+        ],
+        "actions": [
+            {"type": "Action.OpenUrl", "title": "📞 Join Meeting", "url": meeting_url}
+        ]
+    }
+    return Attachment(
+        content_type="application/vnd.microsoft.card.adaptive",
+        content=card
+    )
+
+
+def create_voice_summary_card(summary: str, participants_attended: List[str], participants_absent: List[str]) -> Attachment:
+    """Create a summary card posted to chat after a voice standup completes."""
+    body = [
+        {"type": "TextBlock", "text": "🎙️ Voice Standup Summary", "weight": "Bolder", "size": "Large"},
+        {"type": "TextBlock", "text": summary, "wrap": True, "spacing": "Medium"},
+    ]
+
+    if participants_attended:
+        attended_text = ", ".join(participants_attended)
+        body.append({"type": "TextBlock", "text": f"✅ Attended: {attended_text}", "wrap": True, "spacing": "Medium", "color": "Good"})
+
+    if participants_absent:
+        absent_text = ", ".join(participants_absent)
+        body.append({"type": "TextBlock", "text": f"❌ Absent: {absent_text}", "wrap": True, "spacing": "Small", "color": "Attention"})
+
+    card = {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.4",
+        "body": body
     }
     return Attachment(
         content_type="application/vnd.microsoft.card.adaptive",

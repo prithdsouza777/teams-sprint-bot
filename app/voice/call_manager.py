@@ -3,6 +3,7 @@ Azure Communication Services Call Manager.
 
 Handles call lifecycle: create, play audio, recognize speech, and hangup.
 Tracks active call sessions for state management across webhook events.
+Supports both 1:1 calls and group meeting joins for voice standups.
 """
 
 from loguru import logger
@@ -17,12 +18,15 @@ _CallAutomationClient = None
 _MicrosoftTeamsUserIdentifier = None
 _CallInvite = None
 _FileSource = None
+_TextSource = None
+_RecognizeInputType = None
 
 
 def _load_acs_imports():
     """Lazy-load ACS SDK to avoid import errors when ACS is not configured."""
     global _acs_imports_loaded, _CallAutomationClient
     global _MicrosoftTeamsUserIdentifier, _CallInvite, _FileSource
+    global _TextSource, _RecognizeInputType
 
     if _acs_imports_loaded:
         return True
@@ -31,15 +35,21 @@ def _load_acs_imports():
             CallAutomationClient,
             CallInvite,
             FileSource,
+            TextSource,
         )
         from azure.communication.callautomation import (
             MicrosoftTeamsUserIdentifier,
+        )
+        from azure.communication.callautomation import (
+            RecognizeInputType,
         )
 
         _CallAutomationClient = CallAutomationClient
         _MicrosoftTeamsUserIdentifier = MicrosoftTeamsUserIdentifier
         _CallInvite = CallInvite
         _FileSource = FileSource
+        _TextSource = TextSource
+        _RecognizeInputType = RecognizeInputType
         _acs_imports_loaded = True
         return True
     except ImportError:
@@ -48,9 +58,12 @@ def _load_acs_imports():
 
 
 # ── Active Call Sessions ──────────────────────────────────────────────
-# Maps call_connection_id -> session metadata.
-# This allows the webhook handler to correlate events with user context.
+# Maps call_connection_id -> session metadata (for 1:1 calls).
 _active_sessions: Dict[str, Dict[str, Any]] = {}
+
+# ── Voice Standup Sessions ────────────────────────────────────────────
+# Maps call_connection_id -> VoiceStandupSession (for group meeting calls).
+_voice_sessions: Dict[str, Any] = {}
 
 
 class CallManager:
@@ -80,7 +93,7 @@ class CallManager:
     def enabled(self) -> bool:
         return self._enabled and self.client is not None
 
-    # ── Session Registry ──────────────────────────────────────────────
+    # ── Session Registry (1:1 calls) ─────────────────────────────────
 
     def register_session(
         self, call_connection_id: str, user_id: str = "", user_name: str = ""
@@ -118,7 +131,28 @@ class CallManager:
         if session:
             session["silence_retries"] = 0
 
-    # ── Call Actions ──────────────────────────────────────────────────
+    # ── Voice Standup Session Registry (group meetings) ──────────────
+
+    def register_voice_session(self, call_connection_id: str, session) -> None:
+        """Register a VoiceStandupSession for a group meeting call."""
+        _voice_sessions[call_connection_id] = session
+        logger.info(f"Voice session registered: {call_connection_id}")
+
+    def get_voice_session(self, call_connection_id: str):
+        """Retrieve the VoiceStandupSession for a call."""
+        return _voice_sessions.get(call_connection_id)
+
+    def update_voice_session(self, call_connection_id: str, session) -> None:
+        """Update a VoiceStandupSession in the registry."""
+        _voice_sessions[call_connection_id] = session
+
+    def remove_voice_session(self, call_connection_id: str) -> None:
+        """Clean up a voice standup session."""
+        removed = _voice_sessions.pop(call_connection_id, None)
+        if removed:
+            logger.info(f"Voice session removed: {call_connection_id}")
+
+    # ── Call Actions (1:1 — backward compatible) ─────────────────────
 
     async def create_call(
         self, teams_user_oid: str, callback_url: str
@@ -182,9 +216,154 @@ class CallManager:
             conn = self.client.get_call_connection(call_connection_id)
             conn.hang_up(is_for_everyone=True)
             self.remove_session(call_connection_id)
+            self.remove_voice_session(call_connection_id)
             logger.info(f"Call hung up: {call_connection_id}")
             return True
         except Exception as e:
             logger.error(f"hangup failed: {e}")
             self.remove_session(call_connection_id)
+            self.remove_voice_session(call_connection_id)
+            return False
+
+    # ── Group Meeting Actions (voice standup) ────────────────────────
+
+    async def create_group_call_to_teams_users(
+        self,
+        teams_user_oids: list,
+        callback_url: str,
+        cognitive_services_endpoint: str = "",
+    ) -> Optional[str]:
+        """
+        Create a group call to multiple Teams users by their Entra OIDs.
+
+        ACS Call Automation does not support joining existing Teams meetings.
+        Instead, the bot creates an ACS-managed group call and rings each
+        participant directly via Teams.
+
+        Returns the call_connection_id or None on failure.
+        """
+        if not self.enabled:
+            logger.warning("Cannot create group call – ACS not enabled")
+            return None
+
+        if not teams_user_oids:
+            logger.error("No Teams user OIDs provided for group call")
+            return None
+
+        cog_endpoint = cognitive_services_endpoint or settings.AZURE_COGNITIVE_SERVICES_ENDPOINT
+
+        try:
+            targets = [
+                _MicrosoftTeamsUserIdentifier(user_id=oid)
+                for oid in teams_user_oids
+            ]
+            result = self.client.create_call(
+                target_participant=targets,
+                callback_url=callback_url,
+                cognitive_services_endpoint=cog_endpoint if cog_endpoint else None,
+            )
+            conn_id = result.call_connection_id
+            logger.info(f"Group call created, conn_id={conn_id}, participants={len(teams_user_oids)}")
+            return conn_id
+        except Exception as e:
+            logger.error(f"create_group_call_to_teams_users failed: {e}")
+            return None
+
+    async def speak_to_all(
+        self,
+        call_connection_id: str,
+        text: str,
+        voice_name: str = "en-US-NancyNeural",
+        operation_context: str = "",
+    ) -> bool:
+        """
+        Speak text into the call using ACS TextSource (built-in TTS).
+
+        No external TTS service needed — ACS uses Cognitive Services directly.
+        """
+        if not self.enabled:
+            return False
+
+        try:
+            conn = self.client.get_call_connection(call_connection_id)
+            source = _TextSource(text=text, voice_name=voice_name)
+            conn.get_call_media().play_media_to_all(
+                play_source=source,
+                operation_context=operation_context,
+            )
+            logger.debug(f"Speaking to all: {text[:60]}... (ctx={operation_context})")
+            return True
+        except Exception as e:
+            logger.error(f"speak_to_all failed: {e}")
+            return False
+
+    async def start_recognizing_participant(
+        self,
+        call_connection_id: str,
+        target_entra_oid: str,
+        end_silence_timeout: int = 0,
+        initial_silence_timeout: int = 0,
+        operation_context: str = "",
+    ) -> bool:
+        """
+        Start speech recognition targeting a specific participant.
+
+        Per-participant targeting prevents crosstalk in group calls.
+        """
+        if not self.enabled:
+            return False
+
+        end_timeout = end_silence_timeout or settings.VOICE_STANDUP_SILENCE_TIMEOUT
+        init_timeout = initial_silence_timeout or settings.VOICE_STANDUP_WAIT_SECONDS
+
+        try:
+            conn = self.client.get_call_connection(call_connection_id)
+            target = _MicrosoftTeamsUserIdentifier(user_id=target_entra_oid)
+            conn.get_call_media().start_recognizing_media(
+                input_type=_RecognizeInputType.SPEECH,
+                target_participant=target,
+                end_silence_timeout_in_seconds=end_timeout,
+                initial_silence_timeout_in_seconds=init_timeout,
+                operation_context=operation_context,
+            )
+            logger.debug(
+                f"Recognition started for {target_entra_oid[:12]}... "
+                f"(ctx={operation_context})"
+            )
+            return True
+        except Exception as e:
+            logger.error(f"start_recognizing_participant failed: {e}")
+            return False
+
+    async def list_call_participants(
+        self, call_connection_id: str
+    ) -> list:
+        """List participants currently in the call."""
+        if not self.enabled:
+            return []
+
+        try:
+            conn = self.client.get_call_connection(call_connection_id)
+            participants = conn.list_participants()
+            return list(participants) if participants else []
+        except Exception as e:
+            logger.error(f"list_call_participants failed: {e}")
+            return []
+
+    async def add_participant(
+        self, call_connection_id: str, teams_user_oid: str
+    ) -> bool:
+        """Add a Teams user to an existing call."""
+        if not self.enabled:
+            return False
+
+        try:
+            conn = self.client.get_call_connection(call_connection_id)
+            target = _MicrosoftTeamsUserIdentifier(user_id=teams_user_oid)
+            invite = _CallInvite(target=target)
+            conn.add_participant(invite)
+            logger.info(f"Added participant {teams_user_oid} to {call_connection_id}")
+            return True
+        except Exception as e:
+            logger.error(f"add_participant failed: {e}")
             return False

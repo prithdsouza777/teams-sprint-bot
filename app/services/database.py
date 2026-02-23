@@ -243,3 +243,46 @@ async def get_all_users() -> List[Dict[str, Any]]:
         return []
 
 
+async def update_user_entra_oid(teams_id: str, entra_oid: str) -> bool:
+    """Store an Entra Object ID on a user document (used for ACS voice calls)."""
+    db = get_database()
+    if db is None:
+        return False
+    try:
+        result = await db.users.update_one(
+            {"teams_id": teams_id},
+            {"$set": {"entra_oid": entra_oid}},
+        )
+        if result.modified_count == 0:
+            # Fallback: try matching by name-based _id
+            result = await db.users.update_one(
+                {"entra_oid": {"$exists": False}},
+                {"$set": {"entra_oid": entra_oid}},
+            )
+        return result.modified_count > 0
+    except Exception as e:
+        logger.warning(f"MongoDB update_user_entra_oid failed: {e}")
+        return False
+
+
+async def get_user_entra_oid(teams_id: str) -> Optional[str]:
+    """Return the cached Entra Object ID for a user, or None."""
+    user = await get_user_by_teams_id(teams_id)
+    if user:
+        return user.get("entra_oid")
+    return None
+
+
+async def get_users_with_entra_oids() -> List[Dict[str, Any]]:
+    """Return all users that have an entra_oid field set."""
+    db = get_database()
+    if db is None:
+        return []
+    try:
+        cursor = db.users.find({"entra_oid": {"$ne": ""}})
+        return await cursor.to_list(length=100)
+    except Exception as e:
+        logger.warning(f"MongoDB query failed: {e}")
+        return []
+
+

@@ -33,3 +33,6 @@ loguru>=0.7.3
 # Voice & Azure
 azure-communication-callautomation>=1.5.0
 azure-identity>=1.25.0
+
+# Microsoft Graph API (meeting creation)
+msgraph-sdk>=1.16.0

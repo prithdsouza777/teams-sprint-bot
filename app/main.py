@@ -19,13 +19,13 @@ app = FastAPI(
 
 
 
-# from app.voice.routes import router as voice_router
+from app.voice.routes import router as voice_router
 
 @app.get("/")
 async def root():
     return {"status": "running", "service": "ai-scrum-bot", "version": "2.0.0"}
 
-# app.include_router(voice_router)
+app.include_router(voice_router)
 
 
 @app.get("/health")

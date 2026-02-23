@@ -141,6 +141,42 @@ async def save_conversation_reference(reference: Dict[str, Any]) -> None:
             pass
 
 
+async def get_conversation_reference(conversation_id: str) -> Optional[Dict[str, Any]]:
+    """Retrieve a single conversation reference by conversation ID."""
+    # Check memory first
+    if conversation_id in _memory_conversations:
+        return _memory_conversations[conversation_id]
+
+    # Check file system
+    try:
+        file_path = _STATE_DIR / f"conv_{_sanitize_key(conversation_id)}.json"
+        if file_path.exists():
+            with open(file_path, 'r') as f:
+                return json.load(f)
+    except Exception:
+        pass
+
+    # Check Firestore
+    db = get_firestore_client()
+    if db:
+        try:
+            doc_ref = db.collection("conversations").document(conversation_id)
+            doc = await doc_ref.get()
+            if doc.exists:
+                return doc.to_dict()
+        except Exception:
+            pass
+
+    # Fallback: scan all conversations
+    all_convs = await get_all_conversations()
+    for conv in all_convs:
+        conv_id = conv.get("conversation", {}).get("id", "")
+        if conv_id == conversation_id:
+            return conv
+
+    return None
+
+
 async def get_all_conversations() -> list[Dict[str, Any]]:
     """Get all active conversation references."""
     # Load from files

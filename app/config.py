@@ -31,6 +31,14 @@ class Settings(BaseSettings):
     ACS_CONNECTION_STRING: str = ""
     ACS_CALLBACK_URL: str = ""
 
+    # Azure Cognitive Services (for speech recognition in ACS calls)
+    AZURE_COGNITIVE_SERVICES_ENDPOINT: str = ""
+
+    # Voice Standup Settings
+    VOICE_STANDUP_WAIT_SECONDS: int = 30
+    VOICE_STANDUP_SILENCE_TIMEOUT: int = 3
+    VOICE_STANDUP_MAX_SILENCE_RETRIES: int = 2
+
 
     class Config:
         env_file = ".env"
