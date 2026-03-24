@@ -11,14 +11,20 @@ Run these scripts from the project root using the python from your virtual envir
 
 ```bash
 # Verify AWS Polly (TTS)
-python tests/verify_polly.py
+python -m tests.verify_polly
 
 # Verify Azure Bot Authentication
-python tests/verify_azure.py
+python -m tests.verify_azure
 
 # Verify Agent Logic (Mocked)
-python tests/verify_agent.py
+python -m tests.verify_agent
 
 # Verify Gemini API and MongoDB Connection
-python tests/verify_services.py
+python -m tests.verify_services
+
+# Verify Environment Variables + Gemini + MongoDB Ping
+python -m tests.verify_config
+
+# Verify Proactive Messaging (Mocked)
+python -m tests.verify_proactive
 ```

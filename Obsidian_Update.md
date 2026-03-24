@@ -1,6 +1,6 @@
 # Teams Sprint Bot — Project Context
 
-**Date:** 2026-02-13
+**Date:** 2026-03-24
 **Type:** Project Context & Architecture
 **Version:** 2.0.0
 **Status:** Production
@@ -8,7 +8,7 @@
 ---
 
 ## Project Overview
-A Microsoft Teams bot that automates daily standup meetings. Uses **Gemini AI** (`gemini-3-flash-preview`) for intelligence, **FastAPI** for the backend, **MongoDB** for persistent data, **Firestore** for session state, and **AWS Polly** for optional neural text-to-speech. Deployed on **GCP Cloud Run**.
+A Microsoft Teams bot that automates daily standup meetings (text and voice). Uses **Gemini AI** (`gemini-3-flash-preview`, structured output) for intelligence, **FastAPI** for the backend, **MongoDB** for persistent data, **Firestore** for session state, **AWS Polly** for neural TTS, and **Azure Communication Services** for voice standups. Deployed on **GCP Cloud Run**.
 
 ### Tech Stack
 
@@ -20,7 +20,10 @@ A Microsoft Teams bot that automates daily standup meetings. Uses **Gemini AI** 
 | Task DB | MongoDB (PyMongo, `scrum_bot` database) | `app/services/database.py` |
 | Session State | Firestore + File system + Memory (three-tier fallback) | `app/services/firestore.py` |
 | TTS | AWS Polly (Neural, voice: Matthew) | `app/services/polly.py` |
-| Cards | Adaptive Cards 1.5 (10 card types) | `app/services/cards.py` |
+| Cards | Adaptive Cards 1.5 (12 card types) | `app/services/cards.py` |
+| Voice Calls | Azure Communication Services (CallAutomation) | `app/voice/call_manager.py` |
+| Voice Routes | ACS webhooks + browser join | `app/voice/routes.py` |
+| Graph API | msgraph-sdk (meeting creation) | `app/bot/handler.py` |
 | Proactive | Cloud Scheduler → `proactive.py` → Firestore refs | `app/services/proactive.py` |
 | Deploy | GCP Cloud Run + Cloud Build | `cloudbuild.yaml`, `Dockerfile` |
 | Runtime | Python 3.13 | `Dockerfile` |
@@ -120,7 +123,9 @@ The largest file. `TeamsBot(ActivityHandler)` routes all incoming messages:
 
 ---
 
-## API Endpoints (`app/main.py`)
+## API Endpoints
+
+### Main (`app/main.py`)
 
 | Method | Path | Purpose |
 |:---|:---|:---|
@@ -132,6 +137,17 @@ The largest file. `TeamsBot(ActivityHandler)` routes all incoming messages:
 | `GET` | `/health` | Health probe |
 | `GET` | `/privacy` | Privacy policy HTML |
 | `GET` | `/terms` | Terms of use HTML |
+
+### Voice (`app/voice/routes.py`)
+
+| Method | Path | Purpose |
+|:---|:---|:---|
+| `GET` | `/api/voice/audio/{id}.mp3` | Serve cached Polly audio |
+| `GET` | `/api/voice/acs_bundle.js` | Serve ACS SDK bundle |
+| `GET` | `/voice/join/{group_call_id}` | Browser join page for voice calls |
+| `POST` | `/api/voice/token` | ACS communication token |
+| `POST` | `/api/voice/bot-connect/{id}` | Bot joins ACS group call |
+| `POST` | `/api/voice/callbacks` | ACS webhook for call events |
 
 **Note:** `AiohttpRequestWrapper` (main.py:37-76) shims FastAPI Request → aiohttp interface for CloudAdapter.
 
@@ -145,18 +161,23 @@ app/
 ├── config.py            # pydantic-settings BaseSettings (@lru_cache singleton)
 ├── agent/
 │   ├── graph.py         # State machine: 5 steps + run_standup_agent()
-│   ├── state.py         # Pydantic: AgentState, Task, Participant, StandupResponse
+│   ├── state.py         # Pydantic: AgentState, Task, Participant, StandupResponse,
+│   │                    #   StandupMode, VoiceParticipantState, VoiceStandupSession
 │   └── prompts.py       # SCRUM_MASTER_PROMPT, SUMMARY_PROMPT, TASK_ASSIGNMENT_PROMPT
 ├── bot/
-│   ├── handler.py       # TeamsBot(ActivityHandler) — routing, dedup, cards (~670 lines)
+│   ├── handler.py       # TeamsBot(ActivityHandler) — routing, dedup, cards, voice trigger (~766 lines)
 │   └── adapter.py       # CloudAdapter, SingleTenant auth, error handler
-└── services/
-    ├── gemini.py        # generate_response(), analyze_standup_response(), transcribe_audio()
-    ├── database.py      # MongoDB CRUD: users, tasks, standups collections
-    ├── firestore.py     # Three-tier state: memory → Firestore → .state/*.json files
-    ├── polly.py         # AWS Polly neural TTS (Matthew voice, MP3)
-    ├── cards.py         # 10 Adaptive Card factory functions
-    └── proactive.py     # notify_all_teams() via stored conversation refs
+├── services/
+│   ├── gemini.py        # generate_response(), analyze_standup_response(), transcribe_audio()
+│   ├── database.py      # MongoDB CRUD: users, tasks, standups collections
+│   ├── firestore.py     # Three-tier state: memory → Firestore → .state/*.json files
+│   ├── polly.py         # AWS Polly neural TTS (Matthew voice, MP3)
+│   ├── cards.py         # 12 Adaptive Card factory functions
+│   └── proactive.py     # notify_all_teams() via stored conversation refs
+└── voice/
+    ├── routes.py        # ACS webhook callbacks + voice standup orchestration (~1068 lines)
+    ├── call_manager.py  # ACS CallAutomationClient + session registry (~511 lines)
+    └── static/          # ACS SDK bundle for browser join
 ```
 
 ---
@@ -189,5 +210,5 @@ No pytest framework. Standalone verification scripts in `tests/`:
 - **Docker:** Multi-stage build, `python:3.13-slim`, venv at `/opt/venv`, port 8080
 - **Cloud Build:** `cloudbuild.yaml` — build → push GCR → deploy Cloud Run (us-central1)
 - **Cloud Scheduler:** 9:30 AM IST Mon-Fri → `GET /api/scheduled-standup`
-- **Teams Manifest:** Bot ID `52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb`, scopes: personal/team/groupChat
+- **Teams Manifest:** Bot ID `52551cf1-2cfd-4c7b-94fc-abcbf1f2f6fb`, scopes: personal/team/groupChat, supportsCalling: true
 - **Scripts:** `deploy.bat`, `setup-scheduler.bat`, `setup-secrets.bat`
