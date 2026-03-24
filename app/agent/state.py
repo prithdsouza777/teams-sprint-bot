@@ -51,6 +51,7 @@ class VoiceParticipantState(BaseModel):
     completed: bool = False
     skipped: bool = False
     silence_retries: int = 0
+    acs_comm_id: str = ""  # ACS Communication User ID (for browser-joined participants)
 
 
 class VoiceStandupSession(BaseModel):

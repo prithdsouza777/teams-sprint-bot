@@ -1,8 +1,8 @@
 from pymongo import AsyncMongoClient
 from loguru import logger
 from typing import Optional, List, Dict, Any, Tuple
-
 from app.config import settings
+from datetime import datetime, timezone
 
 # MongoDB client
 _client: Optional[AsyncMongoClient] = None
@@ -54,7 +54,6 @@ async def update_task_status(task_id: str, new_status: str, response_text: str =
         return False
     try:
         from bson import ObjectId
-        from datetime import datetime, timezone
         
         query = {"_id": ObjectId(task_id)} if ObjectId.is_valid(task_id) else {"_id": task_id}
         
@@ -122,9 +121,16 @@ async def register_user(teams_id: str, name: str) -> Optional[Dict[str, Any]]:
             logger.info(f"Linked Teams ID to existing user: {name}")
             return await db.users.find_one({"_id": existing["_id"]})
         else:
-            # DO NOT Create new user
-            logger.warning(f"Attempted registration for non-existent user: {name}")
-            return None
+            # Create a new user record automatically
+            new_user = {
+                "name": name,
+                "teams_id": teams_id,
+                "role": "Member",
+                "created_at": datetime.now(timezone.utc)
+            }
+            result = await db.users.insert_one(new_user)
+            logger.info(f"Automatically created new user: {name}")
+            return await db.users.find_one({"_id": result.inserted_id})
     except Exception as e:
         logger.warning(f"MongoDB register failed: {e}")
         return None
@@ -151,8 +157,6 @@ async def create_task_for_user(
     if db is None:
         return None, "Database connection failed"
     try:
-        from datetime import datetime, timezone
-        
         # Verify assignee exists
         assignee = await get_user_by_name(assignee_name)
         if not assignee:

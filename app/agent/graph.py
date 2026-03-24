@@ -145,7 +145,7 @@ async def process_answer(state: AgentState, user_response: str) -> AgentState:
         if remaining_tasks:
             # Ask about remaining tasks - don't move to next participant yet
             logger.info(f"{len(remaining_tasks)} tasks not yet addressed, will ask follow-up")
-            state.last_question = None  # Will trigger ask_question with remaining tasks
+            state.last_question = None  # Will trigger ask_question to generate a new question
         else:
             # All tasks covered - move to next participant
             logger.info(f"All tasks addressed for {state.current_speaker.name}")

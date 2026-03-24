@@ -1,16 +1,16 @@
 @echo off
 REM ======================================
-REM AI Scrum Bot - GCP Deployment Script
+REM Teams Sprint Bot - GCP Deployment Script
 REM Reads credentials from .env file
 REM ======================================
 
 setlocal EnableDelayedExpansion
 
 SET REGION=us-central1
-SET SERVICE_NAME=scrum-bot
+SET SERVICE_NAME=teams-sprint-bot
 
 echo.
-echo === AI Scrum Bot - GCP Cloud Run Deployment ===
+echo === Teams Sprint Bot - GCP Cloud Run Deployment ===
 echo.
 
 REM Load environment variables from .env file

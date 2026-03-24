@@ -1,5 +1,5 @@
 @echo off
-REM Setup secrets in GCP Secret Manager for AI Scrum Bot
+REM Setup secrets in GCP Secret Manager for Teams Sprint Bot
 REM Run this BEFORE deploying to Cloud Run
 
 setlocal
@@ -7,7 +7,7 @@ setlocal
 set PROJECT_ID=YOUR_GCP_PROJECT_ID
 
 echo.
-echo === Setting up GCP Secrets for AI Scrum Bot ===
+echo === Setting up GCP Secrets for Teams Sprint Bot ===
 echo.
 
 REM Check PROJECT_ID

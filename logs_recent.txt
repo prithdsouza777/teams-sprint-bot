@@ -1,0 +1,976 @@
+2026-03-11 06:31:51 2026-03-11T06:31:51.196792+0000 | INFO | Fetched 0 tasks for Naresh
+2026-03-11 06:31:54 2026-03-11T06:31:54.300653+0000 | INFO | Standup started, state saved for a:1aLcKie-YmOf0ifV8tomRWF6QC9F_cpf1ti-B4GPl6x_OAxAfVWLtRkRMmnVy3PGBtXFR00yUD3CUVS0pQSrR1g2Hz0XK-XXwuo3GuI8owZ1W02MRoJkhmnQV45QEsn82
+2026-03-11 06:31:54 INFO:     169.254.169.126:49876 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:40:38 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:40:38 INFO:     169.254.169.126:35378 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:40:39 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:40:40 2026-03-11T06:40:40.922155+0000 | INFO | Automatically created new user: Mothilal Bankuru
+2026-03-11 06:40:41 2026-03-11T06:40:41.168654+0000 | INFO | Automatically registered user on greeting: Mothilal Bankuru
+2026-03-11 06:40:42 2026-03-11T06:40:42.280680+0000 | INFO | Current speaker: Mothilal
+2026-03-11 06:40:42 2026-03-11T06:40:42.527659+0000 | INFO | Fetched 0 tasks for Mothilal
+2026-03-11 06:40:45 2026-03-11T06:40:45.506505+0000 | INFO | Standup started, state saved for a:149dSX5sbypzlLiwXy3CC3dP75sgElWktK45spvoBT-O8JGTRgUfLQmjizu1pA5OLK0m-7U_UvqZo-3ubWFrJDVVWB0O92GyypJP0JOY3NqfDWIN9fvVeMv7XbwcK24KS
+2026-03-11 06:40:46 INFO:     169.254.169.126:35386 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:43:32 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:43:33 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:43:33 INFO:     169.254.169.126:21732 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:43:34 2026-03-11T06:43:34.965431+0000 | INFO | Automatically created new user: Max Mario
+2026-03-11 06:43:35 2026-03-11T06:43:35.213026+0000 | INFO | Automatically registered user on greeting: Max Mario
+2026-03-11 06:43:36 2026-03-11T06:43:36.271790+0000 | INFO | Current speaker: Max
+2026-03-11 06:43:36 2026-03-11T06:43:36.519270+0000 | INFO | Fetched 0 tasks for Max
+2026-03-11 06:43:39 2026-03-11T06:43:39.336541+0000 | INFO | Standup started, state saved for a:15Y3G9p5UsiLyLQCBrhrtFM1O5TLOojCjSrr3LOYsxUZEIP-AdVTxTnmPz7pa9h2kSLVCKckIukNVjxESVK1SYpCvELl2M4mpFU2bTM1rsSkr5FlyqEtrF1dzWuzZiuao
+2026-03-11 06:43:39 INFO:     169.254.169.126:21728 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:45:40 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:45:41 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:45:41 INFO:     169.254.169.126:57440 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:45:42 2026-03-11T06:45:42.841808+0000 | INFO | Automatically created new user: Namrata  Tolani
+2026-03-11 06:45:43 2026-03-11T06:45:43.089306+0000 | INFO | Automatically registered user on greeting: Namrata  Tolani
+2026-03-11 06:45:44 2026-03-11T06:45:44.058693+0000 | INFO | Current speaker: Namrata
+2026-03-11 06:45:44 2026-03-11T06:45:44.306420+0000 | INFO | Fetched 0 tasks for Namrata
+2026-03-11 06:45:47 2026-03-11T06:45:47.263573+0000 | INFO | Standup started, state saved for a:1kV5601Po-0cAc933hH4bIFxgG7jlU4s-AbTkD4Q6sJt4ym6LnrzpH4OlrZTPeARoszOMO2n_bHH61Ch3S3HZbPZPQGWUHVyAfITWnjDrNF79fpobAHVSwGLglKA6Lsiv
+2026-03-11 06:45:47 INFO:     169.254.169.126:57432 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:59:18 GET 200 https://scrum-bot-536066708327.us-central1.run.app/
+2026-03-11 06:59:18 /opt/venv/lib/python3.13/site-packages/fastapi/routing.py:116: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+2026-03-11 06:59:18   response = await f(request)
+2026-03-11 06:59:18 INFO:     169.254.169.126:53372 - "GET / HTTP/1.1" 200 OK
+2026-03-11 06:59:18 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 06:59:18 INFO:     169.254.169.126:53376 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 06:59:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:59:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 06:59:28 INFO:     169.254.169.126:54796 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:59:30 2026-03-11T06:59:30.310711+0000 | INFO | Automatically created new user: Monica M
+2026-03-11 06:59:30 2026-03-11T06:59:30.565152+0000 | INFO | Automatically registered user on greeting: Monica M
+2026-03-11 06:59:31 2026-03-11T06:59:31.783740+0000 | INFO | Current speaker: Monica
+2026-03-11 06:59:32 2026-03-11T06:59:32.038095+0000 | INFO | Fetched 0 tasks for Monica
+2026-03-11 06:59:34 GET 404 https://scrum-bot-536066708327.us-central1.run.app/dcos
+2026-03-11 06:59:34 INFO:     169.254.169.126:54800 - "GET /dcos HTTP/1.1" 404 Not Found
+2026-03-11 06:59:35 2026-03-11T06:59:35.299110+0000 | INFO | Standup started, state saved for a:1ioSvYC_lJ2jrHjuLPc3opuo576uPLmw7G9UA-Q1NhZ4veKYPAKqxQQSI0A-3Jbun1JKuptruQspZcu9QL9kgZezsSVinUEB2ve9ZTOQ5kBtPLsvIZsHyh483EWJvNZ8I
+2026-03-11 06:59:35 INFO:     169.254.169.126:54784 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 06:59:48 GET 404 https://scrum-bot-536066708327.us-central1.run.app/api/dcos
+2026-03-11 06:59:48 INFO:     169.254.169.126:15556 - "GET /api/dcos HTTP/1.1" 404 Not Found
+2026-03-11 07:07:32 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:07:32 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:07:32 INFO:     169.254.169.126:45864 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:07:34 2026-03-11T07:07:34.750319+0000 | INFO | Automatically created new user: Rajesab Noorbash
+2026-03-11 07:07:35 2026-03-11T07:07:35.004672+0000 | INFO | Automatically registered user on greeting: Rajesab Noorbash
+2026-03-11 07:07:36 2026-03-11T07:07:36.097322+0000 | INFO | Current speaker: Rajesab
+2026-03-11 07:07:36 2026-03-11T07:07:36.351434+0000 | INFO | Fetched 0 tasks for Rajesab
+2026-03-11 07:07:39 2026-03-11T07:07:39.238573+0000 | INFO | Standup started, state saved for a:1ILeKKLe2GqpxN5sAiMAQDadTG75Bm04bqB_U_Jj_QMV36cg9mABO8VM_FvKwwJn9ZVpy9dMJ9q5-lg2ymrJu8r8jPgVpdRulWghanmfEq5OcxrCMuXJK1pIIb2rz6JVm
+2026-03-11 07:07:39 INFO:     169.254.169.126:45874 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:12:16 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:12:16 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:12:17 INFO:     169.254.169.126:65236 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:12:18 2026-03-11T07:12:18.867006+0000 | INFO | Automatically created new user: Christopher Panchala
+2026-03-11 07:12:19 2026-03-11T07:12:19.124215+0000 | INFO | Automatically registered user on greeting: Christopher Panchala
+2026-03-11 07:12:20 2026-03-11T07:12:20.086451+0000 | INFO | Current speaker: Christopher
+2026-03-11 07:12:20 2026-03-11T07:12:20.345733+0000 | INFO | Fetched 0 tasks for Christopher
+2026-03-11 07:12:23 2026-03-11T07:12:23.634538+0000 | INFO | Standup started, state saved for a:1OUJSNblVU6qAQTQZEwF3_5-GkPbmX3ixyZv2AzXcHEzZ_1ANT-ZI5wpsd1ceSGg5AwWDK8m4ztsu748M6bxye1eoLmU4JQLho0wCwSrvC-EHhatXAAknq8XRZSC3uow5
+2026-03-11 07:12:24 INFO:     169.254.169.126:65226 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:15:16 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:15:17 2026-03-11T07:15:17.100685+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 07:15:17 2026-03-11T07:15:17.100935+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 07:15:18 INFO:     169.254.169.126:3064 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:15:27 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:15:27 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 07:15:27 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 07:15:27 2026-03-11T07:15:27.766152+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 07:15:27 2026-03-11T07:15:27.766567+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 07:15:28 2026-03-11T07:15:28.492632+0000 | INFO | Pending group call registered: 2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 07:15:28 INFO:     169.254.169.126:40596 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:15:39 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 07:15:39 INFO:     169.254.169.126:18718 - "HEAD /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 07:15:40 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 07:15:40 2026-03-11T07:15:40.608771+0000 | INFO | ACS CallAutomationClient initialized
+2026-03-11 07:15:40 INFO:     169.254.169.126:18732 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 200 OK
+2026-03-11 07:15:41 GET 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/acs_bundle.js
+2026-03-11 07:15:41 INFO:     169.254.169.126:18748 - "GET /api/voice/acs_bundle.js HTTP/1.1" 200 OK
+2026-03-11 07:15:46 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 07:15:46 INFO:     169.254.169.126:32542 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 07:15:47 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 07:15:48 2026-03-11T07:15:48.201788+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7ba2-1476-c226-4e8ded7c0b57
+2026-03-11 07:15:48 INFO:     169.254.169.126:32550 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 07:15:53 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 07:15:53 INFO:     169.254.169.126:32556 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 200 OK
+2026-03-11 07:15:53 GET 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/acs_bundle.js
+2026-03-11 07:15:53 INFO:     169.254.169.126:32560 - "GET /api/voice/acs_bundle.js HTTP/1.1" 200 OK
+2026-03-11 07:15:55 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 07:15:55 INFO:     169.254.169.126:32564 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 07:16:01 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 07:16:01 2026-03-11T07:16:01.559989+0000 | INFO | Connecting to group call 2fd5d363-ed02-4a5a-a1d5-8ca739581050 with cog endpoint: https://eastus.api.cognitive.microsoft.com
+2026-03-11 07:16:01 2026-03-11T07:16:01.869417+0000 | INFO | Connected to group call 2fd5d363-ed02-4a5a-a1d5-8ca739581050, conn_id=2b005880-4ff2-44f3-aaaf-66e94b5305f3
+2026-03-11 07:16:01 2026-03-11T07:16:01.869690+0000 | INFO | Voice session registered: 2b005880-4ff2-44f3-aaaf-66e94b5305f3
+2026-03-11 07:16:01 2026-03-11T07:16:01.869793+0000 | INFO | Pending group call removed: 2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 07:16:01 2026-03-11T07:16:01.869884+0000 | INFO | Bot connected to group call 2fd5d363-ed02-4a5a-a1d5-8ca739581050 as conn_id=2b005880-4ff2-44f3-aaaf-66e94b5305f3
+2026-03-11 07:16:01 INFO:     169.254.169.126:34450 - "POST /api/voice/bot-connect/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 200 OK
+2026-03-11 07:16:09 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 07:16:09 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 07:16:09 2026-03-11T07:16:09.846763+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=2b005880-4ff... | ctx=
+2026-03-11 07:16:09 2026-03-11T07:16:09.847155+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7ba2-1476-c226-4e8ded7c0b57', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7ba2-1476-c226-4e8ded7c0b57'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 1, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '2b005880-4ff2-44f3-aaaf-66e94b5305f3', 'serverCallId': 'aHR0cHM6Ly9jb252LW1hc28tMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9VTk5yek95elRrMkZDVXVLd2NrNDlnP2k9MTAtMTI4LTIyNy0xNzYmZT02MzkwODc5Mjg0MDgyOTgwNzI=', 'correlationId': '55c7e1f1-c05b-456e-b54a-edd1e77856fa', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 07:16:09 INFO:     169.254.169.126:56636 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 07:16:09 2026-03-11T07:16:09.848749+0000 | INFO | ACS event: Microsoft.Communication.CallConnected | conn=2b005880-4ff... | ctx=
+2026-03-11 07:16:09 2026-03-11T07:16:09.849015+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '2b005880-4ff2-44f3-aaaf-66e94b5305f3', 'serverCallId': 'aHR0cHM6Ly9jb252LW1hc28tMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9VTk5yek95elRrMkZDVXVLd2NrNDlnP2k9MTAtMTI4LTIyNy0xNzYmZT02MzkwODc5Mjg0MDgyOTgwNzI=', 'correlationId': '55c7e1f1-c05b-456e-b54a-edd1e77856fa', 'publicEventType': 'Microsoft.Communication.CallConnected'}
+2026-03-11 07:16:09 2026-03-11T07:16:09.849205+0000 | INFO | Session registered: 2b005880-4ff2-44f3-aaaf-66e94b5305f3 ()
+2026-03-11 07:16:09 INFO:     169.254.169.126:56634 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 07:16:10 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 07:16:10 2026-03-11T07:16:10.346668+0000 | INFO | ACS event: Microsoft.Communication.PlayFailed | conn=2b005880-4ff... | ctx=waiting
+2026-03-11 07:16:10 2026-03-11T07:16:10.346964+0000 | INFO | ACS raw event body: {'failedPlaySourceIndex': 0, 'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 400, 'subCode': 8565, 'message': 'Action failed due to a bad request to Cognitive Services. Please check your input parameters.'}, 'callConnectionId': '2b005880-4ff2-44f3-aaaf-66e94b5305f3', 'serverCallId': 'aHR0cHM6Ly9jb252LW1hc28tMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9VTk5yek95elRrMkZDVXVLd2NrNDlnP2k9MTAtMTI4LTIyNy0xNzYmZT02MzkwODc5Mjg0MDgyOTgwNzI=', 'correlationId': '55c7e1f1-c05b-456e-b54a-edd1e77856fa', 'publicEventType': 'Microsoft.Communication.PlayFailed'}
+2026-03-11 07:16:10 INFO:     169.254.169.126:56660 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 07:16:10 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 07:16:10 2026-03-11T07:16:10.522296+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=2b005880-4ff... | ctx=
+2026-03-11 07:16:10 2026-03-11T07:16:10.522663+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7ba2-1476-c226-4e8ded7c0b57', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7ba2-1476-c226-4e8ded7c0b57'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 2, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '2b005880-4ff2-44f3-aaaf-66e94b5305f3', 'serverCallId': 'aHR0cHM6Ly9jb252LW1hc28tMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9VTk5yek95elRrMkZDVXVLd2NrNDlnP2k9MTAtMTI4LTIyNy0xNzYmZT02MzkwODc5Mjg0MDgyOTgwNzI=', 'correlationId': '55c7e1f1-c05b-456e-b54a-edd1e77856fa', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 07:16:10 INFO:     169.254.169.126:56674 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 07:16:41 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 07:16:41 2026-03-11T07:16:41.389257+0000 | INFO | ACS event: Microsoft.Communication.PlayFailed | conn=2b005880-4ff... | ctx=farewell
+2026-03-11 07:16:41 2026-03-11T07:16:41.389501+0000 | INFO | ACS raw event body: {'failedPlaySourceIndex': 0, 'version': '2025-06-15', 'operationContext': 'farewell', 'resultInformation': {'code': 400, 'subCode': 8565, 'message': 'Action failed due to a bad request to Cognitive Services. Please check your input parameters.'}, 'callConnectionId': '2b005880-4ff2-44f3-aaaf-66e94b5305f3', 'serverCallId': 'aHR0cHM6Ly9jb252LW1hc28tMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9VTk5yek95elRrMkZDVXVLd2NrNDlnP2k9MTAtMTI4LTIyNy0xNzYmZT02MzkwODc5Mjg0MDgyOTgwNzI=', 'correlationId': '55c7e1f1-c05b-456e-b54a-edd1e77856fa', 'publicEventType': 'Microsoft.Communication.PlayFailed'}
+2026-03-11 07:16:41 INFO:     169.254.169.126:49510 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 07:16:52 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 07:16:52 2026-03-11T07:16:52.388326+0000 | INFO | ACS event: Microsoft.Communication.CallDisconnected | conn=2b005880-4ff... | ctx=
+2026-03-11 07:16:52 2026-03-11T07:16:52.388579+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 5020, 'message': 'This conversation has ended as there are no participants in the incoming roster. DiagCode: 0#5020.@'}, 'version': '2025-06-15', 'callConnectionId': '2b005880-4ff2-44f3-aaaf-66e94b5305f3', 'serverCallId': 'aHR0cHM6Ly9jb252LW1hc28tMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9VTk5yek95elRrMkZDVXVLd2NrNDlnP2k9MTAtMTI4LTIyNy0xNzYmZT02MzkwODc5Mjg0MDgyOTgwNzI=', 'correlationId': '55c7e1f1-c05b-456e-b54a-edd1e77856fa', 'publicEventType': 'Microsoft.Communication.CallDisconnected'}
+2026-03-11 07:16:52 2026-03-11T07:16:52.388759+0000 | INFO | Session removed: 2b005880-4ff2-44f3-aaaf-66e94b5305f3
+2026-03-11 07:16:52 2026-03-11T07:16:52.388898+0000 | INFO | Voice session removed: 2b005880-4ff2-44f3-aaaf-66e94b5305f3
+2026-03-11 07:16:52 INFO:     169.254.169.126:51038 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 07:17:40 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:17:40 INFO:     169.254.169.126:18114 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:17:40 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:17:42 2026-03-11T07:17:42.670450+0000 | INFO | Automatically created new user: Igor Pajeska (LT). Partner(HR)
+2026-03-11 07:17:42 2026-03-11T07:17:42.924543+0000 | INFO | Automatically registered user on greeting: Igor Pajeska (LT). Partner(HR)
+2026-03-11 07:17:43 2026-03-11T07:17:43.867557+0000 | INFO | Current speaker: Igor
+2026-03-11 07:17:44 2026-03-11T07:17:44.122910+0000 | INFO | Fetched 0 tasks for Igor
+2026-03-11 07:17:47 2026-03-11T07:17:47.965685+0000 | INFO | Standup started, state saved for a:1QSP3Oil0TWi-tRA1VImGKm1Ax2Db5LZuAXFoRELkkj8EhXxaonFXbfc-ADvmend0FEBijLmaGFfjAftUg_5FpQO7Sb8rmdLu7fYXb9dAsg4o6RohuHK7I2APJKztDV3w
+2026-03-11 07:17:48 INFO:     169.254.169.126:18122 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:32:49 INFO:     Shutting down
+2026-03-11 07:32:49 INFO:     Waiting for application shutdown.
+2026-03-11 07:32:49 INFO:     Application shutdown complete.
+2026-03-11 07:32:49 INFO:     Finished server process [1]
+2026-03-11 07:38:23 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:38:23 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:38:35 INFO:     Started server process [1]
+2026-03-11 07:38:35 INFO:     Waiting for application startup.
+2026-03-11 07:38:35 INFO:     Application startup complete.
+2026-03-11 07:38:35 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-11 07:38:36 INFO:     169.254.169.126:38924 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:38:41 2026-03-11T07:38:41.196585+0000 | INFO | Automatically created new user: Mohammed  Abbas
+2026-03-11 07:38:41 2026-03-11T07:38:41.456387+0000 | INFO | Automatically registered user on greeting: Mohammed  Abbas
+2026-03-11 07:38:47 2026-03-11T07:38:47.786747+0000 | INFO | Firestore client initialized
+2026-03-11 07:38:48 2026-03-11T07:38:48.625761+0000 | INFO | Current speaker: Mohammed
+2026-03-11 07:38:48 2026-03-11T07:38:48.885687+0000 | INFO | Fetched 0 tasks for Mohammed
+2026-03-11 07:38:51 2026-03-11T07:38:51.899089+0000 | INFO | Standup started, state saved for a:1OBjhu1PfahnVA0qfWJtnjh0SmUnvSPXLEMNV3mXSVSeWtk8U8BQkOGMjLAYr64yHWaAcV1tkhsVg45zYFAYp_Ygf6QUgZUtrF0KX4vQRSk36Ya9Thqftgdr-FJ23tIDf
+2026-03-11 07:38:52 INFO:     169.254.169.126:38908 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:45:18 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:45:18 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:45:18 INFO:     169.254.169.126:46056 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:45:20 2026-03-11T07:45:20.437396+0000 | INFO | Automatically created new user: Sai Vittal
+2026-03-11 07:45:20 2026-03-11T07:45:20.697989+0000 | INFO | Automatically registered user on greeting: Sai Vittal
+2026-03-11 07:45:22 2026-03-11T07:45:22.070863+0000 | INFO | Current speaker: Sai
+2026-03-11 07:45:22 2026-03-11T07:45:22.332352+0000 | INFO | Fetched 0 tasks for Sai
+2026-03-11 07:45:26 2026-03-11T07:45:26.577645+0000 | INFO | Standup started, state saved for a:1xlYfeky1Ki-l2cHVHDUiZtT8ZLKEN71FawKXbj7FvBGrxV2xkINu6r2o7wrdkauZG3G7UEmS3FVa5Cb4K9JQlhgCkUvoppReKg3cdoz430y3Fk4EeI-Ngpr-W0tyhQaQ
+2026-03-11 07:45:27 INFO:     169.254.169.126:46048 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:46:09 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:46:10 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:46:10 INFO:     169.254.169.126:39902 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:46:11 2026-03-11T07:46:11.872455+0000 | INFO | Automatically created new user: Chandini Somesh
+2026-03-11 07:46:12 2026-03-11T07:46:12.133306+0000 | INFO | Automatically registered user on greeting: Chandini Somesh
+2026-03-11 07:46:13 2026-03-11T07:46:13.190880+0000 | INFO | Current speaker: Chandini
+2026-03-11 07:46:13 2026-03-11T07:46:13.451951+0000 | INFO | Fetched 0 tasks for Chandini
+2026-03-11 07:46:17 2026-03-11T07:46:17.087105+0000 | INFO | Standup started, state saved for a:1yNJQZKfGbibQ9ux5wj0MnqGEB65T-9JCzglVb5tBrzxmX6tdgU67_GzE5fFGzYCwgs8myBlgJ1_J_oMaGLwSSE3oJt8X0gxjC_f_0Gbj7hjBXGUj_iNJUMDAggRLCLwX
+2026-03-11 07:46:17 INFO:     169.254.169.126:39898 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:59:57 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:59:57 INFO:     169.254.169.126:14704 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 07:59:57 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 07:59:59 2026-03-11T07:59:59.576264+0000 | INFO | Automatically created new user: Sachin Kangralkar
+2026-03-11 07:59:59 2026-03-11T07:59:59.837200+0000 | INFO | Automatically registered user on greeting: Sachin Kangralkar
+2026-03-11 08:00:00 2026-03-11T08:00:00.769783+0000 | INFO | Current speaker: Sachin
+2026-03-11 08:00:01 2026-03-11T08:00:01.037693+0000 | INFO | Fetched 0 tasks for Sachin
+2026-03-11 08:00:03 2026-03-11T08:00:03.659913+0000 | INFO | Standup started, state saved for a:1SjT2V7S9XTusEEIPJ_6lJ7j7QGQF56DavLZ2frUlbHjvfQhziMT_8gokLdPv7nlY37WJxPwxxboXKRmJiADyIKf0UevrWqpdDnFCETBaq6-0RYdgpwtt5xi7nBmAGB0B
+2026-03-11 08:00:04 INFO:     169.254.169.126:14718 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:04:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:04:28 INFO:     169.254.169.126:44388 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:04:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:04:30 2026-03-11T08:04:30.342722+0000 | INFO | Automatically created new user: Tejas
+2026-03-11 08:04:30 2026-03-11T08:04:30.604240+0000 | INFO | Automatically registered user on greeting: Tejas
+2026-03-11 08:04:31 2026-03-11T08:04:31.731076+0000 | INFO | Current speaker: Tejas
+2026-03-11 08:04:31 2026-03-11T08:04:31.992492+0000 | INFO | Fetched 0 tasks for Tejas
+2026-03-11 08:04:34 2026-03-11T08:04:34.879660+0000 | INFO | Standup started, state saved for a:13Pgd3-d-EZpZsQwEM3tbdcBJpbT8bwlVNLPc1hEduNqqbYtO-TFzrCsELLDVq5jXPd6AwXXbibfJbmPd1LpO5wxOdNGK8D2qM8eAAsc2bxONmAeWYHCyN9LTjAl8wvDH
+2026-03-11 08:04:35 INFO:     169.254.169.126:44394 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:09:42 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:09:42 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:09:42 INFO:     169.254.169.126:58482 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:09:44 2026-03-11T08:09:44.603462+0000 | INFO | Automatically created new user: Luka Gobin (LT). Partner(HR)
+2026-03-11 08:09:44 2026-03-11T08:09:44.854655+0000 | INFO | Automatically registered user on greeting: Luka Gobin (LT). Partner(HR)
+2026-03-11 08:09:45 2026-03-11T08:09:45.927990+0000 | INFO | Current speaker: Luka
+2026-03-11 08:09:46 2026-03-11T08:09:46.179739+0000 | INFO | Fetched 0 tasks for Luka
+2026-03-11 08:09:49 2026-03-11T08:09:49.283332+0000 | INFO | Standup started, state saved for a:1gdAaNF2pi9q7zSog4vTZTjweOrKUFfhzXs0qE3RiqHc6nLBWVGVYSjR9POEWWYnkuJrEprbXilrAw4IiPLtnBF3Pp4PKedr10w8YZbJijBjPhx82BeL1FW6Ns_AiLvlD
+2026-03-11 08:09:49 INFO:     169.254.169.126:58480 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:24:57 INFO:     Shutting down
+2026-03-11 08:24:57 INFO:     Waiting for application shutdown.
+2026-03-11 08:24:57 INFO:     Application shutdown complete.
+2026-03-11 08:24:57 INFO:     Finished server process [1]
+2026-03-11 08:31:50 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:31:50 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:32:05 INFO:     Started server process [1]
+2026-03-11 08:32:05 INFO:     Waiting for application startup.
+2026-03-11 08:32:05 INFO:     Application startup complete.
+2026-03-11 08:32:05 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-11 08:32:05 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:32:06 INFO:     169.254.169.126:34054 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:32:06 INFO:     169.254.169.126:34060 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:32:11 2026-03-11T08:32:11.328763+0000 | INFO | Automatically created new user: Nisitosh Mohanty
+2026-03-11 08:32:11 2026-03-11T08:32:11.588649+0000 | INFO | Automatically registered user on greeting: Nisitosh Mohanty
+2026-03-11 08:32:24 2026-03-11T08:32:24.433449+0000 | INFO | Firestore client initialized
+2026-03-11 08:32:25 2026-03-11T08:32:25.383159+0000 | INFO | Current speaker: Nisitosh
+2026-03-11 08:32:25 2026-03-11T08:32:25.643366+0000 | INFO | Fetched 0 tasks for Nisitosh
+2026-03-11 08:32:28 2026-03-11T08:32:28.866884+0000 | INFO | Standup started, state saved for a:1wpfdKQTJk9hdfmU7OtkqUzx55SHputbzO3Dld1u74MPyEtLSZ_8bCoJbuar27cEJlkkT83bwnp6b630b2j1dsJA5UnYW_i7fM5nbEYvn_ZQUdhqLUR-zg2uox1Yy8hQ3
+2026-03-11 08:32:29 INFO:     169.254.169.126:17242 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:33:30 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:33:31 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:33:31 INFO:     169.254.169.126:40484 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:33:32 2026-03-11T08:33:32.981618+0000 | INFO | Automatically created new user: Dhana NagaLakshmi
+2026-03-11 08:33:33 2026-03-11T08:33:33.241778+0000 | INFO | Automatically registered user on greeting: Dhana NagaLakshmi
+2026-03-11 08:33:34 2026-03-11T08:33:34.381974+0000 | INFO | Current speaker: Dhana
+2026-03-11 08:33:34 2026-03-11T08:33:34.643083+0000 | INFO | Fetched 0 tasks for Dhana
+2026-03-11 08:33:37 2026-03-11T08:33:37.436291+0000 | INFO | Standup started, state saved for a:1_Pr_vfMC0PO0P0Dz07yBHeiOaNLXx_mMhqgPagKGmuA4s1aiO5H38cCoh7iurtkBxbkZCAMG3PhVTIeA_0IHg9C3JXBXf7igmn6HcBweAWIiugl_H0gZadid-dmqcByp
+2026-03-11 08:33:37 INFO:     169.254.169.126:40480 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:37:40 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:37:40 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:37:40 INFO:     169.254.169.126:65488 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:37:42 2026-03-11T08:37:42.429385+0000 | INFO | Automatically created new user: Deepa Vishwanath
+2026-03-11 08:37:42 2026-03-11T08:37:42.685320+0000 | INFO | Automatically registered user on greeting: Deepa Vishwanath
+2026-03-11 08:37:43 2026-03-11T08:37:43.644147+0000 | INFO | Current speaker: Deepa
+2026-03-11 08:37:43 2026-03-11T08:37:43.896323+0000 | INFO | Fetched 0 tasks for Deepa
+2026-03-11 08:37:47 2026-03-11T08:37:47.096074+0000 | INFO | Standup started, state saved for a:1vvfx2DQJ7h7iF8FYoO830Suz6V5tX4XrCvqefQYqhyFiGMBcbfx4JIE3-4oPhywxPiSfRQnOfDe1zDD89EGz0Ez4ykDaF_c8WHOKiPs0Hx_bJ5SKVb4RT796EjIO3o-N
+2026-03-11 08:37:47 INFO:     169.254.169.126:65482 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:48:52 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:48:52 INFO:     169.254.169.126:1538 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:48:52 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:48:54 2026-03-11T08:48:54.754661+0000 | INFO | Automatically created new user: Darshan Kumar
+2026-03-11 08:48:55 2026-03-11T08:48:55.006589+0000 | INFO | Automatically registered user on greeting: Darshan Kumar
+2026-03-11 08:48:56 2026-03-11T08:48:56.080189+0000 | INFO | Current speaker: Darshan
+2026-03-11 08:48:56 2026-03-11T08:48:56.331981+0000 | INFO | Fetched 0 tasks for Darshan
+2026-03-11 08:49:00 2026-03-11T08:49:00.114079+0000 | INFO | Standup started, state saved for a:1hI3H06v5sF5bhtQTVPKCt9sKkWdFxWyh4OrZZaXolJnqb-MIK08kBpQhiiuPz3ahmZ4rck-E-h1B8OANNhZUqNwfwYu5OVOAdN0z277Nc7FqUbEFnIWwb5j0sY-CLiKB
+2026-03-11 08:49:00 INFO:     169.254.169.126:1552 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:57:57 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:57:57 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:57:57 INFO:     169.254.169.126:43428 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:57:59 2026-03-11T08:57:59.180950+0000 | INFO | Automatically created new user: Madhavan  Muthupandi
+2026-03-11 08:57:59 2026-03-11T08:57:59.428513+0000 | INFO | Automatically registered user on greeting: Madhavan  Muthupandi
+2026-03-11 08:58:00 2026-03-11T08:58:00.568339+0000 | INFO | Current speaker: Madhavan
+2026-03-11 08:58:00 2026-03-11T08:58:00.815825+0000 | INFO | Fetched 0 tasks for Madhavan
+2026-03-11 08:58:03 2026-03-11T08:58:03.599726+0000 | INFO | Standup started, state saved for a:1sSluADxI1Rl3M0fYjbgtJXUeTkWIoWA1Szrx4hy3Up8lGzWBKserJp-e3fuun_T9jeS5ePwvMsq6axDnlSNshDJWIolz_2vZY6hSsozN6POiBlTNaHXC8dVla523ntwP
+2026-03-11 08:58:04 INFO:     169.254.169.126:43414 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:58:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:58:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 08:58:28 INFO:     169.254.169.126:19210 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 08:58:30 2026-03-11T08:58:30.174376+0000 | INFO | Automatically created new user: Sagar  Hallikar
+2026-03-11 08:58:30 2026-03-11T08:58:30.421932+0000 | INFO | Automatically registered user on greeting: Sagar  Hallikar
+2026-03-11 08:58:31 2026-03-11T08:58:31.375162+0000 | INFO | Current speaker: Sagar
+2026-03-11 08:58:31 2026-03-11T08:58:31.622789+0000 | INFO | Fetched 0 tasks for Sagar
+2026-03-11 08:58:34 2026-03-11T08:58:34.213673+0000 | INFO | Standup started, state saved for a:1Mm1Fg9O1FLaayc94MQSHNNhTYOCXmgLaRb1amZ5qxHVnVGlZ8PlC4W4liuhpsRIn7zn7DjGjSioSRN4tBwlY4zmp3OQIBothgp1inpDURlo48fLQw0qGDCBzA_R9hZiJ
+2026-03-11 08:58:34 INFO:     169.254.169.126:19200 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:00:13 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:00:13 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:00:13 INFO:     169.254.169.126:7296 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:00:15 2026-03-11T09:00:15.644042+0000 | INFO | Automatically created new user: Noopur Priyambada
+2026-03-11 09:00:15 2026-03-11T09:00:15.903105+0000 | INFO | Automatically registered user on greeting: Noopur Priyambada
+2026-03-11 09:00:17 2026-03-11T09:00:17.050307+0000 | INFO | Current speaker: Noopur
+2026-03-11 09:00:17 2026-03-11T09:00:17.312008+0000 | INFO | Fetched 0 tasks for Noopur
+2026-03-11 09:00:19 2026-03-11T09:00:19.979322+0000 | INFO | Standup started, state saved for a:1d4ZVxzyt4r9SDT4ZJn80vWHQ-4TyO9-U5zZZFg9zQh7-KVtZtoAnorjV23bLB21442T_ep_K4cr4ESMa8Oo1pmnEx8mKnTUCT-RluD9S8UdMsZlEHGPO5O7-t0Zfq49K
+2026-03-11 09:00:20 INFO:     169.254.169.126:7286 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:04:44 INFO:     Started server process [1]
+2026-03-11 09:04:44 INFO:     Waiting for application startup.
+2026-03-11 09:04:44 INFO:     Application startup complete.
+2026-03-11 09:04:44 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-11 09:06:35 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 09:06:35 INFO:     169.254.169.126:1738 - "HEAD /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 09:06:35 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 09:06:35 INFO:     169.254.169.126:1752 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 404 Not Found
+2026-03-11 09:06:40 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:06:42 2026-03-11T09:06:42.523985+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:06:42 2026-03-11T09:06:42.524300+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:06:47 INFO:     Shutting down
+2026-03-11 09:06:47 INFO:     Waiting for application shutdown.
+2026-03-11 09:06:47 INFO:     Application shutdown complete.
+2026-03-11 09:06:47 INFO:     Finished server process [1]
+2026-03-11 09:06:52 2026-03-11T09:06:52.880450+0000 | INFO | Firestore client initialized
+2026-03-11 09:06:53 2026-03-11T09:06:53.021295+0000 | INFO | Invalidating stale interactive card: 1773213318229
+2026-03-11 09:06:57 INFO:     169.254.169.126:1766 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:07:01 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:07:01 INFO:     169.254.169.126:61800 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:07:01 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:07:03 2026-03-11T09:07:03.560451+0000 | INFO | Automatically created new user: Vanka Siva Vardhan Yadav
+2026-03-11 09:07:03 2026-03-11T09:07:03.809853+0000 | INFO | Automatically registered user on greeting: Vanka Siva Vardhan Yadav
+2026-03-11 09:07:04 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:07:04 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:07:04 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:07:04 2026-03-11T09:07:04.916724+0000 | INFO | Current speaker: Vanka
+2026-03-11 09:07:05 2026-03-11T09:07:05.167227+0000 | INFO | Fetched 0 tasks for Vanka
+2026-03-11 09:07:05 2026-03-11T09:07:05.433967+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:07:05 2026-03-11T09:07:05.434176+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:07:06 INFO:     169.254.169.126:61808 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:07:08 2026-03-11T09:07:08.281709+0000 | INFO | Standup started, state saved for a:1n6m6t7XBS96v73ifGcRApQDexInfNru9wMratSWoEYWQLyozDB4xwit1TGUiQUfzgfUeAm9DVINBSThRyifT8OPuwTbQKMJwT7TVvWh9Nh-SF5iq8nWmoo6z-mUEiJll
+2026-03-11 09:07:08 INFO:     169.254.169.126:61804 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:07:12 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 09:07:12 INFO:     169.254.169.126:52734 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 404 Not Found
+2026-03-11 09:07:13 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 09:07:13 INFO:     169.254.169.126:52748 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 404 Not Found
+2026-03-11 09:07:15 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 09:07:15 INFO:     169.254.169.126:52758 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 09:07:28 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:07:28 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:07:28 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:07:29 2026-03-11T09:07:29.123381+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:07:29 2026-03-11T09:07:29.123778+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:07:39 2026-03-11T09:07:39.571073+0000 | INFO | AI Parsed Task Assignment: {'assignee_name': None, 'task_title': 'IT', 'task_description': 'Assign task IT to Madhavan', 'confidence': 'low'}
+2026-03-11 09:07:39 INFO:     169.254.169.126:54340 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:07:50 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:07:50 2026-03-11T09:07:50.909709+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:07:50 2026-03-11T09:07:50.910043+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:07:52 INFO:     169.254.169.126:30194 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:07:56 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:07:56 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:07:56 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:07:56 2026-03-11T09:07:56.787432+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:07:56 2026-03-11T09:07:56.787663+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:07:57 INFO:     169.254.169.126:49918 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:08:14 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:08:14 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:08:14 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:08:14 2026-03-11T09:08:14.714710+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:08:14 2026-03-11T09:08:14.715063+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:08:21 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:08:22 2026-03-11T09:08:22.461599+0000 | INFO | Message from Madhavan  Muthupandi: Hi
+2026-03-11 09:08:22 2026-03-11T09:08:22.461814+0000 | INFO | Message from Madhavan  Muthupandi: Hi
+2026-03-11 09:08:22 2026-03-11T09:08:22.541430+0000 | INFO | Continuing standup for a:1sSluADxI1Rl3M0fYjbgtJXUeTkWIoWA1Szrx4hy3Up8lGzWBKserJp-e3fuun_T9jeS5ePwvMsq6axDnlSNshDJWIolz_2vZY6hSsozN6POiBlTNaHXC8dVla523ntwP, user said: Hi
+2026-03-11 09:08:24 2026-03-11T09:08:24.793491+0000 | INFO | All tasks addressed for Madhavan
+2026-03-11 09:08:26 2026-03-11T09:08:26.412316+0000 | INFO | AI Parsed Task Assignment: {'assignee_name': None, 'task_title': 'IT', 'task_description': 'Assign task IT to Madhavan Muthupandi', 'confidence': 'medium'}
+2026-03-11 09:08:26 INFO:     169.254.169.126:56154 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:08:29 2026-03-11T09:08:29.127347+0000 | INFO | Standup state updated for a:1sSluADxI1Rl3M0fYjbgtJXUeTkWIoWA1Szrx4hy3Up8lGzWBKserJp-e3fuun_T9jeS5ePwvMsq6axDnlSNshDJWIolz_2vZY6hSsozN6POiBlTNaHXC8dVla523ntwP, is_complete=True
+2026-03-11 09:08:29 2026-03-11T09:08:29.712202+0000 | INFO | Standup completed and state cleared for a:1sSluADxI1Rl3M0fYjbgtJXUeTkWIoWA1Szrx4hy3Up8lGzWBKserJp-e3fuun_T9jeS5ePwvMsq6axDnlSNshDJWIolz_2vZY6hSsozN6POiBlTNaHXC8dVla523ntwP
+2026-03-11 09:08:29 INFO:     169.254.169.126:30504 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:08:31 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:08:31 2026-03-11T09:08:31.955562+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:08:31 2026-03-11T09:08:31.955862+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:08:33 INFO:     169.254.169.126:51998 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:08:38 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:08:38 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:08:38 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:08:39 2026-03-11T09:08:39.190020+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:08:39 2026-03-11T09:08:39.190232+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:08:40 2026-03-11T09:08:40.826375+0000 | INFO | Current speaker: Pritham
+2026-03-11 09:08:41 2026-03-11T09:08:41.089036+0000 | INFO | Fetched 2 tasks for Pritham
+2026-03-11 09:08:44 2026-03-11T09:08:44.698094+0000 | INFO | Standup started, state saved for a:1vryh6kaGo_-i_qFcr06dDH3mJ_FGkgB3KVJtqMxT5wc0dJcX0j_dW_vrYRYIhQqCUGlHDzLHwVogwa-kCbnaVhNWn4XN0FkYEbv_r8juB9_YIhLB6wk_vTaGVSokSBKv
+2026-03-11 09:08:45 INFO:     169.254.169.126:52016 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:08:52 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 09:08:52 INFO:     169.254.169.126:10860 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 404 Not Found
+2026-03-11 09:08:53 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050
+2026-03-11 09:08:53 INFO:     169.254.169.126:10866 - "GET /voice/join/2fd5d363-ed02-4a5a-a1d5-8ca739581050 HTTP/1.1" 404 Not Found
+2026-03-11 09:08:55 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 09:08:55 INFO:     169.254.169.126:10870 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 09:09:04 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:09:04 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:09:05 INFO:     169.254.169.126:22668 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:09:06 2026-03-11T09:09:06.544691+0000 | INFO | Automatically created new user: Chiranjeevi M N
+2026-03-11 09:09:06 2026-03-11T09:09:06.798604+0000 | INFO | Automatically registered user on greeting: Chiranjeevi M N
+2026-03-11 09:09:07 2026-03-11T09:09:07.656440+0000 | INFO | Current speaker: Chiranjeevi
+2026-03-11 09:09:07 2026-03-11T09:09:07.906634+0000 | INFO | Fetched 0 tasks for Chiranjeevi
+2026-03-11 09:09:10 2026-03-11T09:09:10.639732+0000 | INFO | Standup started, state saved for a:15SvihqBSLjhKj3YMzw2wWHzM0Rk81JgijUqRH2MxAhjf2GWq_MvKj3-KX7kYGuHIStWU4PO2PJYfgYvB2QhIom5gBcOFNfHQZWde9tKEXG_bIsa5hxx9p6Qn5E0xrQaZ
+2026-03-11 09:09:10 INFO:     169.254.169.126:22654 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:09:17 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:09:17 2026-03-11T09:09:17.736739+0000 | INFO | Message from Pritham Dsouza: on track for docker
+2026-03-11 09:09:17 2026-03-11T09:09:17.736962+0000 | INFO | Message from Pritham Dsouza: on track for docker
+2026-03-11 09:09:17 2026-03-11T09:09:17.771211+0000 | INFO | Continuing standup for a:1vryh6kaGo_-i_qFcr06dDH3mJ_FGkgB3KVJtqMxT5wc0dJcX0j_dW_vrYRYIhQqCUGlHDzLHwVogwa-kCbnaVhNWn4XN0FkYEbv_r8juB9_YIhLB6wk_vTaGVSokSBKv, user said: on track for docker
+2026-03-11 09:09:20 2026-03-11T09:09:20.974374+0000 | INFO | 1 tasks not yet addressed, will ask follow-up
+2026-03-11 09:09:23 2026-03-11T09:09:23.234021+0000 | INFO | Standup state updated for a:1vryh6kaGo_-i_qFcr06dDH3mJ_FGkgB3KVJtqMxT5wc0dJcX0j_dW_vrYRYIhQqCUGlHDzLHwVogwa-kCbnaVhNWn4XN0FkYEbv_r8juB9_YIhLB6wk_vTaGVSokSBKv, is_complete=False
+2026-03-11 09:09:23 INFO:     169.254.169.126:7326 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:09:29 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:09:29 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:09:29 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:09:30 2026-03-11T09:09:30.444217+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:09:30 2026-03-11T09:09:30.444422+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:09:30 2026-03-11T09:09:30.952421+0000 | INFO | Continuing standup for a:1vryh6kaGo_-i_qFcr06dDH3mJ_FGkgB3KVJtqMxT5wc0dJcX0j_dW_vrYRYIhQqCUGlHDzLHwVogwa-kCbnaVhNWn4XN0FkYEbv_r8juB9_YIhLB6wk_vTaGVSokSBKv, user said: Everything is on track.
+2026-03-11 09:09:37 2026-03-11T09:09:37.727759+0000 | INFO | All tasks addressed for Pritham
+2026-03-11 09:09:41 2026-03-11T09:09:41.209790+0000 | INFO | Standup state updated for a:1vryh6kaGo_-i_qFcr06dDH3mJ_FGkgB3KVJtqMxT5wc0dJcX0j_dW_vrYRYIhQqCUGlHDzLHwVogwa-kCbnaVhNWn4XN0FkYEbv_r8juB9_YIhLB6wk_vTaGVSokSBKv, is_complete=True
+2026-03-11 09:09:41 2026-03-11T09:09:41.810441+0000 | INFO | Standup completed and state cleared for a:1vryh6kaGo_-i_qFcr06dDH3mJ_FGkgB3KVJtqMxT5wc0dJcX0j_dW_vrYRYIhQqCUGlHDzLHwVogwa-kCbnaVhNWn4XN0FkYEbv_r8juB9_YIhLB6wk_vTaGVSokSBKv
+2026-03-11 09:09:41 INFO:     169.254.169.126:37026 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:10:08 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:10:08 INFO:     169.254.169.126:63600 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:10:08 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:10:09 2026-03-11T09:10:09.973477+0000 | INFO | Automatically created new user: Chittidi  Hari Siva Krishna
+2026-03-11 09:10:10 2026-03-11T09:10:10.242339+0000 | INFO | Automatically registered user on greeting: Chittidi  Hari Siva Krishna
+2026-03-11 09:10:11 2026-03-11T09:10:11.322181+0000 | INFO | Current speaker: Chittidi
+2026-03-11 09:10:11 2026-03-11T09:10:11.571662+0000 | INFO | Fetched 0 tasks for Chittidi
+2026-03-11 09:10:14 2026-03-11T09:10:14.642155+0000 | INFO | Standup started, state saved for a:1KtFpbzz5cJ6PitdAM2nVa0rswYi9Oq37X8B_f810cI9BGQ6OLzIS5FfUQ0rYt6OdP5sb9OiQXO50oIFMj7cXa4ajr0r-gh33DUThD0PrxB5ceg-4EBNDAXiP2fWnRete
+2026-03-11 09:10:15 INFO:     169.254.169.126:63604 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:10:32 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:10:33 2026-03-11T09:10:33.406936+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:10:33 2026-03-11T09:10:33.407141+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:10:34 INFO:     169.254.169.126:20562 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:10:41 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:10:41 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:10:41 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:10:42 2026-03-11T09:10:42.451103+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:10:42 2026-03-11T09:10:42.451314+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:10:43 2026-03-11T09:10:43.123170+0000 | INFO | Pending group call registered: 713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:10:43 INFO:     169.254.169.126:31066 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:10:47 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:10:47 INFO:     169.254.169.126:31076 - "HEAD /voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 09:10:48 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:10:48 2026-03-11T09:10:48.412491+0000 | INFO | ACS CallAutomationClient initialized
+2026-03-11 09:10:48 INFO:     169.254.169.126:31080 - "GET /voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 200 OK
+2026-03-11 09:10:50 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:10:50 2026-03-11T09:10:50.724034+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0b-677e-9754-c28ded7c0de2
+2026-03-11 09:10:50 /opt/venv/lib/python3.13/site-packages/fastapi/routing.py:116: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+2026-03-11 09:10:50   response = await f(request)
+2026-03-11 09:10:50 INFO:     169.254.169.126:31086 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:10:57 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:10:57 2026-03-11T09:10:57.682573+0000 | INFO | Connecting to group call 713cc2f2-1937-4e20-9c32-fa8e9a197369 with cog endpoint: https://ai-cognitive-res.cognitiveservices.azure.com
+2026-03-11 09:10:58 2026-03-11T09:10:58.029690+0000 | INFO | Connected to group call 713cc2f2-1937-4e20-9c32-fa8e9a197369, conn_id=1d005e80-2eba-4e9d-a569-9c175e8abffb
+2026-03-11 09:10:58 2026-03-11T09:10:58.029968+0000 | INFO | Voice session registered: 1d005e80-2eba-4e9d-a569-9c175e8abffb
+2026-03-11 09:10:58 2026-03-11T09:10:58.030085+0000 | INFO | Pending group call removed: 713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:10:58 2026-03-11T09:10:58.030196+0000 | INFO | Bot connected to group call 713cc2f2-1937-4e20-9c32-fa8e9a197369 as conn_id=1d005e80-2eba-4e9d-a569-9c175e8abffb
+2026-03-11 09:10:58 INFO:     169.254.169.126:19086 - "POST /api/voice/bot-connect/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 200 OK
+2026-03-11 09:11:01 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:11:01 INFO:     169.254.169.126:17508 - "GET /voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 404 Not Found
+2026-03-11 09:11:01 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:01 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:01 2026-03-11T09:11:01.604017+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1d005e80-2eb... | ctx=
+2026-03-11 09:11:01 2026-03-11T09:11:01.604260+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0b-677e-9754-c28ded7c0de2', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0b-677e-9754-c28ded7c0de2'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 1, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:11:01 INFO:     169.254.169.126:17514 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:01 2026-03-11T09:11:01.605680+0000 | INFO | ACS event: Microsoft.Communication.CallConnected | conn=1d005e80-2eb... | ctx=
+2026-03-11 09:11:01 2026-03-11T09:11:01.605911+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.CallConnected'}
+2026-03-11 09:11:01 2026-03-11T09:11:01.606090+0000 | INFO | Session registered: 1d005e80-2eba-4e9d-a569-9c175e8abffb ()
+2026-03-11 09:11:01 INFO:     169.254.169.126:17526 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:01 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:11:01 INFO:     169.254.169.126:17532 - "GET /voice/join/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 404 Not Found
+2026-03-11 09:11:02 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:02 2026-03-11T09:11:02.066134+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1d005e80-2eb... | ctx=
+2026-03-11 09:11:02 2026-03-11T09:11:02.066529+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0b-677e-9754-c28ded7c0de2', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0b-677e-9754-c28ded7c0de2'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 2, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:11:02 INFO:     169.254.169.126:17546 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:02 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:02 2026-03-11T09:11:02.612884+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1d005e80-2eb... | ctx=waiting
+2026-03-11 09:11:02 2026-03-11T09:11:02.613163+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:11:02 INFO:     169.254.169.126:17552 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:02 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 09:11:02 INFO:     169.254.169.126:17568 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 09:11:10 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:10 2026-03-11T09:11:10.390057+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1d005e80-2eb... | ctx=waiting
+2026-03-11 09:11:10 2026-03-11T09:11:10.390311+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 09:11:10 INFO:     169.254.169.126:17578 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:33 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:33 2026-03-11T09:11:33.493322+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1d005e80-2eb... | ctx=farewell
+2026-03-11 09:11:33 2026-03-11T09:11:33.493553+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'farewell', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:11:33 INFO:     169.254.169.126:63032 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:11:37 2026-03-11T09:11:37.493381+0000 | INFO | ACS event: Microsoft.Communication.CallDisconnected | conn=1d005e80-2eb... | ctx=
+2026-03-11 09:11:37 2026-03-11T09:11:37.493804+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 5020, 'message': 'This conversation has ended as there are no participants in the incoming roster. DiagCode: 0#5020.@'}, 'version': '2025-06-15', 'callConnectionId': '1d005e80-2eba-4e9d-a569-9c175e8abffb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9UMk5hVFl6blAwQ1V4eS1UQWdnUHBBP2k9MTAtMTI4LTYxLTY0JmU9NjM5MDg4MTUzOTI2ODUzOTQ2', 'correlationId': '746d28db-b859-48c2-8c9f-9b83dd929a0a', 'publicEventType': 'Microsoft.Communication.CallDisconnected'}
+2026-03-11 09:11:37 2026-03-11T09:11:37.493949+0000 | INFO | Session removed: 1d005e80-2eba-4e9d-a569-9c175e8abffb
+2026-03-11 09:11:37 2026-03-11T09:11:37.494238+0000 | INFO | Voice session removed: 1d005e80-2eba-4e9d-a569-9c175e8abffb
+2026-03-11 09:11:37 INFO:     169.254.169.126:63036 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:11:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:11:38 2026-03-11T09:11:38.067676+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0c-207e-2b2b-4e8ded7c0fe1
+2026-03-11 09:11:38 INFO:     169.254.169.126:63040 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:11:45 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:11:45 INFO:     169.254.169.126:49210 - "POST /api/voice/bot-connect/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 404 Not Found
+2026-03-11 09:12:19 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:12:20 2026-03-11T09:12:20.163377+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c0c-c4aa-7150-c28ded7c0d60
+2026-03-11 09:12:20 INFO:     169.254.169.126:28736 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:12:23 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/713cc2f2-1937-4e20-9c32-fa8e9a197369
+2026-03-11 09:12:23 INFO:     169.254.169.126:16762 - "POST /api/voice/bot-connect/713cc2f2-1937-4e20-9c32-fa8e9a197369 HTTP/1.1" 404 Not Found
+2026-03-11 09:15:50 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:15:51 2026-03-11T09:15:51.640802+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:15:51 2026-03-11T09:15:51.641028+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:15:51 2026-03-11T09:15:51.641142+0000 | INFO | Invalidating stale interactive card: 1773220234462
+2026-03-11 09:15:53 INFO:     169.254.169.126:36782 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:15:58 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:15:58 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:15:58 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:15:59 2026-03-11T09:15:59.423970+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:15:59 2026-03-11T09:15:59.424354+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:16:00 2026-03-11T09:16:00.102587+0000 | INFO | Pending group call registered: 34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:16:00 INFO:     169.254.169.126:52336 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:16:24 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:16:24 INFO:     169.254.169.126:51258 - "HEAD /voice/join/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 09:16:25 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:16:25 INFO:     169.254.169.126:51262 - "GET /voice/join/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 200 OK
+2026-03-11 09:16:39 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:16:39 INFO:     169.254.169.126:41912 - "GET /voice/join/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 200 OK
+2026-03-11 09:16:39 GET 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/acs_bundle.js
+2026-03-11 09:16:39 INFO:     169.254.169.126:41918 - "GET /api/voice/acs_bundle.js HTTP/1.1" 200 OK
+2026-03-11 09:16:42 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 09:16:42 INFO:     169.254.169.126:28306 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 09:18:26 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:18:27 2026-03-11T09:18:27.213635+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006
+2026-03-11 09:18:27 INFO:     169.254.169.126:58282 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:18:33 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:18:33 2026-03-11T09:18:33.864700+0000 | INFO | Connecting to group call 34005f7c-b181-4316-86ac-dda81318b564 with cog endpoint: https://ai-cognitive-res.cognitiveservices.azure.com
+2026-03-11 09:18:34 2026-03-11T09:18:34.191717+0000 | INFO | Connected to group call 34005f7c-b181-4316-86ac-dda81318b564, conn_id=07005a80-4b86-40c3-ae40-fffb43209ced
+2026-03-11 09:18:34 2026-03-11T09:18:34.191967+0000 | INFO | Voice session registered: 07005a80-4b86-40c3-ae40-fffb43209ced
+2026-03-11 09:18:34 2026-03-11T09:18:34.192073+0000 | INFO | Pending group call removed: 34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:18:34 2026-03-11T09:18:34.192166+0000 | INFO | Bot connected to group call 34005f7c-b181-4316-86ac-dda81318b564 as conn_id=07005a80-4b86-40c3-ae40-fffb43209ced
+2026-03-11 09:18:34 INFO:     169.254.169.126:56824 - "POST /api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 200 OK
+2026-03-11 09:18:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:37 2026-03-11T09:18:37.959725+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=07005a80-4b8... | ctx=
+2026-03-11 09:18:37 2026-03-11T09:18:37.960041+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 1, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:18:37 INFO:     169.254.169.126:56836 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:18:37 2026-03-11T09:18:37.962452+0000 | INFO | ACS event: Microsoft.Communication.CallConnected | conn=07005a80-4b8... | ctx=
+2026-03-11 09:18:37 2026-03-11T09:18:37.962652+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.CallConnected'}
+2026-03-11 09:18:37 2026-03-11T09:18:37.962835+0000 | INFO | Session registered: 07005a80-4b86-40c3-ae40-fffb43209ced ()
+2026-03-11 09:18:37 INFO:     169.254.169.126:56850 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:18:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:38 2026-03-11T09:18:38.247949+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=07005a80-4b8... | ctx=
+2026-03-11 09:18:38 2026-03-11T09:18:38.248206+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 2, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:18:38 INFO:     169.254.169.126:56864 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:18:38 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:38 2026-03-11T09:18:38.289208+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=07005a80-4b8... | ctx=
+2026-03-11 09:18:38 2026-03-11T09:18:38.289469+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 3, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:18:38 INFO:     169.254.169.126:56876 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:18:38 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:38 2026-03-11T09:18:38.335932+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=07005a80-4b8... | ctx=
+2026-03-11 09:18:38 2026-03-11T09:18:38.336180+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c12-5eba-5553-c28ded7c1006'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 4, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:18:38 INFO:     169.254.169.126:56878 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:18:38 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:38 2026-03-11T09:18:38.934865+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=07005a80-4b8... | ctx=waiting
+2026-03-11 09:18:38 2026-03-11T09:18:38.935794+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:18:38 INFO:     169.254.169.126:56882 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:18:46 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:18:46 2026-03-11T09:18:46.672883+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=07005a80-4b8... | ctx=waiting
+2026-03-11 09:18:46 2026-03-11T09:18:46.673112+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 09:18:46 INFO:     169.254.169.126:54756 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:19:09 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:19:09 2026-03-11T09:19:09.247856+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=07005a80-4b8... | ctx=farewell
+2026-03-11 09:19:09 2026-03-11T09:19:09.248114+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'farewell', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:19:09 INFO:     169.254.169.126:16284 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:19:14 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:19:14 2026-03-11T09:19:14.117017+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=07005a80-4b8... | ctx=farewell
+2026-03-11 09:19:14 2026-03-11T09:19:14.117293+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'farewell', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 09:19:14 INFO:     169.254.169.126:8776 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:19:14 2026-03-11T09:19:14.176466+0000 | INFO | Session removed: 07005a80-4b86-40c3-ae40-fffb43209ced
+2026-03-11 09:19:14 2026-03-11T09:19:14.176764+0000 | INFO | Voice session removed: 07005a80-4b86-40c3-ae40-fffb43209ced
+2026-03-11 09:19:14 2026-03-11T09:19:14.176919+0000 | INFO | Call hung up: 07005a80-4b86-40c3-ae40-fffb43209ced
+2026-03-11 09:19:15 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:19:15 2026-03-11T09:19:15.256457+0000 | INFO | ACS event: Microsoft.Communication.CallDisconnected | conn=07005a80-4b8... | ctx=
+2026-03-11 09:19:15 2026-03-11T09:19:15.256723+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 7000, 'message': 'Call was ended by Azure Communication Service Call Automation API or a server bot. DiagCode: 0#7000.@'}, 'version': '2025-06-15', 'callConnectionId': '07005a80-4b86-40c3-ae40-fffb43209ced', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwd2UtMDItcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi92RVlPMnhrVWMwaTBYQXdzUGxMRmR3P2k9MTAtMTI4LTc5LTE3JmU9NjM5MDg3OTIxODMxMzAxOTA0', 'correlationId': '67729bb6-b34c-4b5f-8903-21d5994e1f4e', 'publicEventType': 'Microsoft.Communication.CallDisconnected'}
+2026-03-11 09:19:15 INFO:     169.254.169.126:8786 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:21:42 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:21:42 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:21:42 INFO:     169.254.169.126:51494 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:21:44 2026-03-11T09:21:44.462626+0000 | INFO | Automatically created new user: Shamna P (LT)
+2026-03-11 09:21:44 2026-03-11T09:21:44.712230+0000 | INFO | Automatically registered user on greeting: Shamna P (LT)
+2026-03-11 09:21:45 2026-03-11T09:21:45.803037+0000 | INFO | Current speaker: Shamna
+2026-03-11 09:21:46 2026-03-11T09:21:46.054016+0000 | INFO | Fetched 0 tasks for Shamna
+2026-03-11 09:21:49 2026-03-11T09:21:49.145659+0000 | INFO | Standup started, state saved for a:1fTHXQTYFGgEm5j6NFs96ROQhs1XM1Bj7ZXA5oeW3OSOo3YI54ON4fSozjtG_aTNGY1owgudaEiVDGv4ctg3kBljAFa93FTtaZgNNRcBnreNgxYK0GvdKmoG1aI38D2_K
+2026-03-11 09:21:49 INFO:     169.254.169.126:51482 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:22:16 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:22:16 INFO:     169.254.169.126:59382 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:22:16 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:22:18 2026-03-11T09:22:18.504337+0000 | INFO | Automatically created new user: Iqbal A
+2026-03-11 09:22:18 2026-03-11T09:22:18.753722+0000 | INFO | Automatically registered user on greeting: Iqbal A
+2026-03-11 09:22:20 2026-03-11T09:22:20.043438+0000 | INFO | Current speaker: Iqbal
+2026-03-11 09:22:20 2026-03-11T09:22:20.294671+0000 | INFO | Fetched 0 tasks for Iqbal
+2026-03-11 09:22:23 2026-03-11T09:22:23.905013+0000 | INFO | Standup started, state saved for a:1CgUUfr33x0myaELAflxY2wCvwPPpuvPuetWieVOgRGhIl9HDZJUehV4RlIstj3xDqM1GB-4zUsYkDLmb-4ys6iQeuUyDAdz7W_STPhvi20uhUo3hHwkQwpSzjyxC6NIw
+2026-03-11 09:22:24 INFO:     169.254.169.126:59394 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:36:43 INFO:     Started server process [1]
+2026-03-11 09:36:43 INFO:     Waiting for application startup.
+2026-03-11 09:36:43 INFO:     Application startup complete.
+2026-03-11 09:36:43 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-11 09:37:33 INFO:     Shutting down
+2026-03-11 09:37:33 INFO:     Waiting for application shutdown.
+2026-03-11 09:37:33 INFO:     Application shutdown complete.
+2026-03-11 09:37:33 INFO:     Finished server process [1]
+2026-03-11 09:38:59 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:38:59 2026-03-11T09:38:59.679975+0000 | INFO | ACS CallAutomationClient initialized
+2026-03-11 09:39:00 2026-03-11T09:39:00.183694+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c25-2ef1-c226-4e8ded7c0dea
+2026-03-11 09:39:00 /opt/venv/lib/python3.13/site-packages/fastapi/routing.py:116: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+2026-03-11 09:39:00   response = await f(request)
+2026-03-11 09:39:00 INFO:     169.254.169.126:44596 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:39:04 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:39:04 INFO:     169.254.169.126:44606 - "POST /api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 404 Not Found
+2026-03-11 09:39:09 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:39:09 2026-03-11T09:39:09.399000+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c25-5305-2027-4e8ded7c0f8c
+2026-03-11 09:39:09 INFO:     169.254.169.126:32150 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:39:12 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:39:12 INFO:     169.254.169.126:32156 - "POST /api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 404 Not Found
+2026-03-11 09:39:58 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:39:59 2026-03-11T09:39:59.172971+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c26-1577-7624-4e8ded7c0d84
+2026-03-11 09:39:59 INFO:     169.254.169.126:27530 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:40:05 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:40:05 INFO:     169.254.169.126:27546 - "POST /api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 404 Not Found
+2026-03-11 09:54:06 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:54:06 2026-03-11T09:54:06.507735+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c33-035b-fe2c-4e8ded7c0fde
+2026-03-11 09:54:06 INFO:     169.254.169.126:6272 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:54:11 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564
+2026-03-11 09:54:11 INFO:     169.254.169.126:21772 - "POST /api/voice/bot-connect/34005f7c-b181-4316-86ac-dda81318b564 HTTP/1.1" 404 Not Found
+2026-03-11 09:54:31 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:54:32 2026-03-11T09:54:32.702319+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:54:32 2026-03-11T09:54:32.702519+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:54:43 2026-03-11T09:54:43.622003+0000 | INFO | Firestore client initialized
+2026-03-11 09:54:43 2026-03-11T09:54:43.777307+0000 | INFO | Invalidating stale interactive card: 1773220552969
+2026-03-11 09:54:48 INFO:     169.254.169.126:64512 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:54:53 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:54:53 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:54:53 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 09:54:54 2026-03-11T09:54:54.816082+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:54:54 2026-03-11T09:54:54.816279+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 09:54:55 2026-03-11T09:54:55.563108+0000 | INFO | Pending group call registered: 61e60031-e935-4b96-8203-a07e6f64567e
+2026-03-11 09:54:55 INFO:     169.254.169.126:47942 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 09:55:00 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/61e60031-e935-4b96-8203-a07e6f64567e
+2026-03-11 09:55:00 INFO:     169.254.169.126:19446 - "HEAD /voice/join/61e60031-e935-4b96-8203-a07e6f64567e HTTP/1.1" 405 Method Not Allowed
+2026-03-11 09:55:00 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/61e60031-e935-4b96-8203-a07e6f64567e
+2026-03-11 09:55:00 INFO:     169.254.169.126:19450 - "GET /voice/join/61e60031-e935-4b96-8203-a07e6f64567e HTTP/1.1" 200 OK
+2026-03-11 09:55:01 GET 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/acs_bundle.js
+2026-03-11 09:55:01 INFO:     169.254.169.126:19464 - "GET /api/voice/acs_bundle.js HTTP/1.1" 200 OK
+2026-03-11 09:55:05 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 09:55:06 2026-03-11T09:55:06.332803+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c33-ecac-7150-c28ded7c0e82
+2026-03-11 09:55:06 INFO:     169.254.169.126:19472 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 09:55:12 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/61e60031-e935-4b96-8203-a07e6f64567e
+2026-03-11 09:55:12 2026-03-11T09:55:12.323264+0000 | INFO | Connecting to group call 61e60031-e935-4b96-8203-a07e6f64567e with cog endpoint: https://ai-cognitive-res.cognitiveservices.azure.com
+2026-03-11 09:55:12 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/61e60031-e935-4b96-8203-a07e6f64567e
+2026-03-11 09:55:12 INFO:     169.254.169.126:62646 - "GET /voice/join/61e60031-e935-4b96-8203-a07e6f64567e HTTP/1.1" 200 OK
+2026-03-11 09:55:12 2026-03-11T09:55:12.603538+0000 | INFO | Connected to group call 61e60031-e935-4b96-8203-a07e6f64567e, conn_id=05005980-0bdb-4639-b994-97e11f91c2c7
+2026-03-11 09:55:12 2026-03-11T09:55:12.603796+0000 | INFO | Voice session registered: 05005980-0bdb-4639-b994-97e11f91c2c7
+2026-03-11 09:55:12 2026-03-11T09:55:12.603917+0000 | INFO | Pending group call removed: 61e60031-e935-4b96-8203-a07e6f64567e
+2026-03-11 09:55:12 2026-03-11T09:55:12.604014+0000 | INFO | Bot connected to group call 61e60031-e935-4b96-8203-a07e6f64567e as conn_id=05005980-0bdb-4639-b994-97e11f91c2c7
+2026-03-11 09:55:12 INFO:     169.254.169.126:62642 - "POST /api/voice/bot-connect/61e60031-e935-4b96-8203-a07e6f64567e HTTP/1.1" 200 OK
+2026-03-11 09:55:12 GET 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/acs_bundle.js
+2026-03-11 09:55:12 INFO:     169.254.169.126:62656 - "GET /api/voice/acs_bundle.js HTTP/1.1" 200 OK
+2026-03-11 09:55:14 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 09:55:14 INFO:     169.254.169.126:62664 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 09:55:16 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:55:16 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:55:16 2026-03-11T09:55:16.063404+0000 | INFO | ACS event: Microsoft.Communication.CallConnected | conn=05005980-0bd... | ctx=
+2026-03-11 09:55:16 2026-03-11T09:55:16.063622+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.CallConnected'}
+2026-03-11 09:55:16 2026-03-11T09:55:16.063735+0000 | INFO | Session registered: 05005980-0bdb-4639-b994-97e11f91c2c7 ()
+2026-03-11 09:55:16 INFO:     169.254.169.126:62670 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:55:16 2026-03-11T09:55:16.355874+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=05005980-0bd... | ctx=
+2026-03-11 09:55:16 2026-03-11T09:55:16.356117+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c33-ecac-7150-c28ded7c0e82', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c33-ecac-7150-c28ded7c0e82'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 1, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:55:16 INFO:     169.254.169.126:62678 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:55:16 2026-03-11T09:55:16.356614+0000 | INFO | Browser participant Pritham (joined) via ACS id 8:acs:ffd1eef9-a27f-...
+2026-03-11 09:55:16 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:55:16 2026-03-11T09:55:16.539098+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=05005980-0bd... | ctx=
+2026-03-11 09:55:16 2026-03-11T09:55:16.539318+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c33-ecac-7150-c28ded7c0e82', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c33-ecac-7150-c28ded7c0e82'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 2, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 09:55:16 INFO:     169.254.169.126:62688 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:55:17 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:55:17 2026-03-11T09:55:17.167887+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=05005980-0bd... | ctx=waiting
+2026-03-11 09:55:17 2026-03-11T09:55:17.168117+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:55:17 INFO:     169.254.169.126:62704 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:55:24 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:55:24 2026-03-11T09:55:24.916261+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=05005980-0bd... | ctx=waiting
+2026-03-11 09:55:24 2026-03-11T09:55:24.916465+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 09:55:24 INFO:     169.254.169.126:43430 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:55:49 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:55:49 2026-03-11T09:55:49.756649+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=05005980-0bd... | ctx=greeting
+2026-03-11 09:55:49 2026-03-11T09:55:49.756931+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'greeting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:55:49 INFO:     169.254.169.126:20334 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:56:01 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:56:01 2026-03-11T09:56:01.337690+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=05005980-0bd... | ctx=greeting
+2026-03-11 09:56:01 2026-03-11T09:56:01.337925+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'greeting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 09:56:01 INFO:     169.254.169.126:26202 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:56:01 2026-03-11T09:56:01.348498+0000 | INFO | Current speaker: Pritham
+2026-03-11 09:56:01 2026-03-11T09:56:01.604670+0000 | INFO | Fetched 2 tasks for Pritham
+2026-03-11 09:56:11 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:56:11 2026-03-11T09:56:11.810168+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=05005980-0bd... | ctx=question
+2026-03-11 09:56:11 2026-03-11T09:56:11.810466+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 09:56:11 INFO:     169.254.169.126:65156 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:56:25 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:56:25 2026-03-11T09:56:25.760349+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=05005980-0bd... | ctx=question
+2026-03-11 09:56:25 2026-03-11T09:56:25.760614+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 09:56:25 INFO:     169.254.169.126:61666 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:56:25 2026-03-11T09:56:25.762348+0000 | ERROR | start_recognizing_acs_participant failed: Session.request() got an unexpected keyword argument 'end_silence_timeout_in_seconds'
+2026-03-11 09:58:47 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 09:58:47 2026-03-11T09:58:47.310055+0000 | INFO | ACS event: Microsoft.Communication.CallDisconnected | conn=05005980-0bd... | ctx=
+2026-03-11 09:58:47 2026-03-11T09:58:47.310418+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 5003, 'message': 'Call was ended by Azure Communication Service as the call has ended. DiagCode: 0#5003.@'}, 'version': '2025-06-15', 'callConnectionId': '05005980-0bdb-4639-b994-97e11f91c2c7', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9wMk9rZUVHYUtVbWhKT0ltck9UckRBP2k9MTAtMTI4LTE5LTEwJmU9NjM5MDg3OTM1NTMxNTQ1NDg0', 'correlationId': 'ca664ddf-0f17-4548-9025-805b8ea8eb3d', 'publicEventType': 'Microsoft.Communication.CallDisconnected'}
+2026-03-11 09:58:47 2026-03-11T09:58:47.310757+0000 | INFO | Session removed: 05005980-0bdb-4639-b994-97e11f91c2c7
+2026-03-11 09:58:47 2026-03-11T09:58:47.311135+0000 | INFO | Voice session removed: 05005980-0bdb-4639-b994-97e11f91c2c7
+2026-03-11 09:58:47 INFO:     169.254.169.126:11184 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 09:59:56 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 09:59:57 2026-03-11T09:59:57.224799+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:59:57 2026-03-11T09:59:57.225106+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 09:59:57 2026-03-11T09:59:57.225274+0000 | INFO | Invalidating stale interactive card: 1773222888615
+2026-03-11 09:59:58 INFO:     169.254.169.126:22568 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:00:01 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:00:01 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 10:00:01 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 10:00:02 2026-03-11T10:00:02.767553+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 10:00:02 2026-03-11T10:00:02.767884+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 10:00:03 2026-03-11T10:00:03.530821+0000 | INFO | Pending group call registered: a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:03 INFO:     169.254.169.126:49386 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:00:06 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:06 INFO:     169.254.169.126:49402 - "HEAD /voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 10:00:07 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:07 INFO:     169.254.169.126:49416 - "GET /voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364 HTTP/1.1" 200 OK
+2026-03-11 10:00:09 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 10:00:09 2026-03-11T10:00:09.757824+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c38-8e3c-7624-4e8ded7c0e0e
+2026-03-11 10:00:09 INFO:     169.254.169.126:21966 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 10:00:16 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:16 2026-03-11T10:00:16.510586+0000 | INFO | Connecting to group call a75b23d4-6a79-42d3-b4ad-f63021eed364 with cog endpoint: https://ai-cognitive-res.cognitiveservices.azure.com
+2026-03-11 10:00:16 2026-03-11T10:00:16.768416+0000 | INFO | Connected to group call a75b23d4-6a79-42d3-b4ad-f63021eed364, conn_id=18005680-4e8c-40dd-b4fa-83b0baa4f7bb
+2026-03-11 10:00:16 2026-03-11T10:00:16.768626+0000 | INFO | Voice session registered: 18005680-4e8c-40dd-b4fa-83b0baa4f7bb
+2026-03-11 10:00:16 2026-03-11T10:00:16.768736+0000 | INFO | Pending group call removed: a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:16 2026-03-11T10:00:16.768831+0000 | INFO | Bot connected to group call a75b23d4-6a79-42d3-b4ad-f63021eed364 as conn_id=18005680-4e8c-40dd-b4fa-83b0baa4f7bb
+2026-03-11 10:00:16 INFO:     169.254.169.126:21968 - "POST /api/voice/bot-connect/a75b23d4-6a79-42d3-b4ad-f63021eed364 HTTP/1.1" 200 OK
+2026-03-11 10:00:20 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:20 INFO:     169.254.169.126:57006 - "GET /voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364 HTTP/1.1" 404 Not Found
+2026-03-11 10:00:20 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:00:20 INFO:     169.254.169.126:57020 - "GET /voice/join/a75b23d4-6a79-42d3-b4ad-f63021eed364 HTTP/1.1" 404 Not Found
+2026-03-11 10:00:20 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:00:20 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:00:20 2026-03-11T10:00:20.623303+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=18005680-4e8... | ctx=
+2026-03-11 10:00:20 2026-03-11T10:00:20.623540+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c38-8e3c-7624-4e8ded7c0e0e', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c38-8e3c-7624-4e8ded7c0e0e'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 1, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:00:20 INFO:     169.254.169.126:57022 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:00:20 2026-03-11T10:00:20.624049+0000 | INFO | Browser participant Pritham (joined) via ACS id 8:acs:ffd1eef9-a27f-...
+2026-03-11 10:00:20 2026-03-11T10:00:20.624619+0000 | INFO | ACS event: Microsoft.Communication.CallConnected | conn=18005680-4e8... | ctx=
+2026-03-11 10:00:20 2026-03-11T10:00:20.624779+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.CallConnected'}
+2026-03-11 10:00:20 2026-03-11T10:00:20.624894+0000 | INFO | Session registered: 18005680-4e8c-40dd-b4fa-83b0baa4f7bb ()
+2026-03-11 10:00:20 INFO:     169.254.169.126:57030 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:00:21 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:00:21 2026-03-11T10:00:21.097738+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=18005680-4e8... | ctx=
+2026-03-11 10:00:21 2026-03-11T10:00:21.097992+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c38-8e3c-7624-4e8ded7c0e0e', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c38-8e3c-7624-4e8ded7c0e0e'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 2, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:00:21 INFO:     169.254.169.126:57044 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:00:21 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 10:00:21 INFO:     169.254.169.126:57060 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 10:00:21 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:00:21 2026-03-11T10:00:21.672956+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=18005680-4e8... | ctx=waiting
+2026-03-11 10:00:21 2026-03-11T10:00:21.673199+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:00:21 INFO:     169.254.169.126:57070 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:00:29 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:00:29 2026-03-11T10:00:29.413903+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=18005680-4e8... | ctx=waiting
+2026-03-11 10:00:29 2026-03-11T10:00:29.414192+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:00:29 INFO:     169.254.169.126:47898 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:00:55 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:00:55 2026-03-11T10:00:55.367293+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=18005680-4e8... | ctx=greeting
+2026-03-11 10:00:55 2026-03-11T10:00:55.367522+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'greeting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:00:55 INFO:     169.254.169.126:56132 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:01:06 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:01:06 2026-03-11T10:01:06.969140+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=18005680-4e8... | ctx=greeting
+2026-03-11 10:01:06 2026-03-11T10:01:06.969415+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'greeting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:01:06 INFO:     169.254.169.126:12484 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:01:06 2026-03-11T10:01:06.970132+0000 | INFO | Current speaker: Pritham
+2026-03-11 10:01:08 2026-03-11T10:01:07.869069+0000 | INFO | Fetched 2 tasks for Pritham
+2026-03-11 10:01:19 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:01:19 2026-03-11T10:01:19.773907+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=18005680-4e8... | ctx=question
+2026-03-11 10:01:19 2026-03-11T10:01:19.774115+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:01:19 INFO:     169.254.169.126:33716 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:01:34 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:01:34 2026-03-11T10:01:34.390666+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=18005680-4e8... | ctx=question
+2026-03-11 10:01:34 2026-03-11T10:01:34.390951+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:01:34 INFO:     169.254.169.126:38610 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:01:34 2026-03-11T10:01:34.393162+0000 | ERROR | start_recognizing_acs_participant failed: Session.request() got an unexpected keyword argument 'end_silence_timeout_in_seconds'
+2026-03-11 10:03:38 INFO:     Started server process [1]
+2026-03-11 10:03:38 INFO:     Waiting for application startup.
+2026-03-11 10:03:38 INFO:     Application startup complete.
+2026-03-11 10:03:38 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-11 10:05:22 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:05:22 2026-03-11T10:05:22.641199+0000 | INFO | ACS event: Microsoft.Communication.CallDisconnected | conn=18005680-4e8... | ctx=
+2026-03-11 10:05:22 2026-03-11T10:05:22.641737+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 5020, 'message': 'This conversation has ended as there are no participants in the incoming roster. DiagCode: 0#5020.@'}, 'version': '2025-06-15', 'callConnectionId': '18005680-4e8c-40dd-b4fa-83b0baa4f7bb', 'serverCallId': 'aHR0cHM6Ly9jb252LWpwZWEtMDQtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9aRU5BVk9Gc0drV0ZTOURTY0llWndBP2k9MTAtMTI4LTE1LTU1JmU9NjM5MDg3OTMxNzk2MDU2ODMx', 'correlationId': 'fc287b4a-0906-47d3-b921-8c692e8d2be1', 'publicEventType': 'Microsoft.Communication.CallDisconnected'}
+2026-03-11 10:05:22 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 10:05:22 2026-03-11T10:05:22.979917+0000 | INFO | ACS CallAutomationClient initialized
+2026-03-11 10:05:22 /opt/venv/lib/python3.13/site-packages/fastapi/routing.py:116: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+2026-03-11 10:05:22   response = await f(request)
+2026-03-11 10:05:22 INFO:     169.254.169.126:49110 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:05:23 2026-03-11T10:05:23.502482+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c3d-57d3-9754-c28ded7c0fa0
+2026-03-11 10:05:23 INFO:     169.254.169.126:49120 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 10:05:27 POST 404 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/a75b23d4-6a79-42d3-b4ad-f63021eed364
+2026-03-11 10:05:27 INFO:     169.254.169.126:49122 - "POST /api/voice/bot-connect/a75b23d4-6a79-42d3-b4ad-f63021eed364 HTTP/1.1" 404 Not Found
+2026-03-11 10:06:35 INFO:     Shutting down
+2026-03-11 10:06:35 INFO:     Waiting for application shutdown.
+2026-03-11 10:06:35 INFO:     Application shutdown complete.
+2026-03-11 10:06:35 INFO:     Finished server process [1]
+2026-03-11 10:09:37 INFO:     Started server process [1]
+2026-03-11 10:09:37 INFO:     Waiting for application startup.
+2026-03-11 10:09:37 INFO:     Application startup complete.
+2026-03-11 10:09:37 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-11 10:09:55 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:09:56 2026-03-11T10:09:56.732818+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 10:09:56 2026-03-11T10:09:56.733092+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 10:10:07 2026-03-11T10:10:07.643400+0000 | INFO | Firestore client initialized
+2026-03-11 10:10:07 2026-03-11T10:10:07.868928+0000 | INFO | Invalidating stale interactive card: 1773223198689
+2026-03-11 10:10:12 INFO:     169.254.169.126:43238 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:10:14 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:10:14 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 10:10:14 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 10:10:15 2026-03-11T10:10:15.612670+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 10:10:15 2026-03-11T10:10:15.612874+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 10:10:16 2026-03-11T10:10:16.326003+0000 | INFO | Pending group call registered: 6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:10:16 INFO:     169.254.169.126:57110 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:10:23 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:10:23 INFO:     169.254.169.126:10190 - "HEAD /voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 10:10:23 GET 200 https://scrum-bot-536066708327.us-central1.run.app/voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:10:24 2026-03-11T10:10:24.061571+0000 | INFO | ACS CallAutomationClient initialized
+2026-03-11 10:10:24 INFO:     169.254.169.126:10194 - "GET /voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 200 OK
+2026-03-11 10:10:26 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/token
+2026-03-11 10:10:27 2026-03-11T10:10:27.486277+0000 | INFO | Generated ACS token for user 8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4
+2026-03-11 10:10:27 /opt/venv/lib/python3.13/site-packages/fastapi/routing.py:116: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+2026-03-11 10:10:27   response = await f(request)
+2026-03-11 10:10:27 INFO:     169.254.169.126:10196 - "POST /api/voice/token HTTP/1.1" 200 OK
+2026-03-11 10:10:33 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/bot-connect/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:10:33 2026-03-11T10:10:33.302836+0000 | INFO | Connecting to group call 6e9de757-de7c-4c78-99d4-dbbe68de2c37 with cog endpoint: https://ai-cognitive-res.cognitiveservices.azure.com
+2026-03-11 10:10:33 2026-03-11T10:10:33.593720+0000 | INFO | Connected to group call 6e9de757-de7c-4c78-99d4-dbbe68de2c37, conn_id=1f005f80-5183-4a61-8f39-de0b3fc9253b
+2026-03-11 10:10:33 2026-03-11T10:10:33.594070+0000 | INFO | Voice session registered: 1f005f80-5183-4a61-8f39-de0b3fc9253b
+2026-03-11 10:10:33 2026-03-11T10:10:33.594239+0000 | INFO | Pending group call removed: 6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:10:33 2026-03-11T10:10:33.594405+0000 | INFO | Bot connected to group call 6e9de757-de7c-4c78-99d4-dbbe68de2c37 as conn_id=1f005f80-5183-4a61-8f39-de0b3fc9253b
+2026-03-11 10:10:33 INFO:     169.254.169.126:5976 - "POST /api/voice/bot-connect/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 200 OK
+2026-03-11 10:10:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:10:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:10:37 2026-03-11T10:10:37.408304+0000 | INFO | ACS event: Microsoft.Communication.CallConnected | conn=1f005f80-518... | ctx=
+2026-03-11 10:10:37 2026-03-11T10:10:37.408588+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.CallConnected'}
+2026-03-11 10:10:37 2026-03-11T10:10:37.408750+0000 | INFO | Session registered: 1f005f80-5183-4a61-8f39-de0b3fc9253b ()
+2026-03-11 10:10:37 INFO:     169.254.169.126:5986 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:10:37 2026-03-11T10:10:37.650072+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:10:37 2026-03-11T10:10:37.650281+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 1, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:10:37 INFO:     169.254.169.126:6002 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:10:37 2026-03-11T10:10:37.650771+0000 | INFO | Browser participant Pritham (joined) via ACS id 8:acs:ffd1eef9-a27f-...
+2026-03-11 10:10:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:10:37 2026-03-11T10:10:37.949151+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:10:37 2026-03-11T10:10:37.949418+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 2, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:10:37 INFO:     169.254.169.126:6016 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:10:38 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:10:38 2026-03-11T10:10:38.258437+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=waiting
+2026-03-11 10:10:38 2026-03-11T10:10:38.258640+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:10:38 INFO:     169.254.169.126:6020 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:10:46 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:10:46 2026-03-11T10:10:46.053291+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=waiting
+2026-03-11 10:10:46 2026-03-11T10:10:46.053577+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'waiting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:10:46 INFO:     169.254.169.126:15040 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:12 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:12 2026-03-11T10:11:12.252311+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=greeting
+2026-03-11 10:11:12 2026-03-11T10:11:12.252579+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'greeting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:11:12 INFO:     169.254.169.126:52056 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:23 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:23 2026-03-11T10:11:23.878520+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=greeting
+2026-03-11 10:11:23 2026-03-11T10:11:23.878793+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'greeting', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:11:23 INFO:     169.254.169.126:9374 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:23 2026-03-11T10:11:23.890506+0000 | INFO | Current speaker: Pritham
+2026-03-11 10:11:24 2026-03-11T10:11:24.143702+0000 | INFO | Fetched 2 tasks for Pritham
+2026-03-11 10:11:25 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:11:25 INFO:     169.254.169.126:9386 - "GET /voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 404 Not Found
+2026-03-11 10:11:25 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:11:25 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:11:26 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:11:26 INFO:     169.254.169.126:9400 - "GET /voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 404 Not Found
+2026-03-11 10:11:26 INFO:     169.254.169.126:9414 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:11:26 GET 404 https://scrum-bot-536066708327.us-central1.run.app/favicon.ico
+2026-03-11 10:11:27 INFO:     169.254.169.126:9420 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-03-11 10:11:27 2026-03-11T10:11:27.705112+0000 | INFO | Automatically created new user: Sergio Santomauro
+2026-03-11 10:11:27 2026-03-11T10:11:27.957133+0000 | INFO | Automatically registered user on greeting: Sergio Santomauro
+2026-03-11 10:11:28 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:28 2026-03-11T10:11:28.887643+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:11:28 2026-03-11T10:11:28.887913+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:11:28 INFO:     169.254.169.126:9422 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:28 2026-03-11T10:11:28.902880+0000 | INFO | Current speaker: Sergio
+2026-03-11 10:11:29 2026-03-11T10:11:29.154484+0000 | INFO | Fetched 0 tasks for Sergio
+2026-03-11 10:11:32 2026-03-11T10:11:32.515745+0000 | INFO | Standup started, state saved for a:1hEYwo4urT5Ce0fAqfOwIJNTGpU_AcOQKk3eYtQ2VAf--d5lIcGvq45QIqAPSmC9g8TGR3UDB_IXNPe0Z0Pk4_4g3o0XlDtuVzAxm2yEm1Io6ElirwYIkcGOALDZdGPQz
+2026-03-11 10:11:32 INFO:     169.254.169.126:9388 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:11:43 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:43 2026-03-11T10:11:43.282479+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:11:43 2026-03-11T10:11:43.282736+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:11:43 INFO:     169.254.169.126:16312 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:46 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:47 2026-03-11T10:11:47.632772+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:11:47 2026-03-11T10:11:47.632971+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 3, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:11:47 INFO:     169.254.169.126:16322 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:51 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:51 2026-03-11T10:11:51.865541+0000 | INFO | ACS event: Microsoft.Communication.RecognizeCompleted | conn=1f005f80-518... | ctx=recognize
+2026-03-11 10:11:51 2026-03-11T10:11:51.865750+0000 | INFO | ACS raw event body: {'recognitionType': 'speech', 'speechResult': {'speech': 'Back.', 'confidence': 0.15255104005336761}, 'version': '2025-06-15', 'operationContext': 'recognize', 'resultInformation': {'code': 200, 'subCode': 8569, 'message': 'Action completed, speech was recognized.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9hcGkuZmxpZ2h0cHJveHkuc2t5cGUuY29tL2FwaS92Mi9jcC9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.RecognizeCompleted'}
+2026-03-11 10:11:51 INFO:     169.254.169.126:16334 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:51 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:52 2026-03-11T10:11:52.118630+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:11:52 2026-03-11T10:11:52.118825+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 4, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:11:52 INFO:     169.254.169.126:16344 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:52 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:52 2026-03-11T10:11:52.604419+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:11:52 2026-03-11T10:11:52.604947+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:11:52 INFO:     169.254.169.126:11710 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:53 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:53 2026-03-11T10:11:53.029519+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:11:53 2026-03-11T10:11:53.029743+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 5, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:11:53 INFO:     169.254.169.126:11712 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:57 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:11:57 2026-03-11T10:11:57.697858+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:11:57 2026-03-11T10:11:57.698072+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:11:57 INFO:     169.254.169.126:11724 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:11:59 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:00 2026-03-11T10:12:00.941963+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:12:00 2026-03-11T10:12:00.942356+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 6, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:12:00 INFO:     169.254.169.126:11736 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:05 INFO:     Shutting down
+2026-03-11 10:12:05 INFO:     Waiting for application shutdown.
+2026-03-11 10:12:05 INFO:     Application shutdown complete.
+2026-03-11 10:12:05 INFO:     Finished server process [1]
+2026-03-11 10:12:05 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:05 2026-03-11T10:12:05.848655+0000 | INFO | ACS event: Microsoft.Communication.RecognizeCompleted | conn=1f005f80-518... | ctx=recognize
+2026-03-11 10:12:05 2026-03-11T10:12:05.849372+0000 | INFO | ACS raw event body: {'recognitionType': 'speech', 'speechResult': {'speech': 'Is on track.', 'confidence': 0.8336467742919922}, 'version': '2025-06-15', 'operationContext': 'recognize', 'resultInformation': {'code': 200, 'subCode': 8569, 'message': 'Action completed, speech was recognized.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9hcGkuZmxpZ2h0cHJveHkuc2t5cGUuY29tL2FwaS92Mi9jcC9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.RecognizeCompleted'}
+2026-03-11 10:12:05 INFO:     169.254.169.126:24480 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:06 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:06 2026-03-11T10:12:06.484941+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=skip
+2026-03-11 10:12:06 2026-03-11T10:12:06.485242+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'skip', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:12:06 INFO:     169.254.169.126:24486 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:06 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:06 2026-03-11T10:12:06.970807+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:12:06 2026-03-11T10:12:06.971157+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 7, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:12:06 INFO:     169.254.169.126:24498 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:11 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:11 2026-03-11T10:12:11.132649+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=skip
+2026-03-11 10:12:11 2026-03-11T10:12:11.132927+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'skip', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:12:11 INFO:     169.254.169.126:24504 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:11 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:11 2026-03-11T10:12:11.813010+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:12:11 2026-03-11T10:12:11.813464+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:12:11 INFO:     169.254.169.126:24512 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:26 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:26 2026-03-11T10:12:26.201221+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:12:26 2026-03-11T10:12:26.201539+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:12:26 INFO:     169.254.169.126:15010 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:29 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:30 2026-03-11T10:12:30.753666+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:12:30 2026-03-11T10:12:30.753931+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 8, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:12:30 INFO:     169.254.169.126:15016 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:37 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:37 2026-03-11T10:12:37.515524+0000 | INFO | ACS event: Microsoft.Communication.RecognizeCompleted | conn=1f005f80-518... | ctx=recognize
+2026-03-11 10:12:37 2026-03-11T10:12:37.515840+0000 | INFO | ACS raw event body: {'recognitionType': 'speech', 'speechResult': {'speech': 'Container fixed is on track.', 'confidence': 0.18443766236305237}, 'version': '2025-06-15', 'operationContext': 'recognize', 'resultInformation': {'code': 200, 'subCode': 8569, 'message': 'Action completed, speech was recognized.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9hcGkuZmxpZ2h0cHJveHkuc2t5cGUuY29tL2FwaS92Mi9jcC9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.RecognizeCompleted'}
+2026-03-11 10:12:37 INFO:     169.254.169.126:48406 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:38 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:38 2026-03-11T10:12:38.250150+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=skip
+2026-03-11 10:12:38 2026-03-11T10:12:38.250463+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'skip', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:12:38 INFO:     169.254.169.126:48422 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:38 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:38 2026-03-11T10:12:38.659684+0000 | INFO | ACS event: Microsoft.Communication.ParticipantsUpdated | conn=1f005f80-518... | ctx=
+2026-03-11 10:12:38 2026-03-11T10:12:38.660093+0000 | INFO | ACS raw event body: {'participants': [{'identifier': {'rawId': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4', 'kind': 'communicationUser', 'communicationUser': {'id': '8:acs:ffd1eef9-a27f-4cb2-9c5e-d7adf24c4a16_0000002d-7c41-fb46-5255-c28ded7c10e4'}}, 'isMuted': False, 'isOnHold': False}], 'sequenceNumber': 9, 'resultInformation': {'code': 200, 'subCode': 0, 'message': ''}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.ParticipantsUpdated'}
+2026-03-11 10:12:38 INFO:     169.254.169.126:48434 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:42 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:42 2026-03-11T10:12:42.906637+0000 | INFO | ACS event: Microsoft.Communication.PlayCompleted | conn=1f005f80-518... | ctx=skip
+2026-03-11 10:12:42 2026-03-11T10:12:42.906941+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'skip', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayCompleted'}
+2026-03-11 10:12:42 INFO:     169.254.169.126:31908 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:43 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:43 2026-03-11T10:12:43.352807+0000 | INFO | ACS event: Microsoft.Communication.PlayStarted | conn=1f005f80-518... | ctx=question
+2026-03-11 10:12:43 2026-03-11T10:12:43.353099+0000 | INFO | ACS raw event body: {'version': '2025-06-15', 'operationContext': 'question', 'resultInformation': {'code': 200, 'subCode': 0, 'message': 'Action completed successfully.'}, 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.PlayStarted'}
+2026-03-11 10:12:43 INFO:     169.254.169.126:31924 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:12:53 POST 200 https://scrum-bot-536066708327.us-central1.run.app/api/voice/callbacks
+2026-03-11 10:12:53 2026-03-11T10:12:53.650352+0000 | INFO | ACS event: Microsoft.Communication.CallDisconnected | conn=1f005f80-518... | ctx=
+2026-03-11 10:12:53 2026-03-11T10:12:53.650661+0000 | INFO | ACS raw event body: {'resultInformation': {'code': 200, 'subCode': 5020, 'message': 'This conversation has ended as there are no participants in the incoming roster. DiagCode: 0#5020.@'}, 'version': '2025-06-15', 'callConnectionId': '1f005f80-5183-4a61-8f39-de0b3fc9253b', 'serverCallId': 'aHR0cHM6Ly9jb252LWtyY2UtMDMtcHJvZC1ha3MuY29udi5za3lwZS5jb20vY29udi9hckxQN2k5ekhFNnlzaHh2dnY3WXpRP2k9MTAtMTI4LTIxLTI0MSZlPTYzOTA4Nzk5NDMxNjQ1ODE3Ng==', 'correlationId': 'c312ab80-aadc-4eb0-b022-3418484fd821', 'publicEventType': 'Microsoft.Communication.CallDisconnected'}
+2026-03-11 10:12:53 2026-03-11T10:12:53.650804+0000 | INFO | Session removed: 1f005f80-5183-4a61-8f39-de0b3fc9253b
+2026-03-11 10:12:53 2026-03-11T10:12:53.650997+0000 | INFO | Voice session removed: 1f005f80-5183-4a61-8f39-de0b3fc9253b
+2026-03-11 10:12:53 INFO:     169.254.169.126:30374 - "POST /api/voice/callbacks HTTP/1.1" 200 OK
+2026-03-11 10:19:27 HEAD 405 https://scrum-bot-536066708327.us-central1.run.app/voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:19:27 INFO:     169.254.169.126:24168 - "HEAD /voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 405 Method Not Allowed
+2026-03-11 10:19:27 GET 404 https://scrum-bot-536066708327.us-central1.run.app/voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37
+2026-03-11 10:19:27 INFO:     169.254.169.126:24172 - "GET /voice/join/6e9de757-de7c-4c78-99d4-dbbe68de2c37 HTTP/1.1" 404 Not Found
+2026-03-11 10:22:36 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:22:37 2026-03-11T10:22:37.362223+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 10:22:37 2026-03-11T10:22:37.362442+0000 | INFO | Message from Pritham Dsouza: Hi
+2026-03-11 10:22:37 2026-03-11T10:22:37.362558+0000 | INFO | Invalidating stale interactive card: 1773223812477
+2026-03-11 10:22:39 INFO:     169.254.169.126:19892 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:34:35 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:34:35 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:34:35 INFO:     169.254.169.126:33302 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:34:37 2026-03-11T10:34:37.208922+0000 | INFO | Automatically created new user: Vimalan Arul
+2026-03-11 10:34:37 2026-03-11T10:34:37.462461+0000 | INFO | Automatically registered user on greeting: Vimalan Arul
+2026-03-11 10:34:38 2026-03-11T10:34:38.549619+0000 | INFO | Current speaker: Vimalan
+2026-03-11 10:34:38 2026-03-11T10:34:38.803022+0000 | INFO | Fetched 0 tasks for Vimalan
+2026-03-11 10:34:42 2026-03-11T10:34:42.088076+0000 | INFO | Standup started, state saved for a:1I6-0hGXoxDFF20uoZaRxfi4J265CiA0K35wEKRd-_FZFn3l2I530OuejnnicJy5sdzj1ox_zH-RyonjXGI3egTa6oOLesGm0xNTNFt-gFSBK-fMLs_nDFr8XQBPhTjS0
+2026-03-11 10:34:42 INFO:     169.254.169.126:33300 - "POST /api/messages HTTP/1.1" 201 Created
+2026-03-11 10:35:08 POST 201 https://scrum-bot-536066708327.us-central1.run.app/api/messages
+2026-03-11 10:35:08 source is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 10:35:08 legacy is not a known attribute of class <class 'botbuilder.schema.teams._models_py3.TeamsChannelData'> and will be ignored
+2026-03-11 10:35:09 2026-03-11T10:35:09.025831+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 10:35:09 2026-03-11T10:35:09.026435+0000 | INFO | Message from Pritham Dsouza: 
+2026-03-11 10:35:09 2026-03-11T10:35:09.726330+0000 | INFO | Pending group call registered: 1158ecb8-ef95-4cc7-a053-549c1ae42390
+2026-03-11 10:35:10 INFO:     169.254.169.126:18240 - "POST /api/messages HTTP/1.1" 201 Created

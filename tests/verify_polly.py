@@ -9,7 +9,7 @@ load_dotenv()
 async def main():
     print("Testing AWS Polly Integration...")
     
-    text = "Hello! This is a test of the AWS Polly integration for the AI Scrum Bot."
+    text = "Hello! This is a test of the AWS Polly integration for the Teams Sprint Bot."
     print(f"Creating audio for: '{text}'")
     
     audio_data = await text_to_speech(text)

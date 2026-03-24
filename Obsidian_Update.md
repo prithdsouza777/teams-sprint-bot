@@ -1,4 +1,4 @@
-# AI Scrum Bot — Project Context
+# Teams Sprint Bot — Project Context
 
 **Date:** 2026-02-13
 **Type:** Project Context & Architecture
@@ -8,7 +8,7 @@
 ---
 
 ## Project Overview
-An AI-powered Microsoft Teams bot that automates daily standup meetings. Uses **Gemini AI** (`gemini-3-flash-preview`) for intelligence, **FastAPI** for the backend, **MongoDB** for persistent data, **Firestore** for session state, and **AWS Polly** for optional neural text-to-speech. Deployed on **GCP Cloud Run**.
+A Microsoft Teams bot that automates daily standup meetings. Uses **Gemini AI** (`gemini-3-flash-preview`) for intelligence, **FastAPI** for the backend, **MongoDB** for persistent data, **Firestore** for session state, and **AWS Polly** for optional neural text-to-speech. Deployed on **GCP Cloud Run**.
 
 ### Tech Stack
 

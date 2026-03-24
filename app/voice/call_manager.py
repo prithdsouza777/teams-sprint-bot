@@ -6,6 +6,7 @@ Tracks active call sessions for state management across webhook events.
 Supports both 1:1 calls and group meeting joins for voice standups.
 """
 
+import asyncio
 from loguru import logger
 from typing import Optional, Dict, Any
 from datetime import datetime, timezone
@@ -16,6 +17,7 @@ from app.config import settings
 _acs_imports_loaded = False
 _CallAutomationClient = None
 _MicrosoftTeamsUserIdentifier = None
+_CommunicationUserIdentifier = None
 _CallInvite = None
 _FileSource = None
 _TextSource = None
@@ -26,7 +28,7 @@ def _load_acs_imports():
     """Lazy-load ACS SDK to avoid import errors when ACS is not configured."""
     global _acs_imports_loaded, _CallAutomationClient
     global _MicrosoftTeamsUserIdentifier, _CallInvite, _FileSource
-    global _TextSource, _RecognizeInputType
+    global _TextSource, _RecognizeInputType, _CommunicationUserIdentifier
 
     if _acs_imports_loaded:
         return True
@@ -42,10 +44,12 @@ def _load_acs_imports():
         )
         from azure.communication.callautomation import (
             RecognizeInputType,
+            CommunicationUserIdentifier,
         )
 
         _CallAutomationClient = CallAutomationClient
         _MicrosoftTeamsUserIdentifier = MicrosoftTeamsUserIdentifier
+        _CommunicationUserIdentifier = CommunicationUserIdentifier
         _CallInvite = CallInvite
         _FileSource = FileSource
         _TextSource = TextSource
@@ -166,7 +170,9 @@ class CallManager:
         invite = _CallInvite(target=target)
 
         try:
-            result = self.client.create_call(invite, callback_url=callback_url)
+            result = await asyncio.to_thread(
+                self.client.create_call, invite, callback_url=callback_url
+            )
             logger.info(f"Call initiated to {teams_user_oid}")
             return result
         except Exception as e:
@@ -181,7 +187,7 @@ class CallManager:
         try:
             conn = self.client.get_call_connection(call_connection_id)
             source = _FileSource(url=audio_url)
-            conn.play_media_to_all(source)
+            conn.play_media_to_all(play_source=source)
             logger.debug(f"Playing audio: {audio_url[:60]}...")
             return True
         except Exception as e:
@@ -199,7 +205,7 @@ class CallManager:
             conn = self.client.get_call_connection(call_connection_id)
             conn.start_recognizing_media(
                 input_type="speech",
-                end_silence_timeout=end_silence_timeout,
+                end_silence_timeout_in_seconds=end_silence_timeout,
             )
             logger.debug(f"Recognition started on {call_connection_id}")
             return True
@@ -251,13 +257,18 @@ class CallManager:
             return None
 
         cog_endpoint = cognitive_services_endpoint or settings.AZURE_COGNITIVE_SERVICES_ENDPOINT
+        if cog_endpoint:
+            cog_endpoint = cog_endpoint.strip().rstrip("/")
 
         try:
             targets = [
                 _MicrosoftTeamsUserIdentifier(user_id=oid)
                 for oid in teams_user_oids
             ]
-            result = self.client.create_call(
+            logger.info(f"Creating group call to {len(teams_user_oids)} users with cog endpoint: {cog_endpoint}")
+
+            result = await asyncio.to_thread(
+                self.client.create_call,
                 target_participant=targets,
                 callback_url=callback_url,
                 cognitive_services_endpoint=cog_endpoint if cog_endpoint else None,
@@ -266,7 +277,7 @@ class CallManager:
             logger.info(f"Group call created, conn_id={conn_id}, participants={len(teams_user_oids)}")
             return conn_id
         except Exception as e:
-            logger.error(f"create_group_call_to_teams_users failed: {e}")
+            logger.error(f"create_group_call_to_teams_users failed: {e}", exc_info=True)
             return None
 
     async def speak_to_all(
@@ -287,7 +298,7 @@ class CallManager:
         try:
             conn = self.client.get_call_connection(call_connection_id)
             source = _TextSource(text=text, voice_name=voice_name)
-            conn.get_call_media().play_media_to_all(
+            conn.play_media_to_all(
                 play_source=source,
                 operation_context=operation_context,
             )
@@ -319,11 +330,11 @@ class CallManager:
         try:
             conn = self.client.get_call_connection(call_connection_id)
             target = _MicrosoftTeamsUserIdentifier(user_id=target_entra_oid)
-            conn.get_call_media().start_recognizing_media(
+            conn.start_recognizing_media(
                 input_type=_RecognizeInputType.SPEECH,
                 target_participant=target,
-                end_silence_timeout_in_seconds=end_timeout,
-                initial_silence_timeout_in_seconds=init_timeout,
+                end_silence_timeout=end_timeout,
+                initial_silence_timeout=init_timeout,
                 operation_context=operation_context,
             )
             logger.debug(
@@ -333,6 +344,42 @@ class CallManager:
             return True
         except Exception as e:
             logger.error(f"start_recognizing_participant failed: {e}")
+            return False
+
+    async def start_recognizing_acs_participant(
+        self,
+        call_connection_id: str,
+        acs_comm_id: str,
+        end_silence_timeout: int = 0,
+        initial_silence_timeout: int = 0,
+        operation_context: str = "",
+    ) -> bool:
+        """
+        Start speech recognition targeting an ACS Communication user (browser-based).
+        """
+        if not self.enabled:
+            return False
+
+        end_timeout = end_silence_timeout or settings.VOICE_STANDUP_SILENCE_TIMEOUT
+        init_timeout = initial_silence_timeout or settings.VOICE_STANDUP_WAIT_SECONDS
+
+        try:
+            conn = self.client.get_call_connection(call_connection_id)
+            target = _CommunicationUserIdentifier(acs_comm_id)
+            conn.start_recognizing_media(
+                input_type=_RecognizeInputType.SPEECH,
+                target_participant=target,
+                end_silence_timeout=end_timeout,
+                initial_silence_timeout=init_timeout,
+                operation_context=operation_context,
+            )
+            logger.debug(
+                f"Recognition started for ACS user {acs_comm_id[:20]}... "
+                f"(ctx={operation_context})"
+            )
+            return True
+        except Exception as e:
+            logger.error(f"start_recognizing_acs_participant failed: {e}")
             return False
 
     async def list_call_participants(
@@ -352,18 +399,113 @@ class CallManager:
 
     async def add_participant(
         self, call_connection_id: str, teams_user_oid: str
-    ) -> bool:
+    ) -> Optional[Any]:
         """Add a Teams user to an existing call."""
         if not self.enabled:
-            return False
+            return None
 
         try:
-            conn = self.client.get_call_connection(call_connection_id)
+            call_conn = self.client.get_call_connection(call_connection_id)
             target = _MicrosoftTeamsUserIdentifier(user_id=teams_user_oid)
-            invite = _CallInvite(target=target)
-            conn.add_participant(invite)
-            logger.info(f"Added participant {teams_user_oid} to {call_connection_id}")
-            return True
+            result = await asyncio.to_thread(
+                call_conn.add_participant, target
+            )
+            logger.info(f"Added participant {teams_user_oid} to call {call_connection_id}")
+            return result
         except Exception as e:
-            logger.error(f"add_participant failed: {e}")
-            return False
+            logger.error(f"Failed to add participant: {e}")
+            return None
+
+    async def connect_to_group_call(
+        self, group_call_id: str, callback_url: str,
+        cognitive_services_endpoint: str = "",
+    ) -> Optional[str]:
+        """
+        Connect the bot to an ACS group call using connect_call.
+
+        The group_call_id is a UUID shared with the web client so both
+        the browser user and the server-side bot end up in the same call.
+
+        Returns the call_connection_id or None on failure.
+        """
+        if not self.enabled:
+            logger.warning("Cannot connect to group call – ACS not enabled")
+            return None
+
+        cog_endpoint = cognitive_services_endpoint or settings.AZURE_COGNITIVE_SERVICES_ENDPOINT
+        if cog_endpoint:
+            cog_endpoint = cog_endpoint.strip().rstrip("/")
+            
+        logger.info(f"Connecting to group call {group_call_id} with cog endpoint: {cog_endpoint}")
+
+        try:
+            result = await asyncio.to_thread(
+                self.client.connect_call,
+                callback_url,
+                group_call_id=group_call_id,
+                cognitive_services_endpoint=cog_endpoint if cog_endpoint else None,
+            )
+            conn_id = result.call_connection_id
+            logger.info(f"Connected to group call {group_call_id}, conn_id={conn_id}")
+            return conn_id
+        except Exception as e:
+            logger.error(f"connect_to_group_call failed: {e}", exc_info=True)
+            return None
+
+    def get_acs_endpoint(self) -> Optional[str]:
+        """Extract the ACS endpoint URL from the connection string."""
+        conn_str = settings.ACS_CONNECTION_STRING or ""
+        for part in conn_str.split(";"):
+            if part.lower().startswith("endpoint="):
+                return part.split("=", 1)[1]
+        return None
+
+    def generate_user_token(self) -> Optional[dict]:
+        """
+        Create a temporary ACS user identity + VOIP token for the web client.
+
+        Returns {"token": str, "user_id": str, "expires_on": str} or None.
+        """
+        try:
+            from azure.communication.identity import CommunicationIdentityClient
+
+            identity_client = CommunicationIdentityClient.from_connection_string(
+                settings.ACS_CONNECTION_STRING
+            )
+            user = identity_client.create_user()
+            token_response = identity_client.get_token(user, scopes=["voip"])
+            logger.info(f"Generated ACS token for user {user.properties['id']}")
+            expires_on = token_response.expires_on
+            expires_str = expires_on.isoformat() if hasattr(expires_on, 'isoformat') else str(expires_on)
+            
+            return {
+                "token": token_response.token,
+                "user_id": user.properties["id"],
+                "expires_on": expires_str,
+            }
+        except Exception as e:
+            logger.error(f"Failed to generate ACS user token: {e}", exc_info=True)
+            return None
+
+
+# ── Pending group calls (group_call_id -> VoiceStandupSession) ──────
+# Used to map a group call to its voice session before the bot connects.
+_pending_group_calls: Dict[str, Any] = {}
+
+
+def register_pending_group_call(group_call_id: str, session):
+    """Register a voice session that is waiting for the user to join."""
+    _pending_group_calls[group_call_id] = session
+    logger.info(f"Pending group call registered: {group_call_id}")
+
+
+def get_pending_group_call(group_call_id: str):
+    """Retrieve a pending voice session by group_call_id."""
+    return _pending_group_calls.get(group_call_id)
+
+
+def remove_pending_group_call(group_call_id: str):
+    """Remove a pending group call."""
+    if group_call_id in _pending_group_calls:
+        del _pending_group_calls[group_call_id]
+        logger.info(f"Pending group call removed: {group_call_id}")

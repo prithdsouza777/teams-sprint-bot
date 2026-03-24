@@ -1,5 +1,6 @@
 from botbuilder.core import ActivityHandler, TurnContext, MessageFactory
 from botbuilder.schema import Activity, ActivityTypes, Attachment, InvokeResponse
+from botbuilder.core.teams import TeamsInfo
 from loguru import logger
 from datetime import datetime, timedelta
 
@@ -87,11 +88,22 @@ class TeamsBot(ActivityHandler):
         
         return await super().on_invoke_activity(turn_context)
 
+    async def _get_teams_member_name(self, turn_context: TurnContext, member_id: str) -> str:
+        """Fetch real name from Teams profile reliably."""
+        try:
+            member = await TeamsInfo.get_member(turn_context, member_id)
+            if member and member.name:
+                return member.name
+            return turn_context.activity.from_property.name or "User"
+        except Exception as e:
+            logger.warning(f"Failed to fetch Teams member info for {member_id}: {e}")
+            return turn_context.activity.from_property.name or "User"
+
     async def on_message_activity(self, turn_context: TurnContext):
         try:
             text = (turn_context.activity.text or "").strip()
             user_id = turn_context.activity.from_property.id
-            user_name = turn_context.activity.from_property.name or "User"
+            user_name = await self._get_teams_member_name(turn_context, user_id)
             conversation_id = turn_context.activity.conversation.id
             activity_id = turn_context.activity.id or ""
 
@@ -231,33 +243,7 @@ class TeamsBot(ActivityHandler):
             # state_dict already loaded above
 
             
-            # Check for pending registration
-            if state_dict and state_dict.get("pending_registration"):
-                teams_id = state_dict.get("teams_id", user_id)
-                # Extract actual name from phrases like "my name is X", "I'm X", etc.
-                import re
-                name_input = text.strip()
-                name_patterns = [
-                    r"(?i)^(?:my\s+name\s+is|i'?\s*am|i'm|call\s+me|it'?\s*s|this\s+is)\s+(.+)$",
-                ]
-                for pattern in name_patterns:
-                    match = re.match(pattern, name_input)
-                    if match:
-                        name_input = match.group(1).strip().rstrip(".")
-                        break
-                user = await register_user(teams_id, name_input)
-                if user:
-                    await turn_context.send_activity(
-                        MessageFactory.text(f"✅ Got it, {user.get('name')}! You're now registered. Type **start standup** to begin.")
-                    )
-                    # Clear pending state
-                    await save_state(conversation_id, {})
-                else:
-                    await turn_context.send_activity(
-                        MessageFactory.text(f"I couldn't link you to '{text}'. Please ensure your name matches the project roster and isn't already registered.")
-                    )
-                return
-            
+            # Check for standup commands
             if state_dict and state_dict.get("last_question"):
                 await self._continue_standup(turn_context, conversation_id, text, state_dict)
                 return
@@ -280,33 +266,24 @@ class TeamsBot(ActivityHandler):
         user = await get_user_by_teams_id(user_id)
         
         if not user:
-            # Try name-based lookup
-            user = await get_user_by_name(user_name)
+            # Automatically register the user if not found
+            user = await register_user(user_id, user_name)
             if user:
-                # Link Teams ID to existing user
-                await register_user(user_id, user_name)
-                logger.info(f"Linked Teams ID to user by name: {user_name}")
-        
-        if not user:
-            # User not found - prompt for registration
-            await turn_context.send_activity(
-                MessageFactory.text(
-                    f"👋 Hi {user_name}! I don't have you in my records yet.\n\n"
-                    f"Please tell me your name as it appears in the system (e.g., 'Pritham', 'Mukund', etc.) "
-                    f"so I can find your tasks."
+                logger.info(f"Automatically registered user on standup start: {user_name}")
+            else:
+                await turn_context.send_activity(
+                    MessageFactory.text("I'm having trouble accessing my records. Please try again in a moment.")
                 )
-            )
-            # Save pending registration state
-            await save_state(conversation_id, {"pending_registration": True, "teams_id": user_id})
-            return
+                return
         
         # Use the user's name from database for consistency
         display_name = user.get("name", user_name)
+        first_name = display_name.split()[0]
         
         participant = Participant(
-            id=display_name,  # Use name as ID for task matching
+            id=display_name,  # Use full name as ID for task matching
             teams_id=user_id,
-            name=display_name,
+            name=first_name,  # Use first name for greetings on cards
         )
         state = AgentState(
             meeting_id=conversation_id,
@@ -362,12 +339,14 @@ class TeamsBot(ActivityHandler):
             await turn_context.send_activity(MessageFactory.text(response_message or "Standup started!"))
 
     async def _start_voice_standup(self, turn_context: TurnContext, conversation_id: str, user_id: str, user_name: str):
-        """Start a voice standup by creating a Teams meeting and having ACS join it."""
+        """Start a voice standup by creating an ACS group call and sending a join link."""
         from app.services.database import get_user_entra_oid, get_users_with_entra_oids, update_user_entra_oid
         from app.services.graph import get_user_oid_by_name
-        from app.voice.call_manager import CallManager
+        from app.voice.routes import get_call_manager
+        from app.voice.call_manager import register_pending_group_call
         from app.agent.state import VoiceStandupSession, VoiceParticipantState
         from datetime import datetime, timezone
+        import uuid
 
         # 1. Resolve the requesting user's Entra OID
         user = await get_user_by_teams_id(user_id)
@@ -395,33 +374,13 @@ class TeamsBot(ActivityHandler):
                 )
                 return
 
-        # 2. Call only the requesting user
-        await turn_context.send_activity(
-            MessageFactory.text("Starting voice standup! You'll receive a call on Teams...")
-        )
+        # 2. Generate a unique group call ID
+        group_call_id = str(uuid.uuid4())
 
-        cm = CallManager()
-        callback_url = settings.ACS_CALLBACK_URL.rstrip("/") + "/api/voice/callbacks"
-
-        conn_id = await cm.create_group_call_to_teams_users(
-            teams_user_oids=[organizer_oid],
-            callback_url=callback_url,
-            cognitive_services_endpoint=settings.AZURE_COGNITIVE_SERVICES_ENDPOINT,
-        )
-
-        if not conn_id:
-            await turn_context.send_activity(
-                MessageFactory.text(
-                    "The bot couldn't start the voice call. Please check ACS configuration. "
-                    "You can use text-based standup instead."
-                )
-            )
-            return
-
-        # 3. Create VoiceStandupSession and register it
+        # 3. Create VoiceStandupSession and register as pending
         voice_session = VoiceStandupSession(
-            call_connection_id=conn_id,
-            meeting_id=conn_id,
+            call_connection_id="",  # will be set when bot connects
+            meeting_id=group_call_id,
             join_web_url="",
             chat_conversation_id=conversation_id,
             participants=[
@@ -435,7 +394,7 @@ class TeamsBot(ActivityHandler):
             scrum_master_entra_oid=organizer_oid,
             agent_state_key="",
         )
-        cm.register_voice_session(conn_id, voice_session)
+        register_pending_group_call(group_call_id, voice_session)
 
         # 4. Save conversation reference for proactive summary posting
         try:
@@ -444,9 +403,49 @@ class TeamsBot(ActivityHandler):
         except Exception as e:
             logger.warning(f"Could not save conversation reference for voice standup: {e}")
 
+        # 5. Build join URL and send Adaptive Card
+        base_url = settings.BASE_URL.rstrip("/")
+        join_url = f"{base_url}/voice/join/{group_call_id}"
+
+        card = {
+            "type": "AdaptiveCard",
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.4",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": "🎙️ Voice Standup Ready",
+                    "weight": "Bolder",
+                    "size": "Medium",
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "Click the button below to join the voice standup in your browser. "
+                            "The AI Scrum Master will guide you through the standup questions.",
+                    "wrap": True,
+                    "size": "Small",
+                },
+            ],
+            "actions": [
+                {
+                    "type": "Action.OpenUrl",
+                    "title": "🔊 Join Voice Standup",
+                    "url": join_url,
+                }
+            ],
+        }
+
+        from botbuilder.schema import Attachment
+
+        attachment = Attachment(
+            content_type="application/vnd.microsoft.card.adaptive",
+            content=card,
+        )
+
         await turn_context.send_activity(
-            MessageFactory.text(
-                "Voice standup call initiated! Answer the incoming call on Teams."
+            Activity(
+                type=ActivityTypes.message,
+                attachments=[attachment],
             )
         )
 
@@ -529,8 +528,12 @@ class TeamsBot(ActivityHandler):
              await self._send_greeting(turn_context, user_id, user_name, conversation_id)
              return
             
+        user = await get_user_by_teams_id(user_id)
+        display_name = user.get("name", user_name) if user else user_name
+        first_name = display_name.split()[0]
+            
         try:
-            prompt = f"""You are a helpful AI Scrum Master assistant. The user said: "{text}"
+            prompt = f"""You are a helpful AI Scrum Master assistant. You are talking to {first_name}. The user said: "{text}"
             
 Respond helpfully and conversationally. If they seem to want to start a standup, 
 remind them to say "start standup".
@@ -688,16 +691,17 @@ Keep your response brief and friendly."""
                 MessageFactory.text("❌ Something went wrong. Please try again.")
             )
 
-
-
     async def _send_greeting(self, turn_context: TurnContext, user_id: str, user_name: str, conversation_id: str):
-        """Send role-based greeting."""
+        """Send a personalized greeting and show the menu if Scrum Master."""
+        # Use full name for registration/lookup, but first name for conversation
+        full_name = await self._get_teams_member_name(turn_context, user_id)
+        
         # Deduplicate greetings: both on_members_added and on_message can trigger this
         now = datetime.now()
         greeting_key = f"{conversation_id}:{user_id}"
         if greeting_key in _greeted_conversations:
             if now - _greeted_conversations[greeting_key] < GREETING_DEDUPE_WINDOW:
-                logger.debug(f"Skipping duplicate greeting for {user_name} in {conversation_id}")
+                logger.debug(f"Skipping duplicate greeting for {full_name} in {conversation_id}")
                 return
         _greeted_conversations[greeting_key] = now
         # Cleanup old greeting entries
@@ -705,14 +709,20 @@ Keep your response brief and friendly."""
         for k in expired:
             del _greeted_conversations[k]
 
-        # Try to identify the user
+        # Try to identify or automatically register the user
         user = await get_user_by_teams_id(user_id)
         if not user:
             # Fallback to name check
-            user = await get_user_by_name(user_name)
+            user = await get_user_by_name(full_name)
+            if not user:
+                # Automatic registration with FULL NAME
+                user = await register_user(user_id, full_name)
+                if user:
+                    logger.info(f"Automatically registered user on greeting: {full_name}")
         
         if user:
-            display_name = user.get("name", user_name)
+            display_name = user.get("name", full_name)
+            first_name = display_name.split()[0]
             user_role = user.get("role", "Member")
             
             if user_role == "Scrum Master":
@@ -721,10 +731,10 @@ Keep your response brief and friendly."""
                 await self._cleanup_previous_interaction(turn_context, conversation_id)
                 
                 await turn_context.send_activity(
-                    MessageFactory.text(f"👋 Hi {display_name}! I'm your AI Scrum Master. Say **start standup** to begin or **assign a task** to a member.")
+                    MessageFactory.text(f"👋 Hi {first_name}! I'm your AI Scrum Master. Say **start standup** to begin or **assign a task** to a member.")
                 )
                 # Show Menu Card
-                card = create_scrum_master_menu_card(display_name)
+                card = create_scrum_master_menu_card(first_name)
                 response = await turn_context.send_activity(Activity(
                     type=ActivityTypes.message,
                     attachments=[card]
@@ -737,18 +747,15 @@ Keep your response brief and friendly."""
             else:
                 # Scenario 1: Member
                 await turn_context.send_activity(
-                    MessageFactory.text(f"👋 Hi {display_name}! I'm your AI Scrum Master. Let's get started with your daily standup.")
+                    MessageFactory.text(f"👋 Hi {first_name}! I'm your AI Scrum Master. Let's get started with your daily standup.")
                 )
                 await self._start_standup(turn_context, conversation_id, user_id, user_name)
         else:
-            # Scenario 3: Unknown User
+            # System error fallback (should not happen with auto-registration)
+            logger.error(f"Failed to register or find user {user_name} ({user_id})")
             await turn_context.send_activity(
-                MessageFactory.text(
-                    f"👋 Hi! I'm your AI Scrum Master. Please provide your name (e.g., 'My name is {user_name}')."
-                )
+                MessageFactory.text(f"👋 Hi! I'm your AI Scrum Master. I'm having a little trouble with my database, but we can still chat!")
             )
-            # Save pending registration state
-            await save_state(conversation_id, {"pending_registration": True, "teams_id": user_id})
 
     async def on_members_added_activity(self, members_added, turn_context: TurnContext):
         conversation_id = turn_context.activity.conversation.id

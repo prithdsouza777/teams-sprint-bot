@@ -1,6 +1,6 @@
-# AI Scrum Bot 🤖
+# Teams Sprint Bot 🤖
 
-An AI-powered Microsoft Teams bot that automates daily standup meetings using Gemini AI and FastAPI.
+A Microsoft Teams bot that automates daily standup meetings using Gemini AI and FastAPI.
 
 ## Tech Stack
 
@@ -56,8 +56,8 @@ app/
 
 ```bash
 # Build and deploy
-gcloud builds submit --tag gcr.io/PROJECT_ID/scrum-bot
-gcloud run deploy scrum-bot --image gcr.io/PROJECT_ID/scrum-bot --platform managed
+gcloud builds submit --tag gcr.io/PROJECT_ID/teams-sprint-bot
+gcloud run deploy teams-sprint-bot --image gcr.io/PROJECT_ID/teams-sprint-bot --platform managed
 ```
 
 ## Verification

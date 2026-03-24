@@ -1,6 +1,6 @@
 # Verification Scripts
 
-This directory contains standalone scripts to verify the configuration and connectivity of external services associated with the AI Scrum Bot.
+This directory contains standalone scripts to verify the configuration and connectivity of external services associated with the Teams Sprint Bot.
 
 ## Prerequisite
 Ensure your `.env` file is configured in the project root.

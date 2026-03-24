@@ -39,24 +39,34 @@ def create_question_card(
             ]
         })
 
+    body = [
+        {"type": "TextBlock", "text": f"Hey {participant_name}! 👋", "weight": "Bolder", "size": "Medium"},
+    ]
+    
+    if tasks:
+        body.append({"type": "TextBlock", "text": "Your current tasks:", "weight": "Bolder", "size": "Small", "spacing": "Medium"})
+        body.extend(task_items)
+    else:
+        body.append({"type": "TextBlock", "text": "You currently have no tasks assigned to you.", "size": "Small", "isSubtle": True, "spacing": "Medium"})
+
+    body.append({"type": "TextBlock", "text": question, "wrap": True, "spacing": "Large", "weight": "Bolder"})
+
+    if tasks:
+        body.append({
+            "type": "ActionSet",
+            "actions": [
+                {"type": "Action.Submit", "title": "✅ On Track", "data": {"quickReply": "on_track"}},
+                {"type": "Action.Submit", "title": "🔴 Blocked", "data": {"quickReply": "blocked"}}
+            ]
+        })
+
+    body.append({"type": "TextBlock", "text": "Or just type your response below 👇", "size": "Small", "isSubtle": True, "horizontalAlignment": "Center"})
+
     card = {
         "type": "AdaptiveCard",
         "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
         "version": "1.4",
-        "body": [
-            {"type": "TextBlock", "text": f"Hey {participant_name}! 👋", "weight": "Bolder", "size": "Medium"},
-            {"type": "TextBlock", "text": "Your current tasks:", "weight": "Bolder", "size": "Small", "spacing": "Medium"},
-            *task_items,
-            {"type": "TextBlock", "text": question, "wrap": True, "spacing": "Large", "weight": "Bolder"},
-            {
-                "type": "ActionSet",
-                "actions": [
-                    {"type": "Action.Submit", "title": "✅ On Track", "data": {"quickReply": "on_track"}},
-                    {"type": "Action.Submit", "title": "🔴 Blocked", "data": {"quickReply": "blocked"}}
-                ]
-            },
-            {"type": "TextBlock", "text": "Or just type your response below 👇", "size": "Small", "isSubtle": True, "horizontalAlignment": "Center"}
-        ]
+        "body": body
     }
 
     return Attachment(
@@ -261,17 +271,24 @@ def create_completed_question_card(
             ]
         })
 
+    body = [
+        {"type": "TextBlock", "text": f"Hey {participant_name}! 👋", "weight": "Bolder", "size": "Medium"},
+    ]
+
+    if tasks:
+        body.append({"type": "TextBlock", "text": "Your current tasks:", "weight": "Bolder", "size": "Small", "spacing": "Medium"})
+        body.extend(task_items)
+    else:
+        body.append({"type": "TextBlock", "text": "You currently have no tasks assigned to you.", "size": "Small", "isSubtle": True, "spacing": "Medium"})
+
+    body.append({"type": "TextBlock", "text": question, "wrap": True, "spacing": "Large", "weight": "Bolder"})
+    body.append({"type": "TextBlock", "text": f"✅ Response: {response_chosen}", "wrap": True, "color": "Good", "spacing": "Medium"})
+
     card = {
         "type": "AdaptiveCard",
         "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
         "version": "1.4",
-        "body": [
-            {"type": "TextBlock", "text": f"Hey {participant_name}! 👋", "weight": "Bolder", "size": "Medium"},
-            {"type": "TextBlock", "text": "Your current tasks:", "weight": "Bolder", "size": "Small", "spacing": "Medium"},
-            *task_items,
-            {"type": "TextBlock", "text": question, "wrap": True, "spacing": "Large", "weight": "Bolder"},
-            {"type": "TextBlock", "text": f"✅ Response: {response_chosen}", "wrap": True, "color": "Good", "spacing": "Medium"}
-        ]
+        "body": body
     }
     return Attachment(
         content_type="application/vnd.microsoft.card.adaptive",

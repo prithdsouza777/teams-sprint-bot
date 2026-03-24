@@ -77,6 +77,264 @@ async def serve_audio(audio_id: str):
     return Response(status_code=404)
 
 
+# ══════════════════════════════════════════════════════════════════════
+#  Web-based voice standup join page + API
+# ══════════════════════════════════════════════════════════════════════
+
+@router.get("/api/voice/acs_bundle.js")
+async def serve_acs_bundle():
+    """Serve the locally bundled Azure Communication SDKs."""
+    from fastapi.responses import FileResponse
+    path = os.path.join(os.path.dirname(__file__), "static", "acs_bundle.js")
+    if not os.path.exists(path):
+        return Response(status_code=404, content="Bundle not found")
+    return FileResponse(path, media_type="application/javascript")
+
+@router.get("/voice/join/{group_call_id}")
+async def voice_join_page(group_call_id: str):
+    """Serve a lightweight HTML page that joins the ACS group call via browser."""
+    from app.voice.call_manager import get_pending_group_call
+
+    session = get_pending_group_call(group_call_id)
+    if not session:
+        return Response(
+            content="<h1>Voice standup not found or expired.</h1>",
+            media_type="text/html", status_code=404,
+        )
+
+    cm = get_call_manager()
+    acs_endpoint = cm.get_acs_endpoint() or ""
+
+    html = _build_join_page_html(group_call_id, acs_endpoint)
+    return Response(content=html, media_type="text/html")
+
+
+@router.post("/api/voice/token")
+async def get_voice_token():
+    """Generate a temporary ACS identity + VOIP token for the web client."""
+    cm = get_call_manager()
+    token_data = cm.generate_user_token()
+    if not token_data:
+        from fastapi.responses import JSONResponse
+        return JSONResponse(status_code=500, content={"error": "Failed to generate token"})
+    return token_data
+
+
+@router.post("/api/voice/bot-connect/{group_call_id}")
+async def bot_connect(group_call_id: str, background_tasks: BackgroundTasks):
+    """
+    Called by the web client after the user joins the group call.
+    The server-side bot connects to the same group call to start the standup.
+    """
+    from app.voice.call_manager import get_pending_group_call, remove_pending_group_call
+
+    session = get_pending_group_call(group_call_id)
+    if not session:
+        from fastapi.responses import JSONResponse
+        return JSONResponse(status_code=404, content={"error": "Session not found or expired"})
+
+    cm = get_call_manager()
+    callback_url = settings.ACS_CALLBACK_URL.rstrip("/") + "/api/voice/callbacks"
+
+    conn_id = await cm.connect_to_group_call(
+        group_call_id=group_call_id,
+        callback_url=callback_url,
+    )
+
+    if not conn_id:
+        from fastapi.responses import JSONResponse
+        return JSONResponse(status_code=500, content={"error": "Failed to connect bot to the call"})
+
+    # Transfer the pending session to the active voice sessions
+    session.call_connection_id = conn_id
+    cm.register_voice_session(conn_id, session)
+    remove_pending_group_call(group_call_id)
+
+    logger.info(f"Bot connected to group call {group_call_id} as conn_id={conn_id}")
+    return {"status": "connected", "call_connection_id": conn_id}
+
+
+def _build_join_page_html(group_call_id: str, acs_endpoint: str) -> str:
+    """Build the HTML page for the browser-based voice standup join."""
+    base_url = settings.BASE_URL.rstrip("/")
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Standup</title>
+    <style>
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        body {{
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        .container {{
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+        }}
+        .emoji {{ font-size: 48px; margin-bottom: 16px; }}
+        h1 {{ font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #fff; }}
+        .subtitle {{ color: #aaa; margin-bottom: 32px; font-size: 14px; }}
+        #status {{
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.08);
+            margin-bottom: 24px;
+            font-size: 14px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        .btn {{
+            display: inline-block;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }}
+        .btn-join {{
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }}
+        .btn-join:hover {{ transform: translateY(-2px); box-shadow: 0 4px 15px rgba(76,175,80,0.4); }}
+        .btn-join:disabled {{
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }}
+        .btn-leave {{
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+            display: none;
+        }}
+        .btn-leave:hover {{ transform: translateY(-2px); box-shadow: 0 4px 15px rgba(244,67,54,0.4); }}
+        .connected {{ background: rgba(76,175,80,0.15) !important; color: #81c784; }}
+        .error {{ background: rgba(244,67,54,0.15) !important; color: #ef9a9a; }}
+        .mic-indicator {{
+            display: none;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #81c784;
+        }}
+        .mic-indicator.active {{ display: block; }}
+        @keyframes pulse {{
+            0%, 100% {{ opacity: 1; }}
+            50% {{ opacity: 0.5; }}
+        }}
+        .pulse {{ animation: pulse 1.5s ease-in-out infinite; }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">🎙️</div>
+        <h1>Voice Standup</h1>
+        <p class="subtitle">Teams Sprint Bot will guide you through the standup</p>
+        <div id="status">Ready to join</div>
+        <button class="btn btn-join" id="joinBtn" onclick="joinCall()">Join Call</button>
+        <button class="btn btn-leave" id="leaveBtn" onclick="leaveCall()">Leave Call</button>
+        <div class="mic-indicator" id="micIndicator">🟢 Microphone active</div>
+    </div>
+
+    <script src="{base_url}/api/voice/acs_bundle.js"></script>
+    <script>
+        const GROUP_CALL_ID = "{group_call_id}";
+        const BASE_URL = "{base_url}";
+        let callAgent = null;
+        let call = null;
+
+        function getAzureSDK() {{
+            const common = window.AzureCommunicationCommon || (window.Azure && window.Azure.Communication && window.Azure.Communication.Common);
+            const calling = window.AzureCommunicationCalling || (window.Azure && window.Azure.Communication && window.Azure.Communication.Calling);
+            
+            if (!common || !calling) {{
+                console.error('Azure SDKs not found in window object:', {{ common: !!common, calling: !!calling }});
+                throw new Error('Communication SDKs failed to load. Please try refreshing.');
+            }}
+            return {{ common, calling }};
+        }}
+
+        async function joinCall() {{
+            const btn = document.getElementById('joinBtn');
+            const statusEl = document.getElementById('status');
+            btn.disabled = true;
+            statusEl.textContent = 'Connecting...';
+            statusEl.className = 'pulse';
+
+            try {{
+                // 1. Resolve SDK objects
+                const {{ common, calling }} = getAzureSDK();
+                const {{ CallClient, Features }} = calling;
+                const {{ AzureCommunicationTokenCredential }} = common;
+
+                // 2. Get ACS token
+                const tokenRes = await fetch(BASE_URL + '/api/voice/token', {{ method: 'POST' }});
+                const tokenData = await tokenRes.json();
+                console.log("Token Data Received:", tokenData);
+                console.log("Type of token:", typeof tokenData.token);
+                if (tokenData.error) throw new Error(tokenData.error);
+
+                // 3. Create call client + agent
+                const callClient = new CallClient();
+                const credential = new AzureCommunicationTokenCredential(tokenData.token);
+                callAgent = await callClient.createCallAgent(credential, {{ displayName: 'Standup User' }});
+
+                // 4. Join the group call
+                call = callAgent.join({{ groupId: GROUP_CALL_ID }});
+
+                call.on('stateChanged', () => {{
+                    if (call.state === 'Connected') {{
+                        statusEl.textContent = '🟢 Connected — standup in progress';
+                        statusEl.className = 'connected';
+                        document.getElementById('leaveBtn').style.display = 'inline-block';
+                        document.getElementById('micIndicator').className = 'mic-indicator active';
+                        btn.style.display = 'none';
+
+                        // 5. Tell the server to connect the bot
+                        fetch(BASE_URL + '/api/voice/bot-connect/' + GROUP_CALL_ID, {{ method: 'POST' }});
+                    }} else if (call.state === 'Disconnected') {{
+                        statusEl.textContent = 'Call ended';
+                        statusEl.className = '';
+                        document.getElementById('leaveBtn').style.display = 'none';
+                        document.getElementById('micIndicator').className = 'mic-indicator';
+                        btn.style.display = 'inline-block';
+                        btn.disabled = false;
+                    }}
+                }});
+            }} catch (err) {{
+                statusEl.textContent = 'Error: ' + err.message;
+                statusEl.className = 'error';
+                btn.disabled = false;
+                console.error('Call Error:', err);
+            }}
+        }}
+
+        async function leaveCall() {{
+            if (call) {{
+                await call.hangUp();
+            }}
+        }}
+    </script>
+</body>
+</html>"""
+
+
 async def generate_and_cache_audio(text: str) -> str:
     """
     Generate TTS audio via Polly, cache it, and return its public URL.
@@ -123,6 +381,7 @@ async def handle_acs_callback(request: Request, background_tasks: BackgroundTask
             op_ctx = data.get("operationContext", "")
 
             logger.info(f"ACS event: {event_type} | conn={conn_id[:12]}... | ctx={op_ctx}")
+            logger.info(f"ACS raw event body: {data}")
 
             if event_type == "Microsoft.Communication.CallConnected":
                 cm = get_call_manager()
@@ -136,15 +395,31 @@ async def handle_acs_callback(request: Request, background_tasks: BackgroundTask
                 background_tasks.add_task(_on_play_completed, conn_id, op_ctx)
 
             elif event_type == "Microsoft.Communication.RecognizeCompleted":
+                # Look for speechResult for voice, or recognitionResult for DTMF if applicable
                 speech_text = (
-                    data.get("recognitionResult", {}).get("text", "").strip()
-                )
+                    data.get("speechResult", {}).get("speech", "")
+                    or data.get("recognitionResult", {}).get("text", "")
+                ).strip()
                 background_tasks.add_task(
                     _on_recognize_completed, conn_id, speech_text, op_ctx
                 )
 
             elif event_type == "Microsoft.Communication.RecognizeFailed":
                 background_tasks.add_task(_on_recognize_failed, conn_id, op_ctx)
+
+            elif event_type == "Microsoft.Communication.CreateCallFailed":
+                result_info = data.get("resultInformation", {})
+                code = result_info.get("code", "")
+                sub_code = result_info.get("subCode", "")
+                message = result_info.get("message", "Unknown error")
+                logger.error(
+                    f"CreateCallFailed: code={code}, subCode={sub_code}, "
+                    f"message={message}, conn={conn_id}"
+                )
+                # Notify the user via proactive message
+                background_tasks.add_task(
+                    _on_call_failed, conn_id, code, sub_code, message
+                )
 
             elif event_type == "Microsoft.Communication.CallDisconnected":
                 cm = get_call_manager()
@@ -167,6 +442,50 @@ async def handle_acs_callback(request: Request, background_tasks: BackgroundTask
 #  Event Handlers (run in background)
 # ══════════════════════════════════════════════════════════════════════
 
+async def _on_call_failed(conn_id: str, code: str, sub_code: str, message: str):
+    """Notify the user when ACS fails to create the call."""
+    cm = get_call_manager()
+    session = cm.get_voice_session(conn_id)
+
+    if not session:
+        return
+
+    # Post error back to the original Teams chat
+    try:
+        from app.services.firestore import get_conversation_reference
+        from app.bot.adapter import bot_adapter
+        from botbuilder.core import TurnContext
+        from botbuilder.schema import Activity, ActivityTypes
+
+        chat_conv_id = session.chat_conversation_id
+        conv_ref = await get_conversation_reference(chat_conv_id)
+        if conv_ref:
+            error_msg = (
+                f"⚠️ **Voice standup call failed**\n\n"
+                f"ACS Error: {message} (code={code}, subCode={sub_code})\n\n"
+                f"This usually means Teams interop is not configured. "
+                f"An admin needs to run:\n"
+                f"```\nSet-CsTeamsAcsFederationConfiguration "
+                f"-EnableAcsUsers $true\n```\n"
+                f"And ensure the target user has a Teams Phone license."
+            )
+
+            async def send_error(turn_context: TurnContext):
+                await turn_context.send_activity(
+                    Activity(type=ActivityTypes.message, text=error_msg)
+                )
+
+            from app.config import settings
+            await bot_adapter.continue_conversation(
+                conv_ref, send_error, settings.MICROSOFT_APP_ID
+            )
+    except Exception as e:
+        logger.error(f"Failed to notify user about call failure: {e}")
+
+    # Clean up the voice session
+    cm.remove_voice_session(conn_id)
+
+
 async def _on_call_connected(conn_id: str):
     """
     Called when the bot connects to the meeting.
@@ -179,7 +498,7 @@ async def _on_call_connected(conn_id: str):
         # Fallback for 1:1 calls (no voice session registered)
         logger.info(f"No voice session for {conn_id} — using legacy 1:1 flow")
         audio_url = await generate_and_cache_audio(
-            "Hello! I'm your AI Scrum Master. What would you like to do?"
+            "Hello! I'm your Teams Sprint Bot. What would you like to do?"
         )
         if audio_url:
             await cm.play_audio(conn_id, audio_url)
@@ -210,18 +529,41 @@ async def _on_participants_updated(conn_id: str, event_data: dict):
     participants_list = event_data.get("participants", [])
     for p in participants_list:
         identifier = p.get("identifier", {})
-        # Microsoft Teams users have a "microsoftTeamsUser" field
-        teams_user = identifier.get("microsoftTeamsUser", {})
-        oid = teams_user.get("userId", "")
-        if not oid:
-            continue
-
+        kind = identifier.get("kind", "")
         is_in_call = p.get("isMuted") is not None  # present = in call
 
-        for vp in session.participants:
-            if vp.entra_oid == oid:
-                vp.joined = is_in_call
-                logger.info(f"Participant {vp.name} ({'joined' if is_in_call else 'left'})")
+        matched = False
+
+        # Check for Microsoft Teams users (direct Teams join)
+        if kind == "microsoftTeamsUser":
+            teams_user = identifier.get("microsoftTeamsUser", {})
+            oid = teams_user.get("userId", "")
+            if oid:
+                for vp in session.participants:
+                    if vp.entra_oid == oid:
+                        vp.joined = is_in_call
+                        matched = True
+                        logger.info(f"Teams participant {vp.name} ({'joined' if is_in_call else 'left'})")
+                        break
+
+        # Check for ACS Communication users (browser-based join)
+        elif kind == "communicationUser":
+            comm_user = identifier.get("communicationUser", {})
+            comm_id = comm_user.get("id", "")
+            if comm_id:
+                # In browser flow, match to the first un-joined participant
+                # (the person who clicked "Join Call" from Teams)
+                for vp in session.participants:
+                    if not vp.joined and not vp.completed:
+                        vp.joined = is_in_call
+                        vp.acs_comm_id = comm_id  # store for recognition targeting
+                        matched = True
+                        logger.info(f"Browser participant {vp.name} ({'joined' if is_in_call else 'left'}) via ACS id {comm_id[:20]}...")
+                        break
+
+                if not matched and is_in_call:
+                    # Could be the bot itself — log but don't match
+                    logger.debug(f"Unmatched communicationUser in call: {comm_id[:20]}...")
 
     cm.update_voice_session(conn_id, session)
 
@@ -248,12 +590,24 @@ async def _on_play_completed(conn_id: str, operation_context: str):
 
     elif operation_context in ("question", "followup"):
         # Question/followup done — start listening to the current participant
-        if session.current_recognizing_oid:
-            await cm.start_recognizing_participant(
-                conn_id,
-                session.current_recognizing_oid,
-                operation_context="recognize",
-            )
+        current_oid = session.current_recognizing_oid
+        if current_oid:
+            # Determine if this is a browser user (acs_comm_id) or Teams user
+            vp_match = next((vp for vp in session.participants if vp.entra_oid == current_oid), None)
+            if vp_match and vp_match.acs_comm_id:
+                # Browser-based participant — use ACS Communication identity
+                await cm.start_recognizing_acs_participant(
+                    conn_id,
+                    vp_match.acs_comm_id,
+                    operation_context="recognize",
+                )
+            else:
+                # Teams-native participant
+                await cm.start_recognizing_participant(
+                    conn_id,
+                    current_oid,
+                    operation_context="recognize",
+                )
 
     elif operation_context == "transition":
         # Transition message done — ask the next participant
@@ -379,6 +733,27 @@ async def _on_recognize_completed(conn_id: str, speech_text: str, op_ctx: str):
             cm.update_voice_session(conn_id, session)
             summary_text = VOICE_SUMMARY_INTRO + " " + state.final_summary
             await cm.speak_to_all(conn_id, summary_text, operation_context="summary")
+        else:
+            # Fallback if summarizer somehow fails
+            await cm.speak_to_all(conn_id, "Standup is complete, but I couldn't generate a summary. Have a great day!", operation_context="farewell")
+    else:
+        # Catch-all fallback if state doesn't cleanly match above conditions
+        logger.warning(f"Fallback matched in _on_recognize_completed. state.last_question='{state.last_question}', current_speaker={getattr(state.current_speaker, 'name', 'None')}")
+        if state.current_speaker:
+            # Participant still active but no specific question generated, force a question
+            if not state.last_question:
+                state.last_question = "Any other updates or blockers to share?"
+                await save_state(state_key, state.model_dump())
+            await cm.speak_to_all(conn_id, state.last_question, operation_context="followup")
+        else:
+            # Participant cleared but not marked complete, try advancing
+            logger.info("Participant cleared but is_complete=False in fallback. Advancing.")
+            state, response_message = await run_standup_agent(state, "")
+            await save_state(state_key, state.model_dump())
+            if state.last_question and state.current_speaker:
+                await cm.speak_to_all(conn_id, state.last_question, operation_context="followup")
+            else:
+                 await cm.speak_to_all(conn_id, "Thanks. Let's move on.", operation_context="transition")
 
 
 async def _on_recognize_failed(conn_id: str, op_ctx: str):

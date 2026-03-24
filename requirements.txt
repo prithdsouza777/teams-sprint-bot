@@ -1,4 +1,4 @@
-# AI Scrum Bot - Python Dependencies (Updated Feb 2026)
+# Teams Sprint Bot - Python Dependencies (Updated Feb 2026)
 
 # Web Framework
 fastapi>=0.128.0
@@ -32,6 +32,7 @@ loguru>=0.7.3
 
 # Voice & Azure
 azure-communication-callautomation>=1.5.0
+azure-communication-identity>=1.5.0
 azure-identity>=1.25.0
 
 # Microsoft Graph API (meeting creation)

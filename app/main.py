@@ -11,8 +11,8 @@ logger.remove()
 logger.add(sys.stdout, format="{time} | {level} | {message}", level="INFO")
 
 app = FastAPI(
-    title="AI Scrum Bot",
-    description="Microsoft Teams bot for automated scrum standups",
+    title="Teams Sprint Bot",
+    description="Microsoft Teams bot for automated sprint standups",
     version="2.0.0",
     default_response_class=ORJSONResponse
 )
@@ -23,7 +23,7 @@ from app.voice.routes import router as voice_router
 
 @app.get("/")
 async def root():
-    return {"status": "running", "service": "ai-scrum-bot", "version": "2.0.0"}
+    return {"status": "running", "service": "teams-sprint-bot", "version": "2.0.0"}
 
 app.include_router(voice_router)
 

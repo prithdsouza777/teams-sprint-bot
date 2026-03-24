@@ -1,8 +1,8 @@
-# AI Scrum Bot Project
+# Teams Sprint Bot Project
 
 ## Overview
 
-AI Scrum Bot is a standup meeting assistant built using Gemini AI and FastAPI.  
+Teams Sprint Bot is a standup meeting assistant built using Gemini AI and FastAPI.  
 It facilitates standup meetings, tracks state, and summarizes discussions.
 
 ---
