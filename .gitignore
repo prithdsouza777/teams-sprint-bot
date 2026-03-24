@@ -60,3 +60,6 @@ claude.md
 # Runtime data
 .state/
 audio_cache/
+
+# Deployment secrets
+env.yaml
