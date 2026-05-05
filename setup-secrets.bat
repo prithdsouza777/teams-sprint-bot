@@ -1,84 +1,82 @@
 @echo off
-REM Setup secrets in GCP Secret Manager for Teams Sprint Bot
-REM Run this BEFORE deploying to Cloud Run
+REM ======================================
+REM Teams Sprint Bot - GCP Secret Manager Setup
+REM Reads values from .env and stores them as secrets
+REM Run this ONCE before first deploy (or when secrets change)
+REM ======================================
 
-setlocal
+setlocal EnableDelayedExpansion
 
-set PROJECT_ID=YOUR_GCP_PROJECT_ID
+REM Load environment variables from .env file
+echo Loading configuration from .env...
+for /f "usebackq tokens=1,* delims==" %%a in (".env") do (
+    set "line=%%a"
+    if not "!line:~0,1!"=="#" (
+        if not "%%a"=="" if not "%%b"=="" (
+            set "%%a=%%b"
+        )
+    )
+)
 
-echo.
-echo === Setting up GCP Secrets for Teams Sprint Bot ===
-echo.
-
-REM Check PROJECT_ID
-if "%PROJECT_ID%"=="YOUR_GCP_PROJECT_ID" (
-    echo ERROR: Please edit this script and set PROJECT_ID
+if "%GOOGLE_PROJECT_ID%"=="" (
+    echo ERROR: GOOGLE_PROJECT_ID not found in .env
     exit /b 1
 )
 
-echo [1/6] Enabling Secret Manager API...
-call gcloud services enable secretmanager.googleapis.com --project=%PROJECT_ID%
-
-echo.
-echo You will be prompted to enter each secret value.
+echo Using GCP Project: %GOOGLE_PROJECT_ID%
 echo.
 
-REM Create secrets (will prompt for values)
-echo [2/6] Creating GEMINI_API_KEY secret...
-echo Enter your Gemini API Key:
-set /p GEMINI_KEY=
-echo %GEMINI_KEY%| gcloud secrets create GEMINI_API_KEY --data-file=- --project=%PROJECT_ID% 2>nul || (
-    echo Updating existing secret...
-    echo %GEMINI_KEY%| gcloud secrets versions add GEMINI_API_KEY --data-file=- --project=%PROJECT_ID%
+REM Enable Secret Manager API
+echo [1/3] Enabling Secret Manager API...
+call gcloud services enable secretmanager.googleapis.com --project=%GOOGLE_PROJECT_ID%
+
+echo.
+echo [2/3] Creating/updating secrets from .env values...
+echo.
+
+REM Define all secret names
+set SECRETS=GEMINI_API_KEY MICROSOFT_APP_ID MICROSOFT_APP_PASSWORD MICROSOFT_TENANT_ID MONGODB_URL AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY ACS_CONNECTION_STRING AZURE_COGNITIVE_SERVICES_ENDPOINT
+
+for %%S in (%SECRETS%) do (
+    set "VAL=!%%S!"
+    if not "!VAL!"=="" (
+        echo   %%S ...
+        echo !VAL!| gcloud secrets create %%S --data-file=- --project=%GOOGLE_PROJECT_ID% 2>nul || (
+            echo     ^(exists, adding new version^)
+            echo !VAL!| gcloud secrets versions add %%S --data-file=- --project=%GOOGLE_PROJECT_ID%
+        )
+    ) else (
+        echo   %%S ... SKIPPED ^(empty in .env^)
+    )
 )
 
 echo.
-echo [3/6] Creating MICROSOFT_APP_ID secret...
-echo Enter your Microsoft App ID:
-set /p MS_APP_ID=
-echo %MS_APP_ID%| gcloud secrets create MICROSOFT_APP_ID --data-file=- --project=%PROJECT_ID% 2>nul || (
-    echo Updating existing secret...
-    echo %MS_APP_ID%| gcloud secrets versions add MICROSOFT_APP_ID --data-file=- --project=%PROJECT_ID%
+echo [3/3] Granting Cloud Run service account access to secrets...
+
+REM Get the project number for the default compute service account
+for /f %%i in ('gcloud projects describe %GOOGLE_PROJECT_ID% --format^="value(projectNumber)"') do set PROJECT_NUMBER=%%i
+set SA=%PROJECT_NUMBER%-compute@developer.gserviceaccount.com
+
+echo   Service account: %SA%
+
+for %%S in (%SECRETS%) do (
+    set "VAL=!%%S!"
+    if not "!VAL!"=="" (
+        gcloud secrets add-iam-policy-binding %%S ^
+            --member="serviceAccount:%SA%" ^
+            --role="roles/secretmanager.secretAccessor" ^
+            --project=%GOOGLE_PROJECT_ID% >nul 2>&1
+        echo   %%S ... granted
+    )
 )
 
 echo.
-echo [4/6] Creating MICROSOFT_APP_PASSWORD secret...
-echo Enter your Microsoft App Password:
-set /p MS_APP_PWD=
-echo %MS_APP_PWD%| gcloud secrets create MICROSOFT_APP_PASSWORD --data-file=- --project=%PROJECT_ID% 2>nul || (
-    echo Updating existing secret...
-    echo %MS_APP_PWD%| gcloud secrets versions add MICROSOFT_APP_PASSWORD --data-file=- --project=%PROJECT_ID%
-)
-
+echo === Secret Manager Setup Complete ===
 echo.
-echo [5/6] Creating MONGODB_URL secret...
-echo Enter your MongoDB URL:
-set /p MONGO_URL=
-echo %MONGO_URL%| gcloud secrets create MONGODB_URL --data-file=- --project=%PROJECT_ID% 2>nul || (
-    echo Updating existing secret...
-    echo %MONGO_URL%| gcloud secrets versions add MONGODB_URL --data-file=- --project=%PROJECT_ID%
-)
-
+echo Secrets stored: %SECRETS%
+echo Service account %SA% has accessor role on all secrets.
 echo.
-echo [6/6] Creating AWS secrets...
-echo Enter AWS Access Key ID:
-set /p AWS_KEY=
-echo %AWS_KEY%| gcloud secrets create AWS_ACCESS_KEY_ID --data-file=- --project=%PROJECT_ID% 2>nul || (
-    echo Updating existing secret...
-    echo %AWS_KEY%| gcloud secrets versions add AWS_ACCESS_KEY_ID --data-file=- --project=%PROJECT_ID%
-)
-
-echo Enter AWS Secret Access Key:
-set /p AWS_SECRET=
-echo %AWS_SECRET%| gcloud secrets create AWS_SECRET_ACCESS_KEY --data-file=- --project=%PROJECT_ID% 2>nul || (
-    echo Updating existing secret...
-    echo %AWS_SECRET%| gcloud secrets versions add AWS_SECRET_ACCESS_KEY --data-file=- --project=%PROJECT_ID%
-)
-
-echo.
-echo === Secrets Setup Complete! ===
-echo.
-echo Now run: deploy-cloudrun.bat
+echo Now run: deploy.bat
 echo.
 
 endlocal
